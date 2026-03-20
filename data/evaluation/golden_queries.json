@@ -1,0 +1,221 @@
+[
+{
+"id": 1,
+"query": "Macam mano nok daftar bantuan banjir Bantuan Wang Ihsan tu?",
+"language": "ms",
+"country": "MY",
+"expected_type": "step_cards",
+"expected_tool_chain": ["search_documents", "summarize", "dialect_adapt"],
+"notes": "Showcase: Kelantan dialect input and dialect_adapt output. Procedural steps for Bantuan Wang Ihsan."
+},
+
+{
+"id": 2,
+"query": "Kalau keluarga saya ada orang meninggal sebab banjir, macam mana waris nak tuntut bantuan RM10k tu?",
+"language": "ms",
+"country": "MY",
+"expected_type": "step_cards",
+"expected_tool_chain": ["detect_language", "search_documents", "summarize"],
+"notes": "Procedural: Steps and documents required to claim Bantuan Wang Ihsan Kematian for disaster victims."
+},
+
+{
+"id": 3,
+"query": "Saya nak buka bisnes kecil, nama kedai tu kena daftar macam mana dengan SSM?",
+"language": "ms",
+"country": "MY",
+"expected_type": "step_cards",
+"expected_tool_chain": ["detect_language", "search_documents", "summarize"],
+"notes": "Procedural: User asking how to register a business name and the approval process."
+},
+
+{
+"id": 4,
+"query": "Aku nak tanya pasal SOCSO tu, can check online ke kalau kena buang kerja?",
+"language": "ms",
+"country": "MY",
+"expected_type": "text",
+"expected_tool_chain": ["search_documents", "simplify"],
+"notes": "Showcase: Code-switching (Malay/English). Informational query about worker rights and SOCSO."
+},
+
+{
+"id": 5,
+"query": "Mak saya sakit terlantar lepas keluar hospital, ada tak nurse kerajaan boleh datang rawat dekat rumah?",
+"language": "ms",
+"country": "MY",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: Asking about domiciliary/home healthcare services and eligibility."
+},
+
+{
+"id": 6,
+"query": "Saya nak buka usaha kecil jual makanan dari rumah, daftar izin usaha lewat OSS itu langkahnya macam mana ya?",
+"language": "id",
+"country": "ID",
+"expected_type": "step_cards",
+"expected_tool_chain": ["detect_language", "search_documents", "summarize"],
+"notes": "Procedural: User wants step-by-step process to register UMK business license through OSS."
+},
+
+{
+"id": 7,
+"query": "Kalau mau dapat bantuan BLT dari Kemensos tahun ini, syaratnya apa saja dan siapa yang bisa dapat?",
+"language": "id",
+"country": "ID",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: User asking eligibility requirements for BLT Kemensos assistance."
+},
+
+{
+"id": 8,
+"query": "Saya mau lapor masalah pelayanan pemerintah tapi bingung, pakai SP4N Lapor itu caranya gimana?",
+"language": "id",
+"country": "ID",
+"expected_type": "step_cards",
+"expected_tool_chain": ["detect_language", "search_documents", "summarize"],
+"notes": "Procedural: User asking how to submit a complaint using the SP4N-LAPOR system."
+},
+
+{
+"id": 9,
+"query": "Kalau saya kerja di luar negeri jadi pekerja migran, pemerintah kasih perlindungan apa saja sebenarnya?",
+"language": "id",
+"country": "ID",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: User asking about protections provided to Indonesian migrant workers."
+},
+
+{
+"id": 10,
+"query": "BPJS Kesehatan itu kalau saya daftar sendiri, manfaat yang bisa dipakai apa saja ya?",
+"language": "id",
+"country": "ID",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: User asking about benefits provided by BPJS Kesehatan."
+},
+
+{
+"id": 11,
+"query": "ถ้าบ้านผมโดนน้ำท่วม รัฐบาลมีเงินช่วยเหลือไหม แล้วต้องไปยื่นเรื่องที่ไหน?",
+"language": "th",
+"country": "TH",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: Citizen asking about flood disaster relief assistance from DDPM."
+},
+
+{
+"id": 12,
+"query": "ผมอายุครบ 60 แล้ว ถ้าจะขอเงินบำนาญจากประกันสังคมมาตรา 40 ต้องทำยังไงบ้าง?",
+"language": "th",
+"country": "TH",
+"expected_type": "step_cards",
+"expected_tool_chain": ["detect_language", "search_documents", "summarize"],
+"notes": "Procedural: Steps to apply for old-age benefits for insured persons under Section 40 at Social Security Office. "
+},
+
+{
+"id": 13,
+"query": "ถ้านายจ้างให้คนต่างชาติทำงาน แต่ไม่มีใบอนุญาตทำงาน แบบนี้ผิดกฎหมายไหม?",
+"language": "th",
+"country": "TH",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: Question about legality of foreign workers working without work permits under Thai employment law. "
+},
+
+{
+"id": 14,
+"query": "แรงงานต่างชาติอย่างผม ถ้าจะทำงานในไทย ต้องขอใบอนุญาตทำงานยังไง?",
+"language": "th",
+"country": "TH",
+"expected_type": "step_cards",
+"expected_tool_chain": ["detect_language", "search_documents", "summarize"],
+"notes": "Procedural: Migrant worker asking how to obtain a work permit in Thailand."
+},
+
+{
+"id": 15,
+"query": "ประกันสังคมของไทยจริงๆ แล้วช่วยอะไรบ้าง คนทำงานจะได้สิทธิอะไร?",
+"language": "th",
+"country": "TH",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: User asking about benefits and coverage under Thailand Social Security system. "
+},
+
+{
+"id": 16,
+"query": "Kung gipit kami ngayon, pwede ba humingi ng cash o medical help sa DSWD? Paano ba mag-apply?",
+"language": "tl",
+"country": "PH",
+"expected_type": "step_cards",
+"expected_tool_chain": ["detect_language", "search_documents", "summarize"],
+"notes": "Procedural: User asking how to apply for Assistance to Individuals in Crisis Situation (AICS) financial or medical assistance from DSWD. "
+},
+
+{
+"id": 17,
+"query": "I am a micro-entrepreneur in the Philippines needing financial assistance to grow my sari-sari store. What programs am I eligible for?",
+"language": "en",
+"country": "PH",
+"expected_type": "recommendations",
+"expected_tool_chain": ["profile_match"],
+"notes": "Showcase: Proactive profiling. User describing their situation to get tailored recommendation cards."
+},
+
+{
+"id": 18,
+"query": "OFW ako, kung may problema ako sa employer sa abroad, may tulong ba galing sa gobyerno?",
+"language": "tl",
+"country": "PH",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: Migrant worker asking about protections and support under the Migrant Workers and Overseas Filipinos Act."
+},
+
+{
+"id": 19,
+"query": "Automatic ba lahat ng Pilipino may PhilHealth na ngayon? Ano bang mga serbisyo ang pwede kong gamitin?",
+"language": "tl",
+"country": "PH",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: User asking about coverage and benefits under the Universal Health Care Act. "
+},
+
+{
+"id": 20,
+"query": "Paano ako magpa-member sa SSS kung first time ko lang magtatrabaho?",
+"language": "tl",
+"country": "PH",
+"expected_type": "step_cards",
+"expected_tool_chain": ["detect_language", "search_documents", "summarize"],
+"notes": "Procedural: New worker asking how to register for Social Security System membership under the Social Security Act of 2018."
+},
+
+{
+"id": 21,
+"query": "Kalau bos saya simpan pasport saya masa kerja luar negara, saya boleh report kat mana ya?",
+"language": "ms",
+"country": "ASEAN",
+"expected_type": "text",
+"expected_tool_chain": ["detect_language", "search_documents", "simplify"],
+"notes": "Informational: Migrant worker asking about rights regarding holding personal documents and where to seek help. The ASEAN Consensus states migrant workers have the right to hold their own passports and documents and can seek assistance from authorities or embassies."
+},
+
+{
+"id": 22,
+"query": "Kalau saya pekerja migran lepas kerja kena buang masa krisis atau bencana, macam mana nak balik negara asal?",
+"language": "ms",
+"country": "ASEAN",
+"expected_type": "step_cards",
+"expected_tool_chain": ["detect_language", "search_documents", "summarize"],
+"notes": "Procedural: Migrant worker asking how to return home during crisis situations. ASEAN frameworks say sending and receiving states coordinate evacuation, return and reintegration assistance for migrant workers affected by crises."
+}
+]

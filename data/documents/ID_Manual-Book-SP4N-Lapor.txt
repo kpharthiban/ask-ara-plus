@@ -1,0 +1,76 @@
+Manual Book 
+Penggunaan Aplikasi 
+SP4N-LAPOR! 
+ 
+ 
+ 
+
+Manual Book 
+Penggunaan Aplikasi SP4N-LAPOR! 
+ 
+Selamat datang di Manual Book Penggunaan Aplikasi 
+SP4N-LAPOR! Ini adalah panduan langkah demi langkah untuk menggunakan aplikasi SP4N-LAPOR! Layanan 
+Aspirasi dan Pengaduan Online Rakyat. Aplikasi ini bertujuan untuk memudahkan masyarakat dalam menyampaikan pengaduan, aspirasi, dan permintaan informasi terkait pelayanan publik di Indonesia. Berikut adalah langkah-langkah penggunaan aplikasi SP4NLAPOR!: 
+ 
+Langkah 1: Unduh Aplikasi SP4N-LAPOR! 
+Anda dapat mengunduh aplikasi SP4N-LAPOR! melalui 
+Google Play Store (untuk pengguna Android) atau App 
+Store (untuk pengguna iOS). Cari aplikasi SP4N-LAPOR! dan unduh aplikasinya. Selain itu Anda juga bias mengakses SP4N Lapor melalui https://sp4n.lapor.go.id/ 
+ 
+Gambar: Tampilan utama https://sp4n lapor go id/
+
+Langkah 2: Registrasi dan Login 
+Setelah mengunduh aplikasi, buka aplikasi SP4N-LAPOR! di perangkat Anda. Untuk menggunakan aplikasi ini, Anda perlu mendaftar dan masuk ke akun Anda. Anda dapat memilih untuk masuk menggunakan akun Google, 
+Facebook, atau Twitter. Pilih opsi yang sesuai dan ikuti petunjuk untuk menyelesaikan proses registrasi. Jika melalui web based, Anda dapat mengklik tombol 
+“DAFTAR” yang berada di pojok kanan atas (lihat lingkaran kuning). 
+Gambar 2: Tampilan Utama SP4N Lapor! untuk pendaftaran Akun. 
+Setelah itu, akan muncul tampilan halaman pendaftaran akun. Untuk pendaftaran akun SP4N Lapor ini, bisa menggunakan akun Facebook, Twitter atau google Anda. 
+Selain itu, bisa juga dengan mengisi data-data pada kolom isian yang tersedia. Untuk tampilannya bias dilihat seperti gambar berikut: 
+
+ 
+ 
+Langkah 3: Pilih Jenis Laporan 
+Setelah memiliki akun, Anda dapat menggunakan aplikasi ini. Silahkan tekan tombol login, isi data username, email atau nomor telepon yang telah didaftarkan, kemudian ketik password. Selanjutnya Anda akan diarahkan ke halaman utama aplikasi SP4N-LAPOR!. Pada halaman ini, Anda akan melihat opsi untuk memilih jenis laporan yang ingin 
+Anda buat. Ada tiga jenis laporan yang dapat dipilih, yaitu: 
+Pengaduan: 
+Gunakan opsi ini jika 
+Anda ingin mengadukan suatu masalah terkait pelayanan publik yang tidak sesuai dengan standar atau pengabaian kewajiban. 
+Gambar 3: Tampilan laman daftar https://sp4n.lapor.go.id/account/register 
+
+Aspirasi: Gunakan opsi ini jika Anda ingin memberikan saran, usulan, atau masukan untuk meningkatkan kualitas layanan publik di Indonesia. 
+Permintaan Informasi: Gunakan opsi ini jika Anda ingin meminta informasi umum terkait pelayanan publik kepada pengelola layanan. 
+ 
+ 
+Langkah 4: Isi Data Laporan 
+Setelah memilih jenis laporan, Anda akan diarahkan ke halaman pengisian data laporan. Isilah data dengan lengkap dan benar sesuai dengan petunjuk yang 
+Gambar 4: Tampilan laman untuk menyampaikan laporan 
+ diberikan. Pastikan menggunakan Bahasa Indonesia yang baik dan benar dalam mengisi data laporan. 
+ 
+Langkah 5: Pilih Kategori dan Identitas Pelapor 
+Pada halaman pengisian data laporan, Anda akan diminta untuk memilih kategori terkait laporan Anda. Pilihlah kategori yang paling relevan dengan masalah yang Anda laporkan. Selanjutnya, Anda dapat memilih apakah ingin menggunakan nama pribadi dan merahasiakannya atau memilih opsi "anonim" jika Anda tidak ingin menggunakan data asli Anda. 
+ 
+Langkah 6: Lampirkan Bukti (jika tersedia) 
+Sebaiknya, Anda melampirkan bukti terkait aduan, aspirasi, atau permintaan informasi yang 
+Anda sampaikan. Jika Anda memiliki foto atau video yang mendukung laporan Anda, Anda dapat melampirkannya di bagian yang disediakan. Ini akan membantu memperkuat laporan Anda. 
+ 
+Langkah 7: Kirimkan Laporan 
+Setelah semua kolom pengisian aplikasi SP4N-LAPOR! terisi dengan lengkap, Anda dapat mengirimkan laporan 
+Anda. Pastikan untuk mengecek kembali semua informasi yang Anda berikan sebelum mengirimkan laporan. 
+Setelah mengisi data laporan, Anda akan diberikan tracking ID. Tracking ID ini adalah nomor unik yang dapat 
+
+Anda gunakan untuk memantau proses tindak lanjut terhadap laporan yang Anda ajukan. Simpanlah tracking 
+ID ini dengan baik. 
+ 
+Langkah 8: Proses Penanganan Laporan 
+Setelah Anda mengirimkan laporan, laporan Anda akan diteruskan dan diverifikasi oleh pihak terkait. Pihak yang berwenang akan menangani laporan Anda dalam waktu tiga hari. Dalam waktu lima hari, instansi terkait akan menindaklanjuti dan membalas laporan yang Anda ajukan. Anda akan menerima balasan dari instansi terkait terkait tindak lanjut yang diambil terhadap laporan Anda. 
+ 
+Langkah 9: Tanggapi Balasan 
+Setelah menerima balasan dari instansi terkait, Anda diminta untuk menanggapi balasan tersebut dalam waktu 
+10 hari. Pastikan Anda membaca balasan dengan seksama dan memberikan tanggapan yang relevan. 
+ 
+Dengan mengikuti langkah-langkah di atas, Anda dapat menggunakan aplikasi 
+SP4N-LAPOR! untuk menyampaikan pengaduan, aspirasi, dan permintaan informasi terkait pelayanan publik di Indonesia. Pastikan untuk menggunakan aplikasi ini dengan bijak dan memberikan informasi yang akurat dan jelas dalam laporan Anda. 
+ 
+
+Terima kasih telah menggunakan aplikasi SP4N-LAPOR! 
+Layanan Aspirasi dan Pengaduan Online Rakyat. Semoga penggunaan aplikasi ini dapat membantu meningkatkan kualitas pelayanan publik di Indonesia. Jika Anda memiliki pertanyaan lebih lanjut atau membutuhkan bantuan, jangan ragu untuk menghubungi tim dukungan SP4NLAPOR!.

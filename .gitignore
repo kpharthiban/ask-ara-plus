@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+backend/.venv/
+
+# Environment secrets
+.env
+.env.local
+.env.example
+
+# ChromaDB storage (rebuilt from data/documents)
+data/chromadb/
+
+# Embedding model cache (471MB, auto-downloads)
+.cache/
+
+# Node / Next.js (for later)
+node_modules/
+.next/
+out/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+.vscode

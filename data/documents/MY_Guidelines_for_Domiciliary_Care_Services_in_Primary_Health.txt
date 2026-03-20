@@ -1,0 +1,4567 @@
+MOH/S/ASA/116.21(GU)
+KEMENTERIAN KESIHATAN MALAYSIA
+GARIS PANDUAN
+DI KESIHATAN PRIMER
+PERKHIDMATAN
+PERAWATAN
+DOMISILIARI
+
+Semua hak cipta terpelihara Bahagian Pembangunan Kesihatan Keluarga, 
+Jabatan Kesihatan Awam, Kementerian Kesihatan Malaysia. Dokumen ini boleh di kaji semula dicetak semula dan diterjemah, tetapi bukan dengan tujuan perniagaan. Panduan yang di sediakan dalam Garis Panduan ini adalah tanggungjawab penyumbang.
+Edisi 2 : Tahun 2020
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+KATA - KATA ALUAN
+Assalamualaikum W.B.T
+Selaras dengan transformasi kesihatan, ciri-ciri perkhidmatan kesihatan yang baik adalah menyediakan perkhidmatan berhampiran dengan masyarakat, dengan penjagaan yang berterusan serta penggalakan penjagaan kendiri.
+Justeru, dengan Perkhidmatan Perawatan Domisiliari yang diperkenalkan di Kesihatan 
+Primer secara meluas akan dapat membantu pesakit dan keluarga dalam memberi perawatan dan penjagaan yang berterusan di rumah dengan bantuan dan tunjuk ajar dari anggota kesihatan. Kerjasama erat antara anggota kesihatan di hospital dan klinik kesihatan amat diperlukan bagi memastikan perkhidmatan ini berjalan dengan lancar.
+Strategi ini akan memperkukuhkan lagi inisiatif Strategi Lautan Biru, dengan pendekatan yang lebih holistik dan integrasi bersama pelbagai agensi kerajaan.
+Garis Panduan ini menjelaskan polisi operasi, proses kerja serta format borang yang digunakan untuk melaksanakan Perkhidmatan Perawatan Domisiliari di Kesihatan Primer.
+Saya berharap Garis Panduan ini akan digunapakai di peringkat lapangan untuk memastikan pelaksanaan Perkhidmatan Perawatan Domisiliari di setiap negeri supaya lebih teratur dan seragam. 
+Sekian. 
+Terima kasih.
+TAN SRI DATO’ SERI DR. NOOR HISHAM BIN ABDULLAH
+KETUA PENGARAH KESIHATAN MALAYSIA
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+KANDUNGAN
+BAB
+TAJUK
+MUKA
+SURAT
+Latar Belakang
+1.
+5-13
+Prosedur Operasi Standard / Standard Operating Procedure 
+(SOP) bagi Perkhidmatan Perawatan Domisiliari Skop 
+Perubatan Paliatif
+3.
+25-42
+Garis Panduan Prosedur Kerja Perkhidmatan Perawatan 
+Domisiliari di Kesihatan Primer
+2.
+14-24
+Senarai Tugas Anggota (Pasukan Asas) Perkhidmatan 
+Perawatan Domisiliari
+4.
+43-45
+Lampiran
+Lampiran I : Keperluan Peralatan Beg Perawatan
+Lampiran II (a) : Borang Rujukan Perkhidmatan Perawatan 
+Domisiliari (PPD 001/2014 Pind. 2019)
+Lampiran II (b) : Preskripsi Terapi Pemakanan Perubatan 
+(MNT) Sokongan Pemakanan (Dietetik)
+5.
+Lampiran III : Senarai Semak Kriteria Pemilihan Kes Untuk 
+PPD Di Klinik Kesihatan (PPD 002/2014)
+Lampiran IV : Borang Persetujuan Penjaga Bagi 
+Perkhidmatan Perawatan Domisiliari (PPD 001/2019)
+Lampiran V : Borang Penilaian Modified Barthel Index 
+Lampiran VI : Borang Saringan DASS 
+Lampiran VII : Rekod Pelanggan (PPD 004(a)/2014
+Lampiran VIII : Rekod Penilaian Kes Perkhidmatan Perawatan 
+Domisiliari (PPD 004(b)/2014)
+Lampiran IX : Panduan Pencegahan Dan Kawalan Infeksi 
+COVID-19 Untuk Anggota Kesihatan Semasa Perawatan Di 
+Rumah
+Lampiran X : Borang Permohonan Pendaftaran Orang Kurang
+Upaya/OKU (BPPOKU Pindaan 2019)
+
+48-52
+
+56-60
+61-63
+64-65
+66-72
+73-75
+76-81
+Lampiran XI : Surat Bahagian Kewangan, KKM rujukan 
+(10)dlm.KKM-58/300/1-5 Jld.2 bertarikh 17 Jun 2013 berkaitan dengan AKTA FI
+82-87
+Lampiran XII : Saringan Masalah Penelanan
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Lampiran XIV : Buku Log
+Lampiran XIII (a) : Carta Alir Intervensi Terapi Pemakanan 
+Perubatan (MNT) Sokongan Pemakanan
+Lampiran XIII (b): Borang Rujukan Runding Cara Pemakanan 
+Di Klinik Kesihatan
+
+91-93
+Rujukan
+6.
+94-96
+Penghargaan dan Sumbangan
+7.
+97-101
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BAB 1
+LATAR BELAKANG
+
+GARIS PANDUAN
+PERKHIDMATAN PERAWATAN DOMISILIARI DI KESIHATAN PRIMER
+1. LATAR BELAKANG
+Perkhidmatan Perawatan Domisiliari (PPD) merangkumi perkhidmatan perawatan dan rehabilitasi yang disediakan di rumah untuk memastikan kesinambungan penjagaan pesakit yang didiscaj awal, menyokong keluarga pesakit melalui latihan penjaga dalam aspek jagaan pesakit di rumah dan mengurangkan kemasukan semula pesakit ke hospital menerusi penjagaan kesihatan berkualiti di rumah dan komuniti.
+Perkhidmatan Perawatan Domisiliari menggunakan konsep Perkhidmatan Perawatan Di 
+Rumah (PDR) di mana pada asalnya telah dimulakan di hospital. Walaupun polisi PDR telah diluluskan pada tahun 2001 dan dirintis di 5 klinik kesihatan pada tahun 2003, namun kerana kekangan sumber, perkhidmatan ini tidak diperluaskan. 
+Pada tahun 2012, melalui inisiatif Strategi Lautan Biru: 1Malaysia Family Care, perkhidmatan kesihatan dan sosial telah disediakan secara holistik kepada warga emas, orang kurang upaya dan ibu tunggal. Salah satu komponen perkhidmatan kesihatan yang disediakan adalah perkhidmatan kesihatan di rumah bagi warga emas dan OKU miskin dan terlantar di bawah jagaan Jabatan Kebajikan Masyarakat. Perkhidmatan yang disediakan termasuk pemeriksaan status kesihatan, perawatan, rehabilitasi dan latihan kepada penjaga. Perkhidmatan ini telah dijalankan di kesemua 141 daerah kesihatan. 
+Perkhidmatan Perawatan Domisiliari yang akan dilaksanakan adalah penyelarasan perkhidmatan perawatan di rumah yang sedia ada dan aktiviti di bawah 1Malaysia Family 
+Care. 
+Garis panduan ini adalah sebagai rujukan kepada semua anggota kesihatan yang melaksanakan Perkhidmatan Perawatan Domisiliari di kesihatan primer. Garis panduan ini disemak selaras dengan garis panduan National Palliative Care Policy and Strategic Plan 
+2019-2030 dan Pandemik COVID-19.
+Garis panduan ini hendaklah dibaca bersama-sama dengan surat pekeliling ikhtisas, surat siaran dan arahan serta peraturan berkaitan yang sedang berkuatkuasa.
+2. DEFINISI
+2.1
+PERKHIDMATAN PERAWATAN DOMISILIARI (MENGGUNAPAKAI DEFINISI 
+PERKHIDMATAN PERAWATAN DI RUMAH)
+Perkhidmatan Perawatan Domisiliari adalah satu perkhidmatan perawatan holistik yang diberikan kepada kes stabil yang terlantar dan memerlukan kesinambungan penjagaan serta perawatan selepas discaj dari hospital atau rujukan dari klinik kesihatan.
+2.2
+PESAKIT TERLANTAR 
+Pesakit yang tidak boleh menguruskan diri sendiri dan memerlukan bantuan penjaga dalam melaksanakan aktiviti kendiri contohnya pesakit strok, pos trauma, kecederaan saraf tunjang dan lain-lain. 
+2.3
+PENJAGA
+Individu yang merupakan ahli keluarga atau orang lain yang berkemampuan untuk menjaga pesakit yag memerlukan jagaan di rumah. 
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+3. KONSEP PERKHIDMATAN
+4.1
+OBJEKTIF UMUM
+Untuk membantu dalam perawatan dan penjagaan pesakit yang terlantar di rumah ke arah meningkatkan kualiti hidup pesakit.
+Untuk memberi panduan dan tunjuk ajar kepada pesakit dan keluarga bagi meningkatkan penjagaan kendiri.
+4.2
+OBJEKTIF KHUSUS i.
+Untuk membantu pesakit meneruskan rawatan (continuity of care) dan penjagaan di rumah sebagai kesinambungan rawatan selepas discaj dari hospital.
+ii.
+Untuk menggalakan penyertaan keluarga dan masyarakat dalam pengendalian pesakit terlantar bagi mengurangkan kemasukan semula ke hospital.
+iii.
+Perawatan pesakit yang dijalankan di rumah sebagai sambungan dari rawatan hospital. 
+Perawatan ini dijalankan oleh anggota kesihatan yang dilatih. Di samping menjalankan perawatan, anggota kesihatan juga akan memberi bimbingan dan tunjuk ajar kepada penjaga supaya perawatan dan penjagaan dapat diteruskan oleh penjaga selepas tempoh tertentu. 
+4. OBJEKTIF PERKHIDMATAN
+5. STRUKTUR ORGANISASI PELAKSANAAN
+5.1
+PERINGKAT KEBANGSAAN 
+Pengarah Bahagian Pembangunan Kesihatan Keluarga dan Pengarah Bahagian 
+Perkembangan Perubatan akan bertanggung jawab kepada polisi pelaksanaan 
+Perkhidmatan Perawatan Domisiliari.
+5.2
+PERINGKAT NEGERI
+Pegawai yang bertanggungjawab dalam Perkhidmatan Perawatan Domisiliari di peringkat Kesihatan Negeri adalah terdiri dari Ketua Penolong Pengarah Kanan, 
+Unit Bahagian Pembangunan Kesihatan Keluarga yang mengetuai sebagai penyelarasan perkhidmatan perawatan di rumah yang sedia ada. Jawatankuasa 
+Peringkat Negeri dipengerusi oleh Pengarah Kesihatan Negeri dan ahlinya terdiri dari wakil dari kesihatan awam, perubatan, agensi lain seperti Jabatan Kebajikan 
+Masyarakat (JKM) serta badan sukarela yang berkaitan dalam penjagaan pesakit di komuniti.
+Peranan Jawantankuasa Peringkat Negeri adalah untuk menyelaras, memantau dan menilai program Perkhidmatan Perawatan Domisiliari di peringkat negeri.
+5.3
+PERINGKAT DAERAH
+Jawatankuasa Peringkat Daerah dipengerusikan oleh Pegawai Kesihatan Daerah/
+Bahagian/Kawasan dan ahlinya terdiri daripada wakil dari anggota kesihatan awam, hospital, agensi lain seperti JKM dan badan sukarela yang berkaitan dalam penjagaan pesakit di komuniti. Peranan Jawatankuasa Daerah adalah untuk menyelaras, memantau dan menilai program Perkhidmatan Perawatan Domisiliari di peringkat daerah. 
+5.4
+PERINGKAT KLINIK KESIHATAN
+Pegawai Perubatan Yang Menjaga di Klinik Kesihatan adalah ketua Pasukan 
+Perkhidmatan Perawatan Domisiliari dan bertanggungjawab bagi pelaksanaan perkhidmatan ini. 
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+6. POLISI OPERASI i.
+Perkhidmatan Perawatan Domisiliari (PPD) dijalankan oleh pasukan yang ditempatkan di klinik kesihatan yang dikenalpasti.
+ii.
+Perkhidmatan ini akan merangkumi kesemua penduduk yang tinggal di dalam kawasan operasi sesebuah klinik kesihatan yang terlibat.
+iii.
+Perkhidmatan ini diberi kepada kes yang dirujuk oleh Pakar/Pegawai Perubatan dari hospital/klinik kesihatan kerajaan yang memerlukan penjagaan berterusan di rumah.
+iv.
+Perkhidmatan ini dilaksanakan dengan kerjasama di antara hospital dan kesihatan.
+v.
+Bagi kes yang memerlukan perawatan di rumah, pesakit akan didiscaj dengan dokumen rujukan berkaitan seperti di Lampiran II, III dan IV, serta pelan perawatan.
+vi.
+Penyelaras PPD Hospital perlu memaklumkan kepada penyelaras PPD Daerah terlebih dahulu sebelum pesakit tersebut didiscajkan dari hospital.
+viii.
+Perkhidmatan akan dimulakan dalam masa tidak lebih dari pada tiga (3) hari bekerja dari tarikh penerimaan surat/dokumen rujukan.
+ix.
+Perkhidmatan PPD dilakukan dalam waktu pejabat (8 pagi hingga 5 petang).
+x.
+Pelan perawatan menyeluruh (perubatan dan sosial) perlu disediakan bagi setiap kes berdasarkan rujukan dari Pakar/Pegawai Perubatan.
+xi.
+Perkhidmatan PPD akan dilaksanakan dengan menggunakan pendekatan pelbagai disiplin. xii.
+Semasa melakukan PPD semua sisa klinikal hendaklah dilupuskan mengikut Garis 
+Panduan Kawalan Infeksi di Fasiliti Kesihatan Primer, KKM edisi 2019.
+xiii.
+Bagi menangani masalah keselamatan, lawatan PPD dibuat secara berpasukan sekurang-kurangnya dua orang. xiv.
+PPD skop perubatan paliatif dilaksana di Negeri yang mempunyai Pakar Perubatan 
+Paliatif tetap di hospital dalam Negeri tersebut.
+xv.
+Pelaksanaan PPD perlu melindungi pelanggan, anggota kesihatan dan masyarakat amnya dari jangkitan penyakit berjangkit khusus penyakit COVID-19. vii.
+Pesakit yang memenuhi kriteria akan didaftar dengan PPD klinik kesihatan.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+7. SUMBER BAGI PELAKSANAAN PERKHIDMATAN PERAWATAN DOMISILIARI
+7.1
+SUMBER MANUSIA
+7.2
+KENDERAAN
+7.3
+PERALATAN a. Pasukan asas i. 
+Penolong Pegawai Perubatan ii. 
+Jururawat Kesihatan a. Kenderaan khas untuk kegunaan PPD perlu disediakan.
+b. Sekiranya tiada pemandu/kenderaan, anggota yang bertugas layak menuntut:
+Pasukan PPD perlu dilengkapkan dengan peralatan (Lampiran I).
+b. Ahli pasukan mengikut keperluan perkhidmatan i. 
+Pakar Perubatan Keluarga ii. 
+Pegawai Perubatan iii. 
+Pegawai Farmasi iv. 
+Pegawai Pemulihan / Jurupulih Perubatan Fisioterapi v. 
+Pegawai Pemulihan / Jurupulih Perubatan Cara Kerja vi. 
+Pegawai Pemulihan Perubatan Pertuturan vii. 
+Pegawai Dietetik viii. 
+Pegawai Kerja Sosial Perubatan ix. 
+Kaunselor x. 
+Pemandu i. 
+Tuntutan Elaun Perbatuan jika mengunakan kenderaan sendiri.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+8. SKOP PERKHIDMATAN
+8.1
+PERAWATAN
+Perkhidmatan perawatan termasuk latihan teknik mencegah berlakunya kudis tekanan, pendidikan mengenai rawatan luka dan penjagaan kebersihan, penjagaan tiub nasogastrik, kateter urethral, pemeriksaan darah ujian gula darah dan tekanan darah serta penyediaan sokongan emosi.
+Skop perkhidmatan merangkumi: 
+9. KRITERIA KUMPULAN SASAR
+9.1
+KRITERIA KEMASUKAN PESAKIT KE PPD
+9.2
+KRITERIA PENJAGA a. 
+Pesakit warganegara Malaysia b. 
+Kes yang dirujuk dari hospital kerajaan / klinik kesihatan ke perkhidmatan 
+ 
+PPD c. 
+Pesakit mempunyai alamat rumah yang jelas d. 
+Pesakit mempunyai penjaga yang sesuai e. 
+Pesakit tinggal dalam kawasan operasi f. 
+Mendapat kebenaran bertulis dari penjaga a. 
+Penjaga hendaklah dalam keadaan waras dan berupaya.
+b. 
+Penjaga perlu memahami dan mematuhi polisi PPD.
+c. 
+Penjaga perlu menyediakan sendiri peralatan pesakit yang tidak dibekalkan 
+ oleh klinik kesihatan contohnya seperti lampin pakai buang, modern 
+ dressing dan sebagainya.
+d. 
+Penjaga perlu ada bersama semasa lawatan PPD ke rumah.
+e. 
+Bersedia untuk belajar prosedur penjagaan pesakit mengikut keperluan 
+ contohnya Ryles Tube feeding, mencuci luka, penjagaan kudis tekanan dan 
+ lain-lain.
+8.2
+REHABILITASI
+Aktiviti rehabilitasi bagi kes yang memerlukan termasuk rehabilitasi pergerakan aktif dan pasif serta latihan activity of daily living (ADL). 
+8.3
+PALLIATIVE (PALIATIF)
+Perkhidmatan ini merangkumi perawatan yang melibatkan perubatan Paliatif. 
+Prosedur operasi standard/Standard operation procedure (SOP) bagi perubatan paliatif diperincikan dalam Bab 3.
+9.3
+KRITERIA DISCAJ DARI PERAWATAN DI RUMAH (PPD) a. 
+Tempoh maksima perkhidmatan diberikan adalah selama 3 bulan.
+b. 
+Kes boleh didiscaj apabila penjaga mampu mengambil alih penjagaan
+ pesakit.
+c. 
+Atau mana-mana yang terdahulu.
+d. 
+Bagi rujukan perubatan paliatif, tempoh perkhidmatan diberikan adalah 
+ selama 6 bulan.
+Bagi pesakit yang telah didiscaj tetapi masih memerlukan pemantauan di rumah seperti penjagaan luka atau mengganti ryles tube, urine cateter, pesakit perlu dirujuk semula kepada Pakar/Pegawai Perubatan. 
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+ i. 
+Pendaftaran ii. 
+Penilaian kes iii. 
+Prosedur perawatan iv. 
+Ujian makmal bagi point of care test (UFEME dan RBS) v. 
+Promosi kesihatan, pendidikan kesihatan dan khidmat nasihat vi. 
+Pemakanan dan dietetik vii. 
+Rehabilitasi viii. 
+Latihan bagi penjaga ix. 
+Rujukan agensi berkenaan i.
+Perkhidmatan yang mempunyai kesinambungan kepada rawatan yang telah diberikan semasa pesakit berada di wad dan lawatan tersebut telah dirancang terlebih dahulu dan telah dipersetujui oleh pakar-pakar demi kebaikan pesakit.
+ii.
+Perawatan pesakit di rumah oleh 
+Jurupulih 
+Perubatan 
+(Carakerja dan
+Fisioterapi) iaitu jagaan kejururawatan/rehabilitasi yang diberikan untuk memastikan kesinambungan penjagaan kesihatan (continuous care) dan lain-lain aktiviti termasuk kes-kes terlantar (bed ridden), Orang Kurang Upaya (OKU) dan warga emas. 
+10. AKTIVITI YANG DILAKSANAKAN
+Perkhidmatan Perawatan Domisiliari dikecualikan dari bayaran caj perkhidmatan seperti dalam surat Bahagian Kewangan, KKM rujukan (10)dlm.KKM-58/300/1-5 Jld.2 bertarikh 
+17 Jun 2013) (Lampiran XI) iaitu:
+11. SYARAT DAN CAJ BAYARAN PERKHIDMATAN
+12. PEMANTAUAN DAN PENILAIAN
+12.1.
+BORANG BERKAITAN PPD a. 
+Borang rujukan dari wad kepada Penyelaras Perkhidmatan Perawatan
+ 
+Domisiliari (Hospital) / Penyelaras Perkhidmatan Perawatan Domisiliari 
+ 
+(Klinik Kesihatan) PPD001/2014 (Pind 2019) (Lampiran II (a)) b. 
+Preskripsi Terapi pemakanan Perubatan Dietetik (Lampiran II (b)).
+c. 
+Senarai semak kriteria pemilihan kes untuk PPD di Klinik Kesihatan 
+ 
+ 
+PPD002/2014 (Lampiran III) d. 
+Borang persetujuan penjaga bagi Perkhidmatan Perawatan Domisiliari 
+ 
+PPD 001/2019 (Lampiran IV) e. 
+Borang Penilaian Modified Barthel Index (Lampiran V) f. 
+Borang Saringan DASS (Lampiran VI)
+12.2. REKOD
+12.3. LAPORAN BULANAN/TAHUNAN a. 
+Borang Reten Perkhidmatan Perawatan Domisiliari bulanan / tahunan 
+ 
+ 
+ 
+PPD 201/2014 a. 
+Rekod pelanggan PPD 004(a)/2014 (Lampiran VII) b. 
+Rekod Penilaian Kes Perkhidmatan Perawatan Domisiliari PPD 
+ 
+ 
+ 
+004(b)/2014 (Lampiran VIII) c. 
+Buku Daftar Perawatan Domisiliari PPD101/2014 
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+13. INDIKATOR PERKHIDMATAN PERAWATAN DOMISILIARI
+13.1. INDIKATOR PERKHIDMATAN
+Bilangan PPD (Pasukan Asas Perkhidmatan Perawatan Domisiliari) ditubuhkan. 
+Klinik Kesihatan - 1 Pasukan Asas terdiri daripada 1 Jururawat dan 1 Penolong 
+Pegawai Perubatan.
+Bilangan anggota kesihatan PPD dilatih
+Oleh Peringkat Kebangsaan
+Oleh Peringkat Negeri
+Oleh Peringkat Daerah
+Bilangan pelanggan didaftar kes baru
+Rujuk Reten Bulanan PPD 201/2014 Kolum 92
+Bilangan pelanggan didiscaj 
+Rujuk Reten Bulanan PPD 201/2014 Kolum 88
+Bilangan pelanggan didiscaj atas risiko sendiri 
+Rujuk Reten Bulanan PPD 201/2014 Kolum 100
+Bilangan pelanggan dirujuk ke agensi lain/hospital
+Bilangan kes baharu
+Bilangan penjaga yang dilatih
+Penjagaan Klinikal (Rujuk Reten Bulanan PPD 201/2014 Kolum 74)
+Rehabilitasi ( Rujuk Reten Bulanan PPD 201/2014 Kolum 79)
+Ujian 
+Makmal 
+(Rujuk 
+Reten 
+Bulanan 
+PPD 
+201/2014 
+Kolum 
+82)
+Pendidikan/Latihan Kepada Penjaga (Rujuk Reten Bulanan PPD 201/2014 
+Kolum 86)
+Kes PPD yang menerima Intervensi terapi pemakanan perubatan/Medical 
+Nutriton Therapy (MNT) Sokongan pemakanan dari Pegawai Dietetik (Rujuk 
+Reten Bulanan PPD 201/2014 Kolum 72)
+Jenis perkhidmatan disediakan
+ 
+Rujuk Reten Bulanan PPD 201/2014 Kolum 97
+13.2. INDIKATOR ‘OUTCOME’
+Peratus kemasukan semula ke hospital dalam jangkamasa PPD
+Rujuk Reten Bulanan PPD 201/2014 Kolum 101
+Peratus komplikasi semasa tempoh perkhidmatan (kes mendapat kudis tekanan baharu)
+Rujuk Reten Bulanan PPD 201/2014 Kolumn 87
+Peratus kes yang berjaya diambil alih oleh penjaga
+Rujuk Reten Bulanan PPD 201/2014 Kolum 62
+Peratus kes dirujuk semula selepas tempoh 3 bulan (kes yang didaftar semula ke 
+PPD)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+13.3. IMPAK
+Kepuasan pelanggan dan penjaga (kajian)
+INDIKATOR
+FORMULA
+Peratus kes yang meningkat kefungsian 
+(Skor Modified
+Barthel Index/ 
+MBI meningkat)
+Bil. kes dengan peningkatan Skor MBI semasa discaj
+(Kolum 93) x 100
+Jumlah kes mengikut
+Skor MBI semasa discaj
+(Kolum 93+94+95)
+PENCAPAIAN
+CATATAN
+Peratus kemasukan semula ke hospital dalam jangkamasa
+PPD
+Bil kes dirujuk ke hospital (kolumn 97) x 100
+Jumlah bil kes dirujuk kepada agensi
+(kolumn 100)
+Peratus kes dirujuk semula ke PPD selepas tempoh 3 bulan
+Bil kes rujukan semula (kolumn 62) x 100
+Jumlah kes semasa
+(kolumn 61+62)
+Peratus komplikasi semasa tempoh perkhidmatan 
+(kes mendapat kudis tekanan baharu)
+Bil kes komplikasi kudis tekanan baru
+(kolumn 101) x 100
+Jumlah kes
+(Kolum 60)
+14. PENCEGAHAN DAN KAWALAN JANGKITAN COVID-19 
+Sebagai persediaan bagi menghadapi pandemik COVID-19 yang melanda negara bermula Februari 2020, Kementerian Kesihatan Malaysia menyusun dan mengenalpasti strategi sistem penyampaian perkhidmatannya bagi klinik kesihatan agar sejajar dengan keperluan semasa bagi menangani wabak COVID-19.
+Perkhidmatan Perawatan Domisiliari dan perubatan paliatif di kesihatan primer diteruskan perkhidmatan dengan langkah-langkah pencegahan dan kawalan penularan jangkitan COVID-19. Penggunaan teknologi komunikasi yang bersesuaian diperluas dan dipertingkatkan bagi mengehadkan lawatan secara fizikal bagi kes-kes tertentu.
+Anggota kesihatan perlu merujuk panduan pencegahan dan kawalan jangkitan 
+COVID-19 semasa semua lawatan perawatan di rumah bagi PPD dan perubatan paliatif. 
+(Lampiran IX: Panduan Pencegahan Dan Kawalan Infeksi COVID-19 Untuk Anggota 
+Kesihatan Semasa Perawatan Di Rumah).
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BAB 2
+GARIS PANDUAN PROSEDUR
+KERJA PERKHIDMATAN
+PERAWATAN DOMISILIARI 
+DI KESIHATAN PRIMER
+
+CARTA ALIR PROSES DISCAJ DARI HOSPITAL
+(Rujukan ke PPD di Klinik Kesihatan)
+Pesakit dalam wad sesuai untuk discaj dan memerlukan PPD
+Kes Dirujuk Ke Unit
+PPD Hospital
+(HOSPITAL BERPAKAR)
+Penilaian kes oleh
+Penyelaras PPD Hospital
+Memenuhi kriteria
+Dapatkan ‘informed consent’ 
+Teruskan Rawatan 
+Di Hospital
+Teruskan Rawatan 
+Di Hospital
+TIDAK
+TIDAK
+Rujuk kes ke Penyelaras PPD di 
+PKD berserta dokumen rujukan dan pelan perawatan
+Setuju
+PPD
+YA
+YA
+Maklum kes kepada
+Pasukan PPD di KK
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Prosedur Kerja
+Proses Teras : Proses Discaj dari hospital (Rujukan ke PPD di KK)
+Bil
+Proses Kerja
+Piawai
+Dokumen
+Tindakan
+Sumber
+Rujukan
+1.
+Pesakit dalam wad sesuai untuk discaj dan memerlukan 
+PPD
+Kes disahkan memerlukan 
+PPD 
+Buku Garis
+Panduan PPD 
+Sediakan dokumen rujukan dan pelan perawatan pesakit PPD
+Buku Daftar
+Masuk Wad
+Pegawai
+Perubatan
+Nota kes pesakit
+2.
+Kes dirujuk ke
+Unit PPD
+Hospital
+Di rujuk oleh
+Pegawai
+Perubatan 
+Buku Garis
+Panduan PPD 
+Borang
+Rujukan ke
+PPD
+PPD 001/2014
+(Pind.2019)
+(Lampiran II
+(a))
+Pegawai
+Perubatan
+Pegawai
+Dietetik
+Preskripsi
+MNT
+(Lampiran II
+(b))
+3.
+Penilaian kes oleh
+Penyelaras
+PPD Hospital
+Memenuhi kriteria
+Ada alamat tetap
+Ada penjaga
+Persetujuan
+PPD oleh penjaga 
+Buku Garis
+Panduan PPD 
+Senarai
+Semak
+PPD 002/
+
+(Lampiran III)
+Penyelaras
+PPD
+Hospital
+4.
+Dapatkan
+‘informed consent’
+Borang di tanda tangani oleh penjaga 
+Buku Garis
+Panduan PPD 
+Borang 
+Pesetujuan 
+PPD 001/2019
+(Lampiran IV)
+Penyelaras
+PPD
+Hospital
+5.
+Rujuk kes ke
+Penyelaras
+PPD,PKD yang berhampiran dengan alamat pesakit 
+Rujuk ke 
+PPD PKD beserta dokumen lengkap
+Buku Garis
+Panduan PPD 
+Borang rujukan ke PPD, PPD 
+001/2014 
+(Pin.2019)
+(Lampiran II 
+(a dan b))
+Senarai semak 
+PPD 002/2014
+(Lampiran III)
+Borang 
+Persetujuan 
+PPD 001/2019
+(Lampiran IV)
+Penyelaras
+PPD
+Hospital
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+6.
+Maklum kes kepada 
+Pasukan PPD di KK
+Rujuk kepada 
+Pasukan 
+PPD KK beserta dokumen lengkap
+Buku Garis
+Panduan PPD 
+Borang rujukan ke 
+PPD
+PPD 001/2014
+(Pind. 2019)
+Lampiran II (a dan b))
+Penyelaras 
+PPD, PKD
+Senarai Semak
+PPD 002/2014
+(Lampiran III)
+Borang
+Persetujuan 
+PPD 001/2014
+(Lampiran IV)
+Bil
+Proses Kerja
+Piawai
+Peralatan
+Tindakan
+Sumber
+Rujukan
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+CARTA ALIR PENDAFTARAN KES 
+PERKHIDMATAN PERAWATAN DOMISILIARI DI KLINIK KESIHATAN
+Terima borang rujukan kes 
+PPD di KK
+Kes baru
+Semak borang berkaitan penerimaan kes PPD
+Daftar Kes
+Rancang Lawatan 
+Persediaan
+Untuk lawatan
+TIDAK (Kes Ulangan)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+YA
+
+Prosedur Kerja
+PROSES TERAS : Pendaftaran Kes PPD di Klinik Kesihatan
+Bil
+Proses Kerja
+Piawaian
+Rujukan
+Tindakan
+1.
+Terima kes 
+PPD di klinik kesihatan
+Kes memenuhi kriteria PPD dan di terima untuk didaftar dengan PPD 
+Klinik 
+Kesihatan
+Kad Temujanji
+Borang Rujukan 
+PPD 001/2014 
+(Pind. 2019) 
+(Lampiran II
+(a & b)
+Pelan
+Perawatan 
+Pesakit
+Anggota 
+PPD klinik kesihatan
+(Jururawat/
+Penolong 
+Pegawai 
+Perubatan)
+2.
+Semak dokumen berkaitan penerimaan kes ke PPD
+Menilai kes melalui borang rujukan PPD ke klinik kesihatan dan 
+Pelan
+Perawatan Di 
+Rumah
+Sila dapatkan persetujuan 
+(konsen) penjaga sekiranya belum.
+Borang
+Persetujuan penjaga bagi 
+PPD 
+PPD 001/2019 
+(Lampiran IV)
+Borang
+Rujukan 
+PPD 001/2014 
+(Pind. 2019) 
+(Lampiran II (a))
+Preskripsi MNT 
+(Lampiran II (b))
+Senarai Semak
+PPD 002/2014
+(Lampiran III)
+Pelan perawatan penjagaan di rumah
+Anggota 
+PPD klinik kesihatan
+3.
+Daftar kes
+Daftar Kes dalam Buku 
+Daftar PPD 
+101/2014
+Sediakan fail pesakit
+Kemaskini borang berkaitan ke dalam fail pesakit 
+Buku Daftar 
+PPD 101/2014
+Fail Pesakit
+Anggota 
+PPD klinik kesihatan
+Senarai semak
+PPD 002/2014
+(Lampiran III)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+4.
+Rancang 
+Lawatan
+Kenalpasti lokasi kes
+Jadual Tugas anggota PPD
+Kenderaan jika perlu
+Fail Pesakit
+Keperluan peralatan 
+(Lampiran 1)
+Anggota PPD klinik kesihatan
+Buat temujanji untuk lawatan pertama dalam masa 3 hari bekerja
+Tentukan keperluan kenderaan 
+(sendiri/ jabatan)
+Sediakan jadual lawatan dan anggota yang bertanggungjawab
+5.
+Persediaan untuk lawatan
+Sediakan peralatan dan keperluan untuk dibawa
+Bil
+Proses Kerja
+Piawaian
+Rujukan
+Tindakan
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+CARTA ALIR AKTIVITI PERAWATAN DI RUMAH
+Semak jadual lawatan 
+Rancang aktiviti perawatan
+Masalah kesihatan
+Memenuhi kriteria discaj 
+Laksanakan prosedur dan rawatan
+Penilaian
+Discaj
+Dokumentasi
+Rujuk kepada pegawai berkaitan
+Terus perawatan
+Beri temujanji teruskan perawatan di rumah.
+TIADA
+ADA
+TIDAK
+YA
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Prosedur Kerja
+PROSES TERAS : Pendaftaran Kes PPD di Rumah
+Bil
+Proses Kerja
+Standard/
+Piawaian
+Rujukan
+Tindakan
+1.
+Semak jadual lawatan PPD 
+Aktiviti PPD dijalankan mengikut perancangan
+Jadual tugas anggota PPD 
+Anggota PPD klinik kesihatan
+2.
+Rancang aktiviti perawatan 
+Periksa maklumat dan cadangan dari borang rujukan ke PPD dan pelan perawatan pesakit
+Rancang aktiviti perawatan di rumah mengikut 
+Pelan Perawatan dari hospital/
+Klinik Kerajaan
+Rekod Kesihatan 
+Pesakit
+Borang penilaian kes PPD 
+004(b)/2014 
+(Lampiran VIII)
+Borang Rujukan
+PPD 001/2014
+(Pind. 2019) 
+(Lampiran II (a dan b)) yang mengandungi pelan perawatan pesakit
+Beg Perawatan 
+Domisiliari
+Peralatan yang bersesuaian
+Panduan pencegahan dan kawalan 
+COVID-19
+(Lampiran IX)
+Anggota 
+PPD klinik kesihatan
+Peralatan bersesuaian untuk pelanggan mengikut perawatan yang dirancang
+Langkah pencegahan dan kawalan jangkitan 
+COVID-19 menggunakan teknologi komunikasi yang bersesuaian.
+3.
+Melaksana prosedur dan rawatan.
+Membuat pemeriksaan fizikal
+Rekod pelanggan PPD 
+004(a)/2014 
+(Lampiran VII)
+Rekod Penilaian 
+Kes 
+Perkhidmatan 
+Perawatan 
+Domisiliari PPD 
+004(b)/2014 
+(Lampiran VIII)
+Anggota 
+PPD klinik kesihatan
+Penjaga dan ahli keluarga
+Jalankan perawatan di rumah mengikut perancangan dan nursing process yang disediakan 
+Beg perawatan ke rumah
+Peralatan yang bersesuaian untuk aktiviti 
+PPD 
+Tunjuk ajar kepada penjaga cara
+Tunjuk ajar kepada penjaga mengenai jagaan asas pesakit
+Aktiviti pendidikan kesihatan
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+4.
+Penilaian
+Menilai kemajuan perawatan pelanggan.
+Pelan Perawatan
+Surat Rujukan ke unit berkaitan
+Manual Strok
+Borang 
+Permohonan 
+Pendaftaran 
+OKU (BPPOKU 
+Pindaan 2019) 
+(Lampiran X)
+Carta alir intervensi Terapi 
+Pemakanan 
+Perubatan 
+(MNT) Sokongan 
+Pemakanan
+(Lampiran XIII (a)
+Borang Rujukan 
+Runding Cara 
+Pemakanan di 
+Klinik Kesihatan 
+(Lampiran XIII (b)
+Garis panduan
+PPD
+Anggota 
+PPD klinik kesihatan
+Penjaga dan ahli keluarga
+Semak semula masalah kesihatan dan keperluan perawatan pelanggan mengikut proses kejururawatan.
+Rujuk Pegawai 
+Perubatan sekiranya perlu, atau bagi tujuan pendaftaran sebagai OKU 
+Rujuk unit yang berkaitan bila perlu, contoh 
+Jurupulih 
+Perubatan 
+(Fisioterapi/
+Carakerja)
+Rujuk Pegawai 
+Dietetik bagi pesakit yang berisiko malnutrisi atau yang memerlukan sokongan pemakanan.
+Beri tunjuk ajar dan selia penjaga melaksanakan perawatan asas ke atas pesakit
+Bil
+Proses Kerja
+Standard/
+Piawaian
+Rujukan
+Tindakan
+Borang 
+Permohonan 
+Pendaftaran 
+OKU (BPKKOKU 
+Pindaan 2019 – 
+Lampiran X)
+Rekod Penilaian kes PPD 
+(PPD 004(b).
+2014 – 
+Lampiran VIII)
+Rujuk Pegawai 
+Perubatan sekiranya skor 
+MBI < 75 bagi tujuan pendaftaran 
+OKU
+Rujuk Pegawai 
+Perubatan bagi kes-kes yang memerlukan rujukan kepada unit/disiplin yang berkaitan menggunakan 
+Rekod Penilaian kes PPD 
+(PPD 004(b) 
+2014 Bahagian 4
+Rujukan
+5.
+Anggota 
+PPD klinik kesihatan
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Beri tunjuk ajar dan selia penjaga melaksanakan jagaan asas.
+
+Bil
+Proses Kerja
+Standard/
+Piawaian
+Rujukan
+Tindakan
+Buku temujanji
+Berikan tarikh temujanji untuk lawatan susulan setelah menilai keadaan pesakit
+Temujanji
+6.
+Anggota 
+PPD klinik kesihatan
+Garis panduan 
+Perkhidmatan 
+Perawatan 
+Domisiliari
+Discaj pesakit jika pesakit telah memenuhi kriteria discaj
+Discaj
+7.
+Anggota 
+PPD klinik kesihatan
+Penjaga
+Akta Fi 1951 
+(Lampiran XI)
+Resit Bayaran 
+Mengikut 
+Perintah Fi 
+(Perubatan) 
+1982-Akta Fi 1951 dan surat 
+Bahagian 
+Kewangan, KKM rujukan 
+(10)dlm.KKM-58
+/300/1-5 Jld.2 bertarikh 17 Jun 
+
+Kutipan Hasil
+8.
+Pegawai 
+Hasil/anggota yang telah diberi surat kuasa.
+Penjaga
+Rekod 
+Pelanggan/Pesakit 
+Perawatan 
+Domisiliari 
+(PPD 004(a)/
+2014.®
+Lampiran VII)
+Semua aktiviti 
+PPD perlu direkodkan.
+Dokumentasi
+9.
+Anggota PPD klinik kesihatan
+Pelaporan aktiviti PPD perlu dilaksanakan secara berkala.
+Daftar dalam 
+Buku Daftar OKU 
+(KKK/PKOKU 
+107 atau 
+MyHDW) setelah borang permohonan 
+OKU diisi oleh 
+Pegawai 
+Perubatan
+Borang reten bulanan dan tahunan PPD 
+201A /2014
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BAB 3
+PROSEDUR OPERASI 
+STANDARD / STANDARD 
+OPERATING PROCEDURE 
+(SOP) BAGI 
+PERKHIDMATAN 
+PERAWATAN 
+DOMISILIARI SKOP 
+PERUBATAN PALIATIF
+
+STANDARD OPERATING PROCEDURE (SOP) ON DOMICILIARY PALLIATIVE 
+CARE (DPC) PROGRAMME IN PRIMARY HEALTH CARE
+1. Introduction
+Domiciliary Home Care Services (Perkhidmatan Perawatan Domisiliari - PPD) in primary health care is in line with the health transformation in which good health services are to be provided to and near the community, focuses on provision of holistic health care. The main objective of this service is to ensure seamless continuous care of stable bedridden patients who was discharged early from the government hospitals in order to increase their quality of life, to empower the caregiver and family members in aspect of care of patient, to educate the patient on improving their self-care and to reduce readmission of patient to hospital through quality care in the community.
+Domiciliary Home Care (DHC) services was first introduced and implemented in 2014, involving selected 160 Health Clinics throughout Malaysia. For the beginning, it focuses on nursing care and rehabilitation of patient with stroke, traumatic brain injury, spinal cord injury, cerebral palsy and cancer but later expended to palliative scope in year 2016.
+Palliative care as defined by World Health Organization(WHO) is an approach that improves the quality of life of patients and their families facing the problems associated with life threatening illness through the prevention and treatment of pain and relief of suffering by means of early identification and impeccable assessment as well as treatment of pain and other problems such as physical, psychosocial and spiritual. The definition adds that: 
+Research has shown that majority of people prefer to live and die at home. This is where a Domiciliary Palliative Care programme is an essential component of any effective palliative care service.
+In 2014, the WHO made a resolution to strengthen palliative care as a component of comprehensive care throughout the life course and in this resolution the WHO urged all member states to place an emphasis towards palliative care in the primary, community and home care setting. provides relief from pain and other distressing symptoms; affirms life and regards dying as a normal process; intends neither to hasten or postpone death; integrates the psychological and spiritual aspects of patient care; offers a support system to help patients live as actively as possible until death.
+2. Seamless care
+Seamless care is an essential concept that has always been a cornerstone in an effective palliative care service. It must be understand that patients in the palliative care setting are unique in that they are highly vulnerable and will deteriorate and develop more problems at any time. Given the nature of their condition, it will be necessary for patients to be closely followed up and linked from home to the hospital and back to home again throughout the course of their survival. A very close network between the community and primary health care settings with the hospital settings is essential in order to convey an impactful service.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+3. Scope of care
+The scope of palliative care is much larger than the care of cancer patients alone and there is a role for palliative care in other life limiting non-cancerous conditions such as end stage renal disease, chronic lung disease, neurodegenerative disorders and chronic heart failure. A large area of palliative care includes end of life care (EOLC) and this may already be seen in the earlier phase of the domiciliary health care programme as patients with chronic conditions such as stroke and the frail elderly may also approach the end of life whilst under the domiciliary health care programme. 
+The criteria of enrolment to the Domiciliary Palliative Care programme should be as follows:
+Fig.1 Seamless Care
+Referral Criteria
+Cancer patient with clinical diagnosis of advanced cancer and is deemed incurable. 
+Patients who do not have histological diagnosis can still be referred as many patients are diagnosed based on clinical and radiological grounds and many chose not to have further investigations as they are too unwell or are not keen for any intervention as they are elderly or already deemed incurable.
+Cancer patients with declining performance status ECOG) 3 or 4. ECOG Eastern 
+Cooperative Oncology Group is one of the largest clinical cancer research organizations in the United States and conducts clinical trials in all types of adult cancers. 
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+EASTERN COOPERATIVE ONCOLOGY GROUP (ECOG) PERFORMANCE SCALE
+ECOG
+Description
+
+Fully active with no restriction as before illness
+Cancer patients with poor and deteriorating health that are identified using the 
+Supportive and Palliative Care Indicators Tool (SPICT) as Appendix I.
+Cancer patients who are of better performance status but who are anticipated to deteriorate rapidly (certain cancers such as lung, HCC, or multiple comorbidities) may also be referred especially if the patient is unable to come back to the main hospital for follow up due to social and physical reasons. 
+
+Restricted in physically strenuous activity but able to carry on normal light activity (housework, office job)
+
+Ambulatory and capable of self care but unable to carry out any work activities. Up and about >50% of waking hours
+
+Capable of only limited self care. Confined to bed or chair >50% of waking hours
+
+Completely disabled, cannot carry out any self care, totally confined to bed or chair 
+Patients with life limiting non-cancerous conditions (e.g: end stage renal disease, chronic lung disease, neurodegenerative disorders and chronic heart failure) that fulfilled the criteria outlined by Supportive and Palliative Care Indicators Tool (SPICT) as 
+Appendix I. 
+Patients with non-cancer diagnosis should be discuss with the palliative care specialist 
+Patient and family should be informed regarding the role of DPC team and agreeable to home visits. 
+Family and/or patient should have had a discussion on the diagnosis and prognosis when referred for DPC. 
+The patient must have a point of reference in an MOH hospital so that he/she may be refer back to that hospital if the need arises. 
+Admission Criteria
+Malaysian citizenship
+Patient who fulfilled the referral criteria as stated above
+Patient must have a complete house address
+Patient lives within the Domiciliary Palliative Care / DHC operation area
+Patient must have carer/family member that are willing to take care of them and willing to learn basic procedure
+Patient and carer/family member agreeable to home visit and signed the consent form
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+In the initial phase of the development of this programme, pilot projects will first begin with health clinics that are already involved with the first phase of the DHC programme.
+In addition, health clinics will be selected mainly in areas where there is no coverage of NGO HOSPICE. This is mainly in the rural areas where the benefit of this programme will be maximal as care in these areas is extremely limited and such a programme will therefore greatly enhance comfort and care of patients and their families. 
+A seamless network must be developed between the DHC teams and a point of reference in the nearest hospital. This hospital then should be linked further with the regional specialist palliative care service if available so that advice can be given where necessary. 
+Essential medications need to be available especially for management of cancer pain. 
+These medications such as opioids need to be available to the DHC team to use on site during home visits and then prescriptions can be written and filled by the health clinic involved.
+Training of DHC teams must be conducted first intensively in a short training course and then on the job as experience grows under the supervision of senior palliative care specialist on a regular basis.
+4. Implementation
+Teams in reference point hospitals should also be identified specifically and then developed with short course training as well as on the job experience under supervision of senior palliative care specialist.
+Regular clinical discussion meetings and visits by the regional palliative medicine specialist must be organised in order to provide continuous medical education in the area of palliative care. 
+Regular review of services looking at shortfalls and deficiencies in the service provision and networking should allow further improvisation of the programme in order to enhance and fully develop it. 
+Patients requiring Domiciliary Palliative Care may be identified and referred from the following settings:
+All government hospitals including teaching and army hospitals 
+Government Cancer Institutes / Centres 
+Government Health Clinics
+1)
+5. Operational Policy
+Any referral from private hospitals/clinics to the government hospitals/clinics should be assessed by the Palliative Care Specialist/Family Medicine Specialist (FMS).
+Referral for non-cancer diagnosis from other department/unit in government hospitals (besides palliative care unit/department) MUST go through Palliative Care 
+Specialist.
+All government hospital MUST appoint one liaison officer to facilitate referral to DHC liaison officer in Health District Office.
+2)
+3)
+4)
+Referral forms should be filled up by the clinician who will be point of reference for patient if subsequent hospitalisation/consultation is required. 
+Referral forms should then be given to the liaison officer who will then determine which domiciliary care team should receive the case (ie depending on coverage).
+5)
+6)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+If the specialist palliative care teams are available then the referral form should be filled up by the palliative care team.
+Domiciliary Palliative Care’s referral form will be using the new amendment DHC form - PPD 001/2014 (Pind. 2019).
+First home visit to be conducted by DHC basic team for first assessment, within 3 working days of receiving referral.
+Subsequent visits may be managed by Nurse/Medical Assistant if patient is stable. 
+Doctor will visit if there is a need for reassessment. 
+First home visit should be arranged within 3 working days of receiving referral from the DHC liaison officer in District Health Office.
+Home visit should be planned and carried out during office hours (8 am till 5 pm).
+7)
+8)
+9)
+10)
+11)
+12)
+Process indicator:
+6. Indicator for Domiciliary Palliative Care Programme:
+Pain and symptoms assessment on every visit 
+First home visit done within 3 working days 
+It is vital that domiciliary palliative care services outcome indicator encompasses clinical concepts of anticipatory and responsive care. (1)
+The concept of anticipatory care is demonstrated when patients that have absent or mild pain (pain score ≤4) on first visit still have absent or mild pain on last visit. 
+The concept of responsive care is demonstrated when patients with moderate or severe pain (pain score >4) have absent or mild pain (pain score ≤4) on last visit. 
+* Pain score on last visit to be measured when patient is still able to indicate pain score verbally or using visual analogue scale (pain ruler). 
+Outcome indicator:
+Pain score: Percentage of patient with pain score < 4 on last visit 
+1)
+Numerator = Number of patient with pain score <4 on last visit 
+Denominator = Total number of death 
+1)
+2)
+According to the 2016 Malaysia Palliative Care Needs Report (2), 61% of Malaysians respondents indicated preference to die at home. 
+Allowing patients to die at their preferred place is an indicator of good death (3). 
+Dying at home may have significant religious and cultural implications especially in the multicultural and multiracial society of Malaysia (4). 
+Thus, a baseline understanding of patient’s place of death while receiving domiciliary palliative care is important.
+2)Place of death: To monitor patient’s place of death.
+Numerator = Number of patients who die at home
+Denominator = Total number of deaths
+Percentage of patients dying at home:
+Numerator = Number of patients who die in the hospital
+Denominator =Total number of deaths
+Percentage of patients dying in the hospital:
+Clapham S and Holloway A; Palliative Care Outcomes Collaboration Clinical Manual 2018.
+W. Yeap, Stephen Connor et al, Palliative care need assessment 2016.
+Quality of death and dying Questionnaire, Downey and Curtis et al, U.S. Cancer Pain Relief Committee, 2009.
+E.C Loh, Observed Experiences: Cultural Differences in Caring for Dying Patients in Malaysia, Int Arch Nurse Health Care 2015
+1.
+References
+2.
+3.
+4.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+7. Documentation
+All forms for DPC will follow the appendix in general DHC guideline (MOH/K/ASA/58.14 
+(G.U)) 2 edition, 2020. MBI score is not applicable.
+nd
+8. Work process for home visit
+Monthly data/report using registry form PPD(P) 201/2020 should be submitted to the coordinator (BPKK, KKM) before 15 of every month.
+th
+DHC basic team / person in charge to register the patient for Domiciliary Palliative Care programme and open patient record file upon receiving the referral.
+DHC basic team / person in charge to contact patient/family to schedule visit.
+DHC team to be informed of date and time of visit – transport to be arranged if necessary.
+Nurse / Medical Assistant in charge should keep in contact with patient / family by phone and contact them once every 2 weeks if the patient is stable.
+DHC team is encouraged to make a brief needs assessment over the phone prior to home visit, so appropriate medications such as opioid and non-opioid analgesics can be prepared and brought along.
+First home visit to be conducted by DHC basic team for first assessment, within 
+3 working days of receiving referral.
+1)
+Initial assessment a. Introduction b. General assessment – ECOG / SPICT status, level of comfort or distress
+2)
+8.1.
+First Home Visit c. Ask patient these questions as appropriate: 
+“How are you feeling?” 
+“Are you comfortable?” If “No”, ask “What makes you uncomfortable?”
+“Is there pain?”
+“How is your breathing?”
+“Can you walk to the toilet?” 
+“How is passing urine and passing motion?” – “Any constipation?”
+“How are you eating and drinking?”
+“Any nausea or vomiting?”
+“How is your sleep?”
+“Is there anything else troubling you?” i.
+ii.
+iii.
+iv.
+v.
+vi.
+vii.
+viii.
+ix.
+x.
+d. Examine relevant systems:
+Vital signs including pain as 5th vital sign, SpO2 if available
+General exam – look for oedema, jaundice, pallor as baseline findings.
+Examine sites of pain
+Look at skin for pressure sores
+Examine chest if breathless
+Examine abdomen in general – look for faecal mass, liver, distension, ascites
+If bad constipation consider PR examination i. ii.
+iii.
+iv. v. vi.
+vii.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+ e. Discuss with family:
+What they understand about patient’s condition
+The role of Domiciliary Palliative Care. 
+Ask if there are any particular concerns
+Discuss if there are follow up plans in the main hospital
+If possible, ask a bit about social background and if there is a need to engage social welfare.
+i.
+ii.
+iii.
+iv.
+v.
+Explain the follow up plan, next visit and contact number if available.
+3)
+Document the assessment findings in the patient’s file, example check list as 
+Appendix II. At the end of assessment, try to list down problems to anticipate so that the basic team will know how to look out for this subsequently. 
+4)
+Nurse / Medical Assistant may manage the subsequent visits if patient is stable. 
+Doctor will do visit if there is a need for reassessment. 
+5)
+If patient seems unstable during routine check-up call, schedule visit if necessary with doctor. 
+6)
+Reassess patient. If unable to settle problem at home and patient keen to go to hospital, contact the reference point in hospital concerned to inform of the problem and provide a referral letter back to hospital. 
+7)
+If patient is in acute crisis due to pain/dyspnoea/vomiting, stabilize them using home care medications kit. If patient refuse to go to hospital and prefers to remain at home, consider a homecare plan to maintain comfort as best possible at home.
+8)
+Provide oral medications for 2-3 days and give a prescription to collect further medications from nearest healthcare facility, which has pharmacy. If transdermal medication is needed for syptoms control (eg: Trasdermal 
+Fentanyl), please contact the reference point in the hospital for initial prescription and arrange for SPUB (Integrated Medication Dispensing System). 
+9)
+To document the medications used especially DDA medicine according to proper procedure. 
+10)
+First visit should be arranged within 3 working days of receiving referral.
+1)
+Subsequently phone contact at least every 2 weeks. If needed, weekly or more frequent if anticipating rapid change in condition. 
+2)
+Regular visits should be once a month unless patient seems to be having problems during the 2 weeks of phone contact. 
+3)
+8.2.
+Home visit schedules
+Grand rounds with Palliative Care Consultant may be organised once in 3 months to discuss cases seen by the DHC team and provide learning opportunities. Home visits, together with Palliative Care Specialist, are opportunities for bedside teachings and upskilling, therefore, can be arranged based on suitability. Formal lectures can also be conducted on certain topics at the time.
+4)
+After a patient has died, a bereavement visit may be scheduled about 1 month after the death to assess how the family is coping and moving on. Medications that are not consumed should be returned to the DHC team or health clinics pharmacy to be reconciled and re-dispensed.
+5)
+Patients’ family members showing signs of complex grief and bereavement may be followed up and if necessary referred for further assessment. 
+6)
+Duration of Domiciliary Palliative Care service is 6 months and reassessment by the DHC team is required to plan for continuation of service or to refer to the 
+Palliative Care Specialist if necessary.
+7)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Essential Package For Domiciliary Palliative Care Programme In Health Clinic i)
+9. Use and handling of medications in DPC programme 
+The following list of medications is based on WHOs’ list of essential drugs for palliative care and pain relief for adult patients. However the availability of such items in a health clinic will be based on the FUKKM category. 
+No.
+Name of medications 
+Prevention and relief of pain, physical and psychological suffering, acute or chronic d
+Prescriber category
+1.
+Amitriptyline HCL 
+10mg (Tablet)
+25mg (Tablet)
+B
+2.
+Bisacodyl
+5mg (Tablet)
+10mg (Suppository)
+C
+3.
+Dexamethasone
+0.5mg (Tablet)
+4mg (Tablet)
+8mg/2ml (injectable)
+A
+4.
+Diazepam 
+5mg (Tablet)
+5mg (Rectal solution)
+5mg/ml (Injection)
+B
+B
+B
+5.
+Diphenhydramine 
+C
+6.
+Chlorpheniramine Maleate
+4mg (Tablet)
+4 mg/5ml (Syrup)
+C
+7.
+Fluconazole 
+50mg
+100mg
+A
+8.
+Sertraline HCL 50mg (Tablet)
+9.
+Frusemide
+40mg (Tablet)
+10mg/ml (Injection)
+B
+10.
+Haloperidol
+1.5mg (Tablet)
+5mg (Tablet)
+5mg/ml (Injection)
+B
+B
+B
+11.
+Hyoscine N-Butylbromide
+10mg (Tablet)
+20mg/ml (Injection)
+B
+B
+12.
+Ibuprofen 400mg (Tablet)
+B
+13.
+Diclofenac Sodium 50mg (Tablet)
+B
+14.
+Lactulose 3.35 g/5 ml Liquid
+C+
+15.
+Loperamide 2mg (Capsule)
+B
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+No.
+Name of medications 
+Prescriber category
+16.
+Lorazepam 1mg (Tablet)
+A/KK
+17.
+Metoclopramide HCL
+10mg (Tablet)
+5mg/ml (injection)
+B
+B
+18.
+Metronidazole
+200mg (Tablet)
+400mg (Tablet)
+B
+19.
+Morphine
+Morphine HCL 10mg/5ml
+(Solution)
+Morphine Sulphate 10mg & 30mg 
+Controlled Release Tablet
+Morphine Sulphate 10mg/1ml 
+(Injection)
+B
+A
+B
+20.
+Naloxone HCL
+0.4mg/ml Injection (1ml Amp)
+B
+21.
+Omeprazole
+10mg (Capsule)
+20mg (Capsule)
+A/KK
+22.
+Paracetamol
+500mg (Tablet)
+250 mg (Suppository)
+C+
+B
+23.
+Petroleum jelly 30g package
+24.
+Pressure-reducing mattresses
+(Minimum 2 mattresses)
+25.
+Nasogastric drainage and feeding tubes
+26.
+Urinary catheters
+27.
+Opioid lock boxes
+See next table
+28.
+Flashlights with rechargeable batteries
+29.
+Adult diapers or cotton and plastic
+Equipment
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+MEDICATION FOR OPIOID LOCK BOX
+(OPIOID AND ESSENTIAL MEDICATION FOR ACUTE CRISES) ii)
+No.
+Medications 
+PSYCHOTROPICS (ORAL & INJECTIONTLES)
+NON PSYCHOTROPICS (INJECTION)
+Approximate Quantity
+Category
+1.
+Diazepam (rectal sol.) 5mg
+B
+
+2.
+Lorazepam (Tablet) 1mg
+A/KK
+10 Tablets
+3.
+Midazolam (Injection) 
+5mg/ml
+A
+4 ampoules
+4.
+Morphine sulphate 
+(Injection) 10mg/ml
+B
+10 ampoules
+5.
+Morphine (Syrup) 
+2mg/ml
+B
+120mls, 4 bottles
+6.
+Tramadol HCL 
+(Capsule) 50mg
+A/KK
+20 capsules
+7.
+Hyoscine N-Butylbromide 
+(Injection) 20mg/ml
+B
+10 ampoules
+8.
+Haloperidol (Injection) 
+5mg/ml
+B
+10 ampoules
+9.
+Metoclopramide HCL 
+(Injection) 5mg/ml
+B
+10 ampoules
+TABLETLETS, CAPSULE, SUPPOSITORIES
+10.
+Bisacodyl (Tablet) 5mg
+C
+20 Tablet
+11.
+Bisacodyle 
+10mg (Suppository)
+5mg (Suppository)
+C
+10 suppositories
+12.
+Diclofenac (Tablet) 50mg
+B
+20 Tablets
+13.
+Glycerin 25% & NaCl 
+15% enema
+C+
+6 suppositories
+14.
+Haloperidol N-Butylbromide 
+1.5mg (Tablet)
+5mg (Tablet)
+B
+20 Tablets
+15.
+Hyoscine 
+N-Butylbromide (Tablet) 10mg 
+B
+20 Tablets
+16.
+Lactulose (Liquid) 3.35g/5ml
+C+
+4 bottles
+17.
+Loperamide (Tablet) 2mg
+B
+20 Tablets
+18.
+Paracetamol (Tablet) 500mg
+C+
+30 Tablets
+19.
+Paracetamol (Suppository) 
+250mg
+B
+10 suppositories
+20.
+Tranexamic acid (Capsule) 
+250mg
+B
+30 capsules
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+10. Guideline for the supply of medications in Domiciliary Palliative Care (DPC) 
+ programme in health clinic
+11. Conclusion
+Policy in Medications Supply
+All medications for patient under DPC programme will only be supplied based on a valid prescription.
+1)
+For referred patient still on follow up with the hospital, supply of medications will be based on the Integrated Medication Dispensing System 
+(SPUB) procedure. 
+*Refer Garispanduan Sistem Pendispensan Ubat-Ubatan Bersepadu (SPUB) 
+Edisi ketiga 2009. 
+2)
+For patients discharged from the hospital, medication can be continued at nearby health clinic. 
+A discharge letter will be required from the referring hospital to ensure the continuity of care. 
+*Refer Garispanduan Pembekalan Ubat kepada Pesakit yang telah Didiscaj 
+Melalui Surat Rujukan bagi Meneruskan Rawatan di fasiliti Kesihatan 
+Kementerian Kesihatan Malaysia Edisi 2016. 
+3)
+All medications listed category A/A* can be dispensed by health clinic’s pharmacy with the medication supplied from the referring hospital. Such medication will be supplied by the referring hospital as long as it is required by the patient. 
+4)
+A note from the Medical Officer/Specialist in-charge will be required if there are any changes to be made to the medication during a home visit for continuity of care at the respective hospital later.
+5)
+Category C/C+ drugs can be kept in Homecare Kit for use during a home visit. 
+Prescription will have to be written for the use of any medication in Homecare Kit and submitted to the Pharmacy for stock replenishment.
+6)
+Opioid and non-opioid analgesics can be brought along in an opioid lock box when the visit is done with a medical officer or FMS. This would be in a specific situation such as when patient has escalating pain.
+7)
+If patient’s condition is deteriorating rapidly, medication supplied should not be more than 2 weeks at a time.
+8)
+Medications not consumed should be returned to the DPC team or KK pharmacy for disposal. 
+9) i)
+This guideline will enable all level of health staff in Primary Health Care to provide effective Domiciliary Palliative Care (DPC) services.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+FLOWCHART OF WORK PROCESS FOR DOMICILIARY PALLIATIVE CARE 
+SERVICE (DPC) – CASE REFERRED FROM GOVERNMENT HOSPITAL
+Non-cancer diagnosis
+(to use SPICT)
+Identification of patient with palliative care needs
+Cancer diagnosis (to use 
+ECOG/SPICT)
+Assessment of case by respective specialist
+Assessment of case by respective specialist
+Patient fulfilled the admission criteria
+Patient fulfilled the admission criteria
+Refer/discuss case with the Palliative Care
+Specialist 
+Case accepted
+Continue treatment in hospital
+Obtain informed consent from the patients’ caregiver/ family member and complete the needed document
+Case informed to hospitals’ 
+DHC liaison officer
+Hospital’s DHC liaison officer must inform the case to DHC liaison officer in District Health 
+Office
+Case inform to DHC team in health clinic
+Home visit by DHC team within 3 working days
+NO
+YES
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+FLOWCHART OF WORK PROCESS FOR DOMICILIARY PALLIATIVE 
+CARE SERVICE (DPC) – CASE REFERRED FROM PRIVATE 
+HOSPITAL/CLINIC
+Carer/patient came to DHC health clinic with referral letter
+Patient discharged from private hospital/clinic that need palliative care service 
+Assessment of case by Family 
+Medicine Specialist
+Obtain informed consent from the patients’ caregiver/family member and complete all the needed 
+Inform the case to DHC liaison officer in District Health Office
+Case inform to DHC team in health clinic
+Patient met the criteria & agree for 
+DPC program 
+Continue treatment/ follow up in hospital
+Documentation
+Home visit by DHC team within 3 working days 
+NO
+YES
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+NURSING KIT FOR BOWEL AND BLADDER CARE
+Urinary Catheterisation Kit
+Quantity
+Dressing Set
+
+2 sets
+Foley Catheter 
+
+As required
+KY Jelly / 2% Xylocaine Gel 
+
+1 tube
+Sterile Gloves
+
+As required
+Syringe 10mL (SlipTip)
+
+As required
+Urine Bag
+
+As required
+Water for Injection 10mL
+
+As required
+Wound Care Products
+Quantity
+Dressing Set
+
+2 sets
+Duoderm™ Gel
+
+Subjected to availability
+Subjected to availability
+Subjected to availability
+Subjected to availability
+20 Tablets
+As required
+Duoderm™ Patch
+
+Gauze
+
+Kaltostat™
+
+Metronidazole Powder / Tablet to be crushed
+
+Micropore™
+
+As required
+Normal Saline 0.9% Solution
+
+20 Tablets
+Charcoal Tablet
+
+Subcutaneous Line Preparation
+Quantity
+Alcohol Swab
+
+1 box
+Dressing Label
+
+IV Indwelling Cannula 24G
+
+Micropore™ Surgical Tape
+
+Extension Tubing (~150cm)
+
+Syringes 10ml (Slip Tip)
+
+Stopper (Red & Yellow)
+
+As required
+Water for Injection
+
+Bowel Care Products
+Quantity
+Examination Gloves
+
+KY Jelly
+
+1 tube
+
+Glycerin/ NaCl Enema (Ravin )
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+SUPPORTIVE AND PALLIATIVE CARE INDICATORS TOOL (SPICT)
+Appendix I
+The SPICT is a guide to identifying people at risk of deteriorating and dying. Assessment of unmet supportive and palliative care needs may be appropriate. 
+NYHA Class III/IV heart failure, or extensive, untreatable coronary artery disease with:
+Cancer
+Performance status poor or deteriorating, with limited reversibility (needs help with personal care, in bed or chair for 50% or more of the day).
+Look for two or more general indicators of deteriorating health:
+Look for any clinical indicators of advanced conditions:
+Dependent on others for most care needs due to physical and/or mental health problem
+Two or more unplanned hospital admissions in the past 6 months.
+Weight loss (5 - 10%) over the past 3 - 6 months and/or body mass index < 20.
+Persistent, troublesome symptoms despite optimal treatment of any underlying condition(s).
+Lives in a nursing care home or continuing care unit, or needs care to remain at home.
+Patient requests supportive and palliative care, or treatment withdrawal.
+Functional ability deteriorating due to progressive metastatic cancer.
+Too frail for oncology treatment or treatment is for symptom control.
+Heart/vascular disease
+Breathlessness or chest pain at rest or on minimal exertion.
+Kidney disease
+Stage 4 or 5 chronic kidney disease (eGFR < 30ml/min) with deteriorating health.
+Kidney failure complicating other life limiting conditions or treatments.
+Stopping dialysis.
+Severe, inoperable peripheral vascular disease.
+Respiratory disease
+Severe chronic lung disease with breathlessness at rest or on minimal exertion between exacerbations.
+Needs long term oxygen therapy.
+Has needed ventilation for respiratory failure or ventilation is contraindicated.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Liver disease
+Advanced cirrhosis with one or more complications in past year:
+Diuretic resistant ascites
+Hepatic encephalopathy
+Hepatorenal syndrome
+Bacterial peritonitis
+Recurrent variceal bleeds
+Liver transplant is contraindicated.
+Neurological disease
+Progressive deterioration in physical and/or cognitive function despite optimal therapy.
+Speech problems with increasing difficulty communicating and/or progressive dysphagia.
+Recurrent aspiration pneumonia; breathless or respiratory failure.
+Dementia/frailty
+Unable to dress, walk or eat without help. 
+Choosing to eat and drink less; difficulty maintaining nutrition.
+Urinary and faecal incontinence.
+No longer able to communicate using verbal language; little social interaction.
+Fractured femur; multiple falls.
+Recurrent febrile episodes or infections; aspiration pneumonia.
+ 
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Appendix II
+FORMAT SENARAI SEMAK
+Sila tanda ( ) dan nyatakan yang berkenaan sahaja
+Tarikh lawatan:............................
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Bil. 
+Keadaan 
+Pesakit 
+Dari Pemerhatian 
+
+Keadaan fizikal 
+Sihat 
+Kelihatan ceria dan bersemangat 
+Sederhana 
+Nampak kurang ceria dan kelihatan letih serta lemah 
+Kurang sihat 
+Kelihatan tidak bermaya, letih lesu, pucat 
+
+Selera makan 
+Baik 
+Selera makan pesakit seperti biasa 
+Sederhana 
+Pengambilan makanan dua per tiga daripada kebiasaan 
+Hilang selera makan 
+Pengambilan makanan kurang separuh daripada kebiasaan 
+
+Muntah 
+Sedikit 
+1-2 kali / hari mengambil kira kekerapan dan “amount” 
+Sederhana 
+3-5 kali / hari mengambil kira kekerapan dan “amount” 
+Teruk 
+5 kali / hari mengambil kira kekerapan dan “amount” 
+
+Keletiha n 
+Sedikit 
+Bergerak sendiri tanpa bantuan 
+Sederhana 
+Bergerak dengan sedikit bantuan 
+Teruk 
+Tidak dapat bergerak sendiri. Perlu bantuan sepenuhnya. 
+
+Cirit birit 
+Ya 
+Membuang air besar berulang kali melebihi 3 kali dalam 1 hari dan najisnya lembut dan cair 
+Tidak 
+
+Sembelit 
+Ya 
+Tidak dapat membuang air besar secara normal dan najisnya keras 
+Tidak 
+
+Demam 
+Ya 
+Suhu badan lebih dari 37.5 °C 
+Tidak 
+
+Sakit 
+Ya 
+Sekiranya pesakit mengalami kesakitan. Sila terus ke ruangan di bawah (score). 
+Tidak sedar 
+ 
+Jika Ya – lakukan penilaian numerical pain score 
+Score 
+
+Tiada sakit 
+ 
+1-3 
+Sakit sedikit 
+ 
+4-6 
+Sakit sederhana 
+Memerlukan rawatan dan pemerhatian 
+7-10 
+Sakit teruk 
+Perlu dirujuk kepada doktor 
+
+Ulasan 
+Catatkan ulasan keseluruhan setelah penilaian dijalankan dengan lengkap. 
+(Contoh pesakit dirujuk ke hospital, pesakit perlu dibuat tindakan susulan) 
+………………………………………………………………………… 
+
+BAB 4
+SENARAI TUGAS ANGGOTA 
+(PASUKAN ASAS) 
+PERKHIDMATAN 
+PERAWATAN 
+DOMISILIARI
+
+SENARAI TUGAS ANGGOTA PERKHIDMATAN 
+PERAWATAN DOMISILIARI
+Penyelaras PPD Di Peringkat Kesihatan Primer (boleh terdiri daripada Pegawai 
+Perubatan/Penolong Pegawai Perubatan Kanan/Penyelia Jururawat Kesihatan/Ketua 
+Jururawat Kesihatan).
+Menyelaras perjalanan aktiviti di antara hospital dan kesihatan :
+Menerima kes yang dirujuk daripada Hospital dari Penyelaras PPD di Hospital.
+1)
+Menilai status kesihatan pesakit mengikut kriteria yang ditentukan di dalam perkhidmatan kesihatan domisiliari.
+2)
+Memberi maklumat berkenaan polisi PPD.
+3)
+Memberi latihan kepada anggota pasukan PPD untuk memantapkan program 
+PPD dari aspek pendidikan kejururawatan, rehabilitasi, sokongan pemakanan dan sokongan moral (psychological support). 
+4)
+Menjadi penyelaras dalam menyediaan bahan pendidikan kesihatan untuk kegunaan anggota yang memberikan perkhidmatan kepada pesakit dan penjaga.
+5)
+Meningkatkan kerjasama di antara penjaga, NGO dan anggota kesihatan.
+6)
+Memastikan kemantapan program PPD dari segi sumber manusia yang mencukupi, pengurusan kenderaan dan kewangan yang teratur. 
+7)
+Memantau secara berterusan di rumah pesakit bersama anggota PPD.
+8)
+Menyimpan rekod, mengemaskini data, menyediakan laporan dan membuat penilaian. 
+9)
+Bekerjasama dengan pasukan Klinik Kesihatan untuk meningkatkan penglibatan masyarakat dalam PPD.
+10)
+Mengendali dan membentang pencapaian PPD bersama pegawai atasan bagi tujuan penambahbaikan.
+11)
+Membuat kajian akan keberkesanan program yang dijalankan.
+12)
+Mengadakan kes konferens dengan ahli pasukan perkhidmatan kesihatan domisiliari mengenai pengendalian dan kemajuan pelanggan.
+13) a)
+Ketua Jururawat Kesihatan/Jururawat Kesihatan/Penolong Pegawai Perubatan b)
+Anggota pasukan PPD bertanggungjawab terus kepada Penyelaras PPD Klinik 
+Kesihatan dan Pegawai Perubatan yang menjaga klinik kesihatan dalam semua perkara berhubung dengan perkhidmatan perawatan domisiliari yang mana tugas dan tanggungjawab adalah seperti berikut :
+Menerima dan menyemak semua dokumen permohonan untuk kemasukan ke 
+Perkhidmatan Perawatan Domisiliari.
+1.
+Membantu Penyelaras PPD mendapatkan maklumat kes yang layak menerima perkhidmatan perawatan domisiliari (kawasan operasi klinik kesihatan). 
+2.
+Membantu membuat penilaian dan memilih pesakit yang layak semasa ketiadaan penyelaras.
+3.
+Menyediakan jadual harian, mingguan dan bulanan untuk melaksanakan lawatan ke rumah-rumah dalam kawasan operasi.
+4.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Menjalankan pemeriksaan dan penilaian perawatan untuk setiap pesakit dari segi :
+5.
+Menjalankan penilaian rumah dan persekitaran serta mengesyorkan pengubahsuaian ruang, bilik, tandas dan sebagainya.
+6.
+Memaklumkan pesakit/penjaga mengenai pelan perawatan yang telah dirancang dan menetapkan bersama tarikh lawatan ke rumah.
+7.
+Menjalankan perawatan, memberi tunjuk ajar dan menyelia aktiviti perawatan di rumah mengikut pelan perawatan yang ditetapkan dan kesesuaian individu. Keutamaan diberikan kepada kes-kes berikut:
+8.
+Keadaan kesihatan keseluruhan
+Tanda Vital 
+Tahap kesedaran
+Hidrasi dan nutrisi
+Pergerakan
+Eliminasi
+Lain-lain masalah kesihatan yang berkaitan
+Aktiviti rehabilitasi dalam activity of daily living
+Rehabilitasi pergerakan dan senaman
+Memastikan tube feeding diberi dengan betul dan mencukupi mengikut preskripsi pegawai dietetik
+Memasang dan menukar kateter urin
+Mengambil tanda vital seperti tekanan darah dan penyiasatan (POCT) yang berkaitan seperti tahap glukos dalam darah dan pemeriksaan urin
+Memantau pengambilan dan kesan pengubatan
+Memberi khidmat nasihat dan runding cara kepada pesakit/keluarga mengenai penjagaan kesihatan pesakit dan kesihatan penjaga 
+Menjalankan penilaian tahap kesihatan atau pemulihan mengikut skala bagi pengubahsuaian intervensi dari masa ke semasa.
+9.
+Mengajar dan melatih pesakit & keluarga untuk menjalankan tatacara mudah di rumah seperti swabbing, dressing,sponging, tapid sponge dan lain-lain.
+10.
+Membuat rujukan kepada 
+Pegawai 
+Perubatan, 
+Jurupulih 
+Perubatan 
+(Fisioterapi), Jurupulih Perubatan (Carakerja), Pegawai Dietetik, Pegawai Kerja 
+Sosial Perubatan dan Pegawai Pemulihan Perubatan Pertuturan apabila perlu.
+11.
+Bagi pesakit yang telah didiscaj, anggota kesihatan akan terus membuat pemantauan di rumah seperti mengganti ryles tube dan urine cateter mengikut keperluan.
+12.
+Merekodkan data bagi setiap pesakit dan membuat reten bulanan.
+13.
+Membantu menyediakan reten bulanan dan tahunan, menyediakan laporan pesakit dan menyediakan kad lawatan serta mengemaskini nota-nota. 
+Mengemas kini buku-buku rekod.
+14.
+Membuat inden dan menyimpan stok keperluan ubatan dan peralatan.
+15.
+Memesan dan menyediakan peralatan seperti barang-barang untuk keperluan lawatan dan rawatan.
+16.
+Menghadiri kes konferen mengenai pengendalian pelanggan bersama ahli pasukan perkhidmatan perawatan domisiliari .
+17.
+Berhubung rapat dengan pihak badan-badan bukan kerajaan, komuniti untuk membentuk ‘partnership’ dalam pengendalian khas di rumah
+Perawatan di rumah yang dijalankan oleh Penolong Pegawai Perubatan adalah khusus untuk pesakit lelaki yang mana pada biasanya tidak sesuai dikendalikan oleh 
+Jururawat.
+Nota:
+18.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BAB 5
+LAMPIRAN
+
+KEPERLUAN PERALATAN BEG PERAWATAN
+LAMPIRAN I
+Beg Perawatan (Satu Unit)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Bil. 
+Jenis Barangan 
+Kuantiti a. 
+Beg Perawatan 
+ b. 
+Dressing Set disposable 
+ c. 
+Dressing Scissor 12cm 
+ d. 
+Stetoskop 
+ e. 
+B/P set 
+ f. 
+ 
+Lignocaine Gel 
+ g. 
+Alcohol Handrub 
+ h. 
+Klinikal/Digital Thermometer 
+ i. 
+ 
+Glucometer 
+ j. 
+ 
+Gloves, Mask dan Apron 
+Mengikut keperluan k. 
+Paper/hand towel 
+Mengikut keperluan l. 
+ 
+Gluco strip & Urine Dipstix (FEME) 
+Mengikut keperluan m. 
+Syringes 
+Mengikut keperluan n. 
+Cotton/ Gauze (Tambahan) 
+Mengikut keperluan o. 
+Plaster (micropore) 
+Mengikut keperluan p. 
+Cleansing lotion (e.g. – povidone, normal saline) 
+Mengikut keperluan q. 
+Disinfectant lotion (e.g. – hibitane, alcohol) 
+Mengikut keperluan r. 
+ 
+Condom catheter 
+Mengikut keperluan s. 
+Foley’s catheter 
+Mengikut keperluan t. 
+ 
+Ryles’s tube 
+Mengikut keperluan u. 
+Water for injection 
+Mengikut keperluan v. 
+Urine Bag & hanger 
+Mengikut keperluan w. 
+Bandage Pelbagai saiz 
+Mengikut keperluan x. 
+Modern dressing 
+Mengikut keperluan 
+
+BORANG RUJUKAN 
+PERKHIDMATAN PERAWATAN DOMISILIARI (PPD)
+A. PERIHAL PESAKIT [ Diisi oleh Jururawat ]
+B. PERIHAL PENJAGA [ Diisi oleh Jururawat ]
+C. MAKLUMAT PERAWATAN [ Diisi oleh Pegawai Perubatan ]
+LAMPIRAN II (a) 
+PPD 001/2014 (Pind. 2019)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Bil 
+Perkara 
+Maklumat 
+1. 
+Diagnosa 
+ 
+2. 
+Komplikasi 
+ 
+3. 
+Alahan Ubat 
+ 
+ 
+4. 
+Rawatan / Ubatan 
+ 
+Bil 
+Perkara 
+Maklumat 
+1. 
+Nama penjaga 
+ 
+2. 
+No. Kad Pengenalan 
+ 
+3. 
+Alamat penjaga 
+ 
+ 
+4. 
+No. Telefon penjaga rumah/pejabat/bimbit 
+ 
+5. 
+Status persaudaraan 
+ 
+Bil 
+Perkara 
+Maklumat 
+1. 
+Nama 
+ 
+2. 
+No. Kad Pengenalan 
+ 
+3. 
+Jantina 
+ 
+4. 
+Alamat 
+ 
+ 
+5. 
+No. Telefon 
+ 
+6. 
+Wad / Klinik 
+ 
+7. 
+Tarikh masuk wad 
+ 
+8. 
+Tarikh keluar wad 
+ 
+9. 
+Tarikh rujukan 
+ 
+Kepada 
+Penyelaras Perkhidmatan Perawatan 
+Domisiliari 
+Hospital ..................................... 
+ 
+Kepada 
+Penyelaras Perkhidmatan Perawatan Domisiliari 
+Klinik Kesihatan ..................................................... 
+Pejabat Kesihatan Daerah .................................... 
+(Ditentukan oleh Penyelaras Hospital) 
+
+ 
+D. PERANCANGAN PERAWATAN [ Diisi oleh Pegawai Perubatan]
+E. Modified Rankin Scale (mRS) : NYATAKAN SKOR PESAKIT
+F. Rawatan susulan yang di perlukan
+*bagi rujukan PPD Perubatan Paliatif, sila isi bahagian G, H, I dan J
+DI RUJUK OLEH:
+Nama Pegawai Perubatan: .................................................................................
+Tandatangan : ..............................................................................................
+Cop rasmi 
+: ..............................................................................................
+Tarikh 
+: ...............................................................................................
+Nota: Hanya pesakit skor 4 atau 5 layak untuk Perkhidmatan Perawatan Domisiliari
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+1 - No significant disability despite symptoms. Able to carry out all usual duties and activities.
+ 
+ 
+2 - Slight disability; unable to carry out all previous activities, but able to look after own affairs without assistance.
+ 
+ 
+3 - Moderate disability; requiring some help, but able to walk without assistance. 
+ 
+4 - Moderately severe disability. Unable to walk without assistance and unable to attend to own bodily needs without assistance. 
+ 
+5 - Severe disability; bedridden, incontinent and requiring constant nursing care and 
+ attention 
+ 
+ 
+Bil 
+ 
+Aktiviti 
+Tanda √ mengikut keperluan 
+ 
+Catatan 
+
+Nursing care 
+
+Ubatan / suntikan 
+
+Cucian luka (dressing) 
+
+Penukaran ryle’s tube 
+
+Penukaran catether 
+
+Fisioterapi 
+
+Terapi carakerja 
+
+Lain-lain 
+ 
+ 
+
+G. SENARAI SEMAK
+*Bagi rujukan PPD Perubatan Paliatif, sila isi bahagian berikut:
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+General Indicators of Deteriorating Health Suggesting Need for Palliative Care 
+(According To SPICT) 
+ 
+Look for two or more general indicators of deteriorating health : 
+• 
+Performance status poor or deteriorating, with limited reversibility (needs help with personal care, in bed or chair for 50% or more of the day). 
+• 
+Dependent on others for most care needs due to physical and/or mental health problem 
+• 
+Two or more unplanned hospital admission in the past 6 months. 
+• 
+Weight loss (5-10%) over the past 3 - 6 months and/or body mass index < 20. 
+• 
+Persistent, troublesome symptoms despite optimal treatment of any underlying condition(s). 
+• 
+Lives in a nursing care home or continuing care unit, or needs to remain at home. 
+• 
+Patient request supportive and palliative care, or treatment withdrawal. 
+ECOG Performance Scale 
+ 
+Gred 0 : Fully active witk no restriction as before illness 
+ 
+Gred 1 : Restricted in physically strenuous activity but able to carry on normal light activity 
+ (housework, office job) 
+ 
+Gred 2 : Ambulatory and capable of self care but unable to carry out any work activities. Up 
+ and about >50% of waking hours 
+ 
+Gred 3 : Capable of only limited self care. Confined to bed or chair >50% of waking 
+ hours 
+ 
+Gred 4 : Completely disabled, cannot carry out any self care, totally onfined to bed or 
+ chair 
+ 
+Senarai semak rujukan kes 
+Ya / Tidak 
+1. 
+Adakah pesakit telah didiagnosa sebagai kanser yang tidak boleh diubati? 
+2. 
+Bagi diagnosa bukan kanser, adakah kes telah dibincangkan bersama dengan Pakar Perubatan paliatif? 
+ 
+Sila nyatakan maklumat Pakar Perubatan Paliatif tersebut: 
+Nama : .................................................................................. 
+No. Telefon : ......................................................................... 
+ 
+ 
+3. 
+Adakah pesakit memenuhi status ECOG 3 atau 4 / SPICT? 
+ 
+4. 
+Adakah pesakit / ahli keluarga mengetahui akan diagnosa dan prognosis pesakit? 
+ 
+5. 
+Adakah pesakit / ahli keluarga bersetuju dengan lawatan ke rumah 
+(menandatangani borang persetujuan PPD Paliatif)? 
+ 
+
+Jika pesakit tidak mengetahui akan diagnosa, sila nyatakan sebab:
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+Anggaran prognosis:
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+a) Gejala dan masalah semasa penjagaan paliatif :
+.........................................................................................................................................................................
+.........................................................................................................................................................................
+.........................................................................................................................................................................
+b) Komorbid :
+Doktor untuk dihubungi sekiranya kemasukan semula ke hospital diperlukan: c) Keputusan penyiasatan yang berkaitan (sila lampirkan) : a. Keputusan terkini RP/ LFT/ Se Ca b. Penyiasatan terkini radiologi (CXR/CT/Bone Scan/MRI/PET CT) c. Keputusan HPE
+Relevant Investigation results (please attach relevant reports):
+.........................................................................................................................................................................
+.........................................................................................................................................................................
+.........................................................................................................................................................................
+H. MAKLUMAT PERUBATAN :
+I. PILIHAN TEMPAT KEMATIAN (sila tandakan): Rumah
+Hospital
+Tiada pilihan
+J. MAKLUMAT UNTUK DIHUBUNGI a. Nama : ......................................................................................................................................
+b. Hospital : .................................................................................................................................
+c. Jabatan / Unit : .....................................................................................................................
+d. No. Telefon : ...........................................................................................................................
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Maklumat lain yang berkaitan (contoh: ringkasan pelan masa depan, pilihan tempat penjagaan dan jangkaan masalah):
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+.......................................................................................................................................................................................
+DI RUJUK OLEH:
+Nama Pegawai Perubatan: .................................................................................
+Tandatangan : ..............................................................................................
+Cop rasmi 
+: ..............................................................................................
+Tarikh 
+: ...............................................................................................
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+PERKHIDMATAN PERAWATAN DOMISILIARI (PPD)
+PRESKRIPSI TERAPI MAKANAN PERUBATAN / MEDICAL
+NUTRITION THERAPY (MNT) SOKONGAN PEMAKANAN 
+Tarikh 
+:......................................
+Nama Pesakit :................................................
+No K/P 
+ 
+:............................................. 
+No Tel Penjaga 
+:..........................
+Jantina 
+ 
+: 
+Lelaki 
+Perempuan 
+ 
+Umur :.........(tahun)
+Diagnosis/masalah perubatan 
+:..............................................................................
+LAMPIRAN II (b) 
+DISEDIAKAN OLEH : 
+(TANDATANGAN, COP NAMA PEGAWAI DIETETIK)
+TARIKH:……………………….. NO TELEFON: ………………………………….
+#Rujukan dan pengisian borang ini perlu dilakukan oleh Pegawai Dietetik di hospital yang merujuk.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+PENILAIAN ANTROPOMETRI
+PRESKRIPSI KEPERLUAN NUTRIEN
+PELAN INTERVENSI MNT SOKONGAN PEMAKANAN
+ORAL/TIUB ENTERAL/KOMBINASI
+Berat : ..................... kg
+Tinggi : ................... cm
+Ukur Lilit Lengan Atas (MUAC) : .................... mm
+BMI : .................................... kg/m2
+/kg berat badan
+/kg berat badan/hari
+Pertukaran/hari
+Tenaga (kcal)
+Protein (g)
+Karbohidrat (g)
+Lemak (g)
+Air (ml)
+Lain-lain:
+
+SENARAI SEMAK KRITERIA
+PEMILIHAN KES UNTUK PPD DI KLINIK KESIHATAN
+Nama kes :.....................................................................................................
+No K.P :.....................................................................................................
+Tarikh Rujukan :......................................................................................................
+Adakah pesakit telah dinilai oleh Pakar/Pegawai Perubatan.
+Ya
+Tidak
+1.
+Modified Rankin Scale (Skor 4 atau 5 ) 
+2.
+Penjaga telah tandatangan memberi konsen bagi anggota 
+PPD meneruskan perawatan di rumah.
+3.
+Pesakit tinggal dalam kawasan operasi Klinik Kesihatan yang ada perkhidmatan PPD. 
+4.
+Pesakit mempunyai penjaga tetap serta memenuhi kriteria:
+Penjaga dewasa, waras dan berupaya.
+Penjaga perlu ada bersama semasa perawatan di rumah.
+Bersedia untuk belajar prosedur penjagaan pesakit. 
+Penjaga perlu memahami dan mematuhi polisi PPD
+Disahkan oleh :
+Tandatangan : .................................................................................
+Nama Penyelaras PPD Hospital: ............................................................
+Jawata 
+ : .................................................................................
+5.
+LAMPIRAN III
+PPD 002/2014
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BORANG PERSETUJUAN PENJAGA BAGI
+PERKHIDMATAN PERAWATAN DOMISILIARI (PPD)
+LAMPIRAN IV
+PPD 001/2019
+Saya ................................................................... bersetuju / tidak bersetuju menjadi penjaga kepada 
+...............................................................untuk menerima PPD / penjagaan perubatan paliatif yang akan dijalankan oleh 
+Pasukan 
+Perkhidmatan 
+PPD dari 
+Klinik 
+Kesihatan 
+..............................................
+Saya berjanji akan mematuhi syarat-syarat yang disenaraikan;
+Sekiranya saya gagal mematuhi syarat yang ditetapkan, pesakit akan digugurkan dari program PPD / PPD Paliatif.
+(Format ini diisi oleh Penyelaras PPD di Hospital / pasukan PPD Klinik Kesihatan)
+Saya akan ada bersama semasa lawatan PPD / paliatif di rumah.
+Saya bersedia untuk belajar prosedur penjagaan pesakit.
+Tempoh perkhidmatan adalah selama 3 bulan atau 6 bulan (kes paliatif). Sekiranya melebihi tempoh tersebut, kes hendaklah dinilai semula oleh pasukan PPD.
+Pesakit tertakluk kepada Perintah Fi (Perubatan) 1982- Akta Fi 1951 dan surat 
+Bahagian Kewangan, KKM rujukan (10)dlm.KKM-58/300/1-5 Jld.2 bertarikh 17 Jun 
+2013.
+Membeli sendiri peralatan yang tidak dibekalkan.
+Tindakan undang-undang boleh dikenakan, jika kekerasan dilakukan terhadap anggota perubatan (Akta Kesalahan-Kesalahan Kecil 1955) i.
+ii.
+iii.
+iv.
+v.
+vi.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Tandatangan Penjaga 
+: ...........................................................................
+Nama 
+ 
+ 
+: ...........................................................................
+No K.P 
+ 
+ 
+: ...........................................................................
+Tarikh 
+ 
+ 
+: ...........................................................................
+Tandatangan Saksi 
+ 
+: ...........................................................................
+Nama 
+ 
+ 
+: ...........................................................................
+No K.P 
+ 
+ 
+: ...........................................................................
+Tarikh 
+ 
+ 
+: ...........................................................................
+
+NAMA :………………………………………………………… NO K/P:……………........................
+DIAGNOSIS ……………………………………………………………………………
+Nama Anggota Kesihatan:………………………………… Tandatangan :……………………….........
+Sekiranya klien mencapai tahap total, severe dan moderate pesakit perlu dirujuk kepada Pegawai 
+Pemulihan / Jurupulih Perubatan Carakerja dan Fisioterapi
+Borang Penilaian Modified Barthel Index
+LAMPIRAN V
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Activity 
+Criteria 
+FIRST VISIT 
+SCORE 
+SCORE UPON 
+DISCHARGE 
+Personal Hygiene 
+ 
+Unable to perform task (0) 
+Substantial help required (1) 
+Moderate help required (3) 
+Minimal help required (4) 
+Fully independent (5) 
+ 
+ 
+ 
+ 
+Bathing 
+ 
+ 
+Toilet 
+Unable to perform task (0) 
+Substantial help required (2) 
+Moderate help required (5) 
+Minimal help required (8) 
+Fully independent (10) 
+ 
+ 
+Stair climbing 
+ 
+ 
+Feeding 
+ 
+ 
+Dressing 
+ 
+ 
+Bowel control 
+ 
+ 
+Bladder control 
+ 
+ 
+ 
+Chair/Bed transfers 
+ 
+Unable to perform task (0) 
+Substantial help required (3) 
+Moderate help required (8) 
+Minimal help required (12) 
+Fully independent (15) 
+ 
+ 
+ 
+ 
+Ambulation 
+ 
+ 
+Or Wheelchair (Score only if patient is unable to ambulate and is trained in wheelchair) 
+Unable to perform task (0) 
+Substantial help required (1) 
+Moderate help required (3) 
+Minimal help required (4) 
+Fully independent (5) 
+ 
+ 
+ 
+Activity 
+ 
+TOTAL SCORE (105) 
+ 
+ 
+ 
+MBI TOTAL SCORE 
+DEPENDENCY LEVEL 
+0 – 24 
+Total 
+25 – 49 
+Severe 
+50 – 74 
+Moderate 
+75 – 90 
+Mild 
+91 - 99 
+Minimal 
+
+Borang Penilaian Modified Barthel Index (MBI)
+NAMA :………………………………………………………… NO K/P:……………........................
+DIAGNOSA ……………………………………………………………………………
+Sekiranya klien mencapai tahap kebergantungan sepenuhnya, maksima atau sederhana, pesakit perlu dirujuk kepada Pegawai Pemulihan / Jurupulih Perubatan Carakerja dan Fisioterapi
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Nama Anggota Kesihatan:………………………………… Tandatangan :……………………….........
+Aktiviti 
+Kriteria 
+SKOR 
+LAWATAN 
+PERTAMA 
+SKOR 
+SEMASA 
+DISCAJ 
+Kebersihan diri 
+Perlu bantuan sepenuhnya (0) 
+Perlu bantuan maksima (1) 
+Perlu bantuan sederhana (3) 
+Perlu bantuan minima (4) 
+Berdikari sepenuhnya (5) 
+ 
+ 
+ 
+Mandi 
+ 
+ 
+Kemahiran ke tandas (Toileting) 
+Perlu bantuan sepenuhnya (0) 
+Perlu bantuan maksima (2) 
+Perlu bantuan sederhana (5) 
+Perlu bantuan minima (8) 
+Berdikari sepenuhnya (10) 
+ 
+ 
+Menaiki tangga 
+ 
+ 
+Memakai pakaian 
+ 
+ 
+Makan & Minum 
+ 
+ 
+Kawalan pembuangan air kecil 
+ 
+ 
+Kawalan pembuangan air besar 
+ 
+ 
+Pemindahan ke kerusi/katil 
+ 
+Perlu bantuan sepenuhnya (0) 
+Perlu bantuan maksima (3) 
+Perlu bantuan sederhana (8) 
+Perlu bantuan minima (12) 
+Berdikari sepenuhnya (15) 
+ 
+ 
+Pergerakan 
+ 
+ 
+Penggunaan kerusi roda (skor hanya jika pesakit perlu bantuan sepenuhnya untuk bergerak dan telah dilatih berkerusi roda) 
+Perlu bantuan sepenuhnya (0) 
+Perlu bantuan maksima(1) 
+Perlu bantuan sederhana (3) 
+Perlu bantuan minima (4) 
+Berdikari sepenuhnya (5) 
+ 
+ 
+ 
+Aktiviti 
+ 
+JUMLAH MARKAH (100) 
+ 
+ 
+ 
+MARKAH MBI 
+TAHAP 
+KEBERGANTUNGAN 
+0 – 24 
+Sepenuhnya 
+25 – 49 
+Maksima 
+50 – 74 
+Sederhana 
+75 – 90 
+Ringan 
+91 - 99 
+Minima 
+
+MODIFIED BARTHEL INDEX (SHAH VERSION) : SELF CARE ASSESSMENT
+(PENERANGAN LANJUT)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+INDEX ITEM 
+SCORE 
+DESCRIPTION 
+CHAIR/BED TRANSFER 
+
+Unable to participatein a transfer. Two attendants are required to transfer the patient with or without a mechanical device 
+
+Able to participate but maximum assistance of one other person is require in all aspects of the transfer 
+
+The transfer requires the assistance of one other person. Assistance may be required in any aspect of the transfer. 
+
+The presence of another person is required either as a confidence measure, or to provide supervision for safety. 
+
+The patient can safety approach the bed walking or in a wheelchair, lock brakes, lift footrests, or position walking aid, move safely to bed, lie down, come to a sitting position on the side of the bed, change the position of the wheelchair, transfer back into it safely and/or grasp aid and stand. The patient must be independent in all phases of this activity. 
+ 
+ 
+ 
+AMBULATION 
+
+Dependent in ambulation 
+
+Constant presence of one or more assistant is required during ambulation 
+
+Assistance is required with reaching aids and/or their manipulation. One person is required to offer assistance 
+
+The patient is independent in ambulation but unable to walk 50 metres without help, or supervision is needed for confidence or safety in hazardous situations. 
+
+The patient must be able to waar braces if required, lock and unlock these braces assume standing position, sit down, and place the necessary aids into position for use. The patient must be able to crutches, canes, or a walkarette, and walk 50 metres without help or supervision. 
+ 
+ 
+ 
+AMBULATION 
+WHEELCHAIR 
+
+Dependent in wheelchair ambulation. 
+
+Patient can propel self short distances on flat surface, but assistance is required for all other steps of wheelchair management 
+
+Presence of one person is necessary and constant assistance is required to manipulate chair to table, bet etc. 
+*(If unable to walk) 
+ 
+Only use this item if the patient is rated “0” for 
+Ambulation, and then only if the patient has been trained in wheelchair management. 
+
+The patient can propel self for a reasonable duration over regularly encountered terrain. 
+ 
+Minimal assistance may still be required in “tight corners” or to negotiate a kerb 100 mm high. 
+ 
+5. 
+To propel wheelchair independently, the patient must be able to go around corners, turn around, manoeuvre the chair to a table, bed, toilet, etc. The patient must be able to push a chair at least 50 metres and negotiate a kerb. 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+STAIR CLIMBING 
+
+The patient is unable to climb stairs. 
+
+Assistance is required to all aspects of chair climbing, including assistance with walking aids. 
+
+The patient is able to ascend descend but is unable to carry walking aids and needs supervision and assistance. 
+ 
+8. 
+Generally no assistance is required. At times supervision is required for safety due to morning stiffness, shortness of breath etc. 
+
+The patient is able to go up and down a flight of stairs safely without help or supervision. The patient is able to use hand rails, cane or crutches when needed and is able to carry these devices as he/she ascends or descends. 
+ 
+ 
+ 
+T OILET TRANSFER 
+
+Fully dependent is toileting 
+
+Assistance required in all aspects of toileting 
+
+Assistance may be required with management of clothing, transferring, or washing hands. 
+ 
+8. 
+Supervision may be required for safety with normal toilet. A commode may be used at night but assistance is required for emptying and cleaning. 
+
+The patient is able to get on/off the toilet, fasten clothing and use toilet paper without help/ If necessary may use a bed pan or commode or urinal at night but must be able to empty it and clean it. 
+ 
+ 
+ 
+BOWEL CONTROL 
+
+The patient is bowel incontinent. 
+
+The patient needs help to assume appropriate position, and with bowel movemebt facilitatory techniques. 
+
+The patient can assume appropriate position, but cannot use facilitatory techniques or clean self without assistance and has frequent accidents. 
+Assistance is required with incontinence aids such as pad, etc. 
+
+The patient may require supervision with the use of suppository or enema and has occasional accidents. 
+
+The patient can control bowels and has no accidents, can use suppository, or take an enema when necessary. 
+ 
+ 
+ 
+BLADDER CONTROL 
+
+The patient is dependent in bladder management, is incontinent, or has indwelling catheter 
+
+The patient is incontinent but is able to assist with the application of an internal or external device. 
+
+The patient is generally dry by day, but not at night and needs some assistance with the devices. 
+
+The patient is generally dry by day and night, but may have an occasional accident or need minimal assistance with internal or external devices. 
+
+The patient is able to control bladder day and night, and/or is independent with internal or external devices. 
+ 
+ 
+ 
+BATHING 
+
+Total dependance in bathing self 
+
+Assistance is required in all aspects of bathing, but patient is able to make some contribution 
+
+Assistance is required with either transfer to shower/bath or with washing or drying, including inability to complete a task because of condition or disease, etc. 
+INDEX ITEM 
+SCORE 
+DESCRIPTION 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Supervision is required for safety in adjusting the water temperature, or in the transfer. 
+
+The patient may use a bathtub, a shower, or take a complete sponge bath. The patient must be able to do all the steps of whichever method is employed without another person being present. 
+ 
+ 
+ 
+DRESSING 
+
+The patient is dependent in all aspects of dressing and is unable to participate in the activity 
+
+The patient is able to participate to some degree, but is dependent in all aspects of dressing. 
+
+Assistance is needed in putting on, and or removing any clothing. 
+
+Only minimal assistance is required with fastening clothing such as buttons, zips, bra, shoes, etc. 
+
+The patient is able to put on, remove corset, braces, as prescribed. 
+ 
+ 
+ 
+PERSONAL HYGIENE 
+(Grooming) 
+
+The patient is unable to attend to personal hygiene and is dependent in all aspects 
+
+Assistance is required in all steps of personal hygiene, but patient able to make some contribution. 
+
+Some assistance is required in one or more steps of personal hygiene. 
+
+Patient is able to conduct his/her own personal hygiene but requires minimal assistance before and/or after the operation. 
+
+The patient can wash his/her hands and face, comb hair, clean teeth and shave. A male patient may use any kind of razor but must insert the blade, or plug in the razor without help, as well as retrieve i from the drawer or cabinet. A female patient must apply her own make-up , if used, but need not braid or style her hair. 
+ 
+ 
+ 
+FEEDING 
+
+Dependent in all aspects and needs to be fed, nasogastric needs to be administered. 
+
+Can manipulate an eating device, usually a spoon, but someone must provide active assistance during the meal 
+
+Able to feed self with supervision. Assistance is required with associate tasks such as putting milk/sugar into tea, salt, pepper, spreading butter, turning a plate or other “set up” activities. 
+
+Independence in feeding with prepared tray, exvept may need cut, milk cartoon opened or jar lid etc. The presence of another person is not required. 
+
+The patient can feed self from a tray or table when someone puts the food within reach. The patient must put on an assistive device if needed, cut food, and if desire use salt and pepper, spread butter, etc. 
+INDEX ITEM 
+SCORE 
+DESCRIPTION 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BAHAGIAN 1 
+Sila baca setiap kenyataan dan tuliskan skor mengikut skala yang mengambarkan keadaan anda 
+SEMINGGU YANG LEPAS. Tidak ada jawapan betul dan salah. 
+JANGAN guna terlalu banyak masa untuk mana-mana kenyataan. 
+0 = Tidak pernah sama sekali 1 = Jarang 2 = Kerap 3= Sangat Kerap 
+ 
+S 
+ 
+ 
+ 
+Tidak 
+Pernah 
+Jarang 
+Kerap 
+Sangat 
+Kerap 
+1. 
+Saya rasa susah untuk bertenang 
+ 
+ 
+ 
+ 
+ 
+2. 
+Saya sedar mulut saya rasa kering 
+ 
+ 
+ 
+ 
+ 
+3. 
+Saya seolah-olah tidak dapat mengalami perasaan positif sama sekali 
+ 
+ 
+ 
+ 
+4. 
+Saya mengalami kesukaran bernafas (contohnya, bernafas terlalu cepat, tercungap-cungap walaupun tidak melakukan ativiti fizikal 
+ 
+ 
+ 
+ 
+5. 
+Saya rasa tidak bersemangat untuk memulakan sesuatu keadaan 
+ 
+ 
+ 
+ 
+6. 
+Saya cenderung bertindak secara berlebihan kepada sesuatu keadaan 
+ 
+ 
+ 
+ 
+7. 
+Saya pernah menggeletar (contoh tangan) 
+ 
+ 
+ 
+ 
+ 
+8. 
+Saya rasa terlalu gelisah 
+ 
+ 
+ 
+ 
+ 
+9. 
+Saya risau akan berlaku keadaan yang menyebabkan saya panik dan berkelakuan bodoh 
+ 
+ 
+ 
+ 
+10. 
+Saya rasa tidak ada harapan (Putus harapan) 
+ 
+ 
+ 
+ 
+ 
+11. 
+Saya dapati saya mudah resah 
+ 
+ 
+ 
+ 
+ 
+12. 
+Saya berasa sukar untuk relaks 
+ 
+ 
+ 
+ 
+ 
+13. 
+Saya rasa muram dan sedih 
+ 
+ 
+ 
+ 
+ 
+14. 
+Saya tidak boleh menerima apa jua yang menghalangi saya daripada meneruskan apa yang saya sedang lakukan 
+ 
+ 
+ 
+ 
+15. 
+Saya rasa hampir panik 
+ 
+ 
+ 
+ 
+ 
+16. 
+Saya tidak bersemangat langsung 
+ 
+ 
+ 
+ 
+ 
+17. 
+Saya rasa diri saya tidak berharga 
+ 
+ 
+ 
+ 
+ 
+18. 
+Saya mudah tersinggung 
+ 
+ 
+ 
+ 
+ 
+S 
+ 
+ 
+ 
+Tidak 
+Pernah 
+Jarang 
+Kerap 
+Sangat 
+Kerap 
+
+Walaupun saya tidak melakukan aktiviti fizikal, saya sedar akan debaran jantung saya (contoh degupan jantung lebih cepat 
+
+Saya rasa takut tanpa sebab 
+
+Saya rasa hidup ini tidak bererti lagi 
+ 
+ 
+ 
+ 
+ 
+Langkah 1 : Sila baca dan tuliskan skor yang bersesuaian dengan anda.
+BORANG SARINGAN DASS 
+(DEPRESSION, ANXIETY AND STRESS SCREENING)
+LAMPIRAN VI
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Langkah 2 : Masukkan skala markah jawapan ke dalam ruangan kosong di Bahagian 2, 
+ 
+ mengikut soalan (S) bagi setiap kategori (Stres, Anxiety dan Kemurungan).
+Langkah 3 : Jumlahkan skala markah bagi setiap kategori bagi mengetahui tahap status 
+ 
+ kesihatan mental anda.
+Langkah 4 : Sila isikan keputusan dalam bahagian 3 dan isikan dalam borang Keputusan 
+ 
+ Saringan Minda Sihat 
+Rujuk petak skor saringan dan terjemahkan jumlah skor untuk mengetahui tahap status kesihatan mental anda.
+BAHAGIAN 2
+Panduan Mengira Skor :Masukkan skala markah jawapan bagi soalan (S) bagi setiap kategori.
+TEKANAN (STRESS) 
+SOALAN 
+S1 
+S6 
+S8 
+S11 
+S12 
+S14 
+S18 
+JUMLAH 
+MARKAH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+KEBIMBANGAN (ANXIETY) 
+SOALAN 
+S2 
+S4 
+S7 
+S9 
+S15 
+S19 
+S20 
+JUMLAH 
+MARKAH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ KEMURUNGAN (DEPRESSION) 
+SOALAN 
+S3 
+S5 
+S10 
+S13 
+S16 
+S17 
+
+JUMLAH 
+MARKAH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SKOR SARINGAN 
+ 
+KEMURUNGAN 
+(DEPRESSION) 
+KEBIMBANGAN 
+(ANXIETY) 
+TEKANAN 
+(STRES) 
+NORMAL 
+0 – 5 
+0 - 4 
+0 - 7 
+RINGAN 
+6 - 7 
+5 - 6 
+8 - 9 
+SEDERHANA 
+8 - 10 
+7 - 8 
+10 - 13 
+TERUK 
+11 - 14 
+9 - 10 
+14 - 17 
+SANGAT TERUK 
+15 + 
+11 + 
+18 + 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BAHAGIAN 3
+KEPUTUSAN UJIAN DASS
+Isikan tahap kesihatan mental ( normal, ringan, sederhana, teruk, atau sangat teruk) ke dalam jadual.
+Interpretasi
+Normal 
+: Kehidupan yang selesa 
+Ringan 
+: Sihat
+Sederhana 
+: Cari Pengetahuan mengenai pengurusan kesihatan mental
+Teruk 
+: Berjumpa dan berbincang dengan Pegawai Psikiologi untuk mengurus 
+ 
+ 
+ kesihatan mental dengan lebih positif
+Sangat teruk : Berjumpa dan berbincang dengan Pegawai Psikiologi dan merujuk 
+ 
+ 
+ 
+ kepada Pakar Psiakiatrik jika perlu.
+UJIAN 
+TAHAP 
+TEKANAN (STRESS) 
+ 
+KEBIMBANGAN (ANXIETY) 
+ 
+KEMURUNGAN (DEPRESSION) 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+NO. PENDAFTARAN
+MY KID NO./ NO. K/P:
+REKOD PELANGGAN / PESAKIT PERAWATAN DOMISILIARI
+LAMPIRAN VII
+PPD 004(a)/2014
+NAMA PESAKIT 
+ 
+ 
+ 
+NO KAD PENGENALAN 
+PESAKIT 
+ 
+NAMA PENJAGA 
+ 
+ 
+ 
+ 
+NO KAD PENGENALAN 
+PENJAGA 
+ 
+ 
+ 
+NO TEL. 
+ 
+1.Telefon Bimbit: 
+ 
+2.Rumah: 
+ 
+ALAMAT SEMASA 
+MENJALANKAN 
+RAWATAN 
+ 
+ 
+ 
+ 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+REKOD TAHAP KESIHATAN SEMASA PERAWATAN DI RUMAH (Simpanan Penjaga)
+Tarikh 
+ 
+B/P 
+ 
+Nadi 
+Suhu 
+Kadar 
+Pernafasan 
+RBS/ 
+FBS 
+Masalah/Catatan 
+Nama anggota 
+Tanda tangan 
+Tarikh 
+Temujanji 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+LAMPIRAN VIIl
+PPD 004(b)/2014 
+REKOD PENILAIAN KES PERHIDMATAN PERAWATAN DOMISILIARI
+(SIMPANAN KLINIK KESIHATAN)
+1. BIODATA PELANGGAN
+ 
+ 
+NAMA : 
+ 
+………………………………………………………... 
+ 
+ 
+PENJAGA / WARIS 
+(Potong yang tidak berkenaan) 
+ 
+Nama: 
+ 
+………………………………………………… 
+Kad Pengenalan: 
+ 
+ 
+ 
+Pendidikan: Rendah Menengah 
+ Tinggi 
+Pekerjaan: …………………………………………………. 
+ 
+Hubungan dengan pesakit : .......................... 
+ 
+Pendapatan Keluarga Sebulan: RM ….…… 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+JANTINA : Lelaki Perempuan 
+ 
+ 
+Pekerjaan : …………………………………………. 
+ 
+ 
+KUMPULAN ETNIK 
+Melayu 
+China 
+ India 
+Kadazan/ 
+Dusun 
+Murut 
+ Bajau 
+Melanau 
+Iban 
+Bidayuh 
+Orang Asli 
+Lain -lain kumpulan etnik 
+Lain 
+Pribumi 
+Sabah/ Sarawak 
+ 
+TARIKH LAHIR: 
+ 
+ 
+NO. MY KID/ NO. KAD PENGENALAN: 
+ 
+ 
+ 
+TARAF PERKAHWINAN: 
+ 
+ Bujang Kahwin Janda Duda 
+No Telefon 
+ 
+Rumah: 
+ 
+ 
+Pejabat: 
+ 
+Tel. Bimbit: 
+ 
+ 
+Maklumat Tempat Tinggal 
+Alamat semasa rawatan: 
+ 
+……………………………………………………………………………………... 
+ 
+……………………………………………………………………………………... 
+ 
+Keadaan rumah dan persekitaran : sesuai kurang sesuai 
+ 
+ tidak sesuai 
+ 
+Jarak tempat tinggal ke Klinik Kesihatan : km 
+ 
+Jenis Pengangkutan : Sendiri Awam 
+ 
+ 
+ Poskod 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Hari 
+ Bulan 
+ Tahun 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+2. SEJARAH PERUBATAN
+2.1. UBAT-UBATAN SEMASA :
+2.2. SEJARAH ALAHAN KEPADA UBAT-UBAT :
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Bil.
+Diagnosa
+ Tahun Diagnosa
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+3.1. Penilaian Fisikal 
+ 
+Normal 
+Tidak 
+Normal 
+Catatan 
+Tahap 
+Kesedaran 
+ 
+ 
+ 
+ 
+ 
+Kesihatan Oral 
+ 
+ 
+ 
+ 
+ 
+Keadaan Kulit 
+ 
+ 
+ 
+ 
+ 
+ 
+Penglihatan 
+ 
+ 
+ 
+ 
+ 
+ 
+Pendengaran 
+ 
+ 
+ 
+ 
+ 
+ 
+3. PENILAIAN AWAL PESAKIT : Tandakan ( ) di ruangan yang berkenaan
+ 
+Komunikasi 
+(Cara-cara utama berkomunikasi dengan keluarga) 
+ 
+ 
+Tanda kotak yang berkenaan 
+Catatan 
+ 
+Pertuturan 
+ 
+ 
+ 
+ 
+ 
+Tulisan 
+ 
+ 
+ 
+ 
+Menggunakan Isyarat 
+ 
+ 
+ 
+ 
+Tidak berkomunikasi 
+ 
+ 
+ 
+ 
+ 
+ 
+Status Pemakanan 
+ 
+Ya 
+Tidak 
+Catatan 
+Ada Selera makan 
+ 
+ 
+ 
+ 
+ 
+Kebolehan mengunyah 
+ 
+ 
+ 
+ 
+ 
+ 
+Kebolehan menelan 
+ 
+ 
+ 
+ 
+ 
+ 
+Tanda-tanda KZM 
+ 
+ 
+ 
+Jika ada, nyatakan ............................... 
+ 
+.............................................................. 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Penilaian Sosial & 
+Psikologikal 
+ 
+ 
+ 
+Catatan 
+ 
+Baik 
+Tidak Baik 
+ 
+ 
+Hubungan dan sokongan keluarga 
+ 
+ 
+ 
+ 
+ 
+Masalah tingkahlaku 
+Ya 
+Tidak 
+ 
+ 
+Normal 
+ 
+ 
+ 
+ 
+Ganas (aggressive) 
+ 
+ 
+ 
+Pelupa (forgetful) 
+ 
+ 
+ 
+ 
+ 
+Keliru (confused) 
+ 
+ 
+ 
+ 
+ 
+ 
+Murung (depression) 
+ 
+ 
+ 
+ 
+ 
+ 
+Resah (restless) 
+ 
+ 
+ 
+ 
+ 
+Pemeriksaan 
+ 
+Catatan 
+ 
+Tekanan darah 
+ 
+Nadi 
+ 
+ 
+Kadar Pernafasan 
+ 
+ 
+Suhu 
+ 
+ 
+FBS/RBS/FEME 
+ 
+ 
+Tahap kesakitan 
+ 
+ 
+Skor Penilaian Modified Barthel Index:
+(Rujuk Lampiran V)
+Bagi pesakit dengan naso gastrik tube, boleh gunakan “DYSPHAGIA SCREENING TOOL” untuk saringan masalah penelanan (Lampiran XII) 
+ Lulus Gagal 
+Nama & Cop Paramedik yang membuat penilaian :
+Tandatangan :
+Tarikh : 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+4. SENARAI MASALAH DAN RANCANGAN PENGENDALIAN PELANGGAN (NURSING CARE PLAN)
+Nama Pelanggan :...............................................................................
+No K/P :.............................................................................
+Bil. 
+Tarikh 
+Masalah 
+ 
+ 
+Aktiviti Yang Dirancang 
+Tarikh 
+Diatasi 
+Catatan 
+ 
+Nama & 
+Tanda tangan 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+5. RANCANGAN PENGENDALIAN PELANGGAN (PELAKSANAAN)
+Nama Pelanggan :...............................................................................
+No K/P :.............................................................................
+Tarikh 
+ 
+Tanda Vital 
+ 
+Penilaian 
+Perlaksanaan Perawatan 
+Tandatangan 
+ 
+B/P: 
+PR: 
+RR: 
+Temp: 
+RBS: 
+Pain Score 010: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+6. PELAN DISCAJ
+ 
+Tarikh discaj dari PPD : 
+ 
+Penilaian sebelum discaj : 
+ 
+ Skor Penilaian Modified Barthel Index: 
+( Rujuk Lampiran V) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Langkah-langkah / pengendalian yang perlu seterusnya : 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Nama & Cop Paramedik : Tandatangan : 
+ 
+ 
+ 
+ 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+PANDUAN PENCEGAHAN DAN KAWALAN INFEKSI COVID-19
+UNTUK ANGGOTA KESIHATAN SEMASA PERAWATAN DI RUMAH
+(Tatacara ini adalah tambahan kepada prosedur perawatan di rumah sedia ada seperti lawatan antenatal, postnatal, domisiliari, paliatif)
+Anggota kesihatan yang mempunyai SALAH SATU gejala jangkitan pernafasan akut 
+(sesak nafas, batuk ATAU sakit tekak) DENGAN / TANPA demam, tidak dibenarkan untuk membuat lawatan ke rumah.
+1.
+Lakukan perancangan jadual lawatan ke rumah dengan;
+• Kenalpasti kes
+• Pemakaian PPE adalah mengikut Garis Panduan COVID-19 di Malaysia
+• Mewujudkan rapport tanpa bersalaman
+• Mengamalkan penjarakan sosial
+• Menilai semula risiko jangkitan COVID-19
+• Memastikan pengudaraan yang baik di rumah klien
+• Meminimakan masa pemeriksaan dan lawatan
+• Sediakan kelengkapan tambahan seperti berikut:
+Klien yang stabil / berisiko rendah, pemantauan boleh dibuat menggunakan teknologi komunikasi bersesuaian.
+Bagi klien yang stabil / berisiko tinggi;
+Semak status COVID-19 klien dan keluarga di CPRC daerah
+Hubungi klien / penjaga untuk menilai risiko jangkitan COVID-19 termasuk sejarah kontak (rujuk BORANG PENILAIAN RISIKO JANGKITAN COVID-19)
+Sekiranya klien dan keluarga mempunyai risiko jangkitan COVID-19, tangguhkan lawatan ke rumah dan hubungi PKD untuk tindakan lanjut
+2.
+Semasa melaksanakan lawatan;
+3.
+Lampiran IX
+Dalam situasi di mana lawatan dan perawatan di rumah PERLU dilakukan bagi kes mempunyai risiko jangkitan COVID-19;
+Hand sanitizer, alcohol swab 70%
+Set PPE minima iaitu surgical mask,face shield dan long sleeve plastic apron
+Set PPE lengkap untuk kes PUI (Rujuk Guidelines COVID-19 Management In Malaysia edisi terkini) untuk kes-kes kecemasan
+Maklum dan bincang dengan Pegawai Kesihatan Daerah / Pakar Perubatan 
+Keluarga / Ketua Klinik / Penyelia Jururawat Daerah akan tindakan selanjutnya
+• Mengamalkan 5 Situasi Amalan Kebersihan Tangan (5 Moments of Hand Hygiene)
+Sebelum menyentuh pesakit (Before touching a patient)
+Sebelum melakukan prosedur aseptik (Before clean / aseptic procedure)
+Selepas risiko terdedah kepada cecair badan pesakit (After body fluid exposure) 
+Selepas menyentuh pesakit (After touching a patient)
+Selepas menyentuh persekitaran pesakit (After touching a patient surroundings)
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+• Membersihkan semua peralatan yang telah digunakan dengan menggunakan alcohol 
+ swab (70%)
+• Mengendalikan sisa klinikal mengikut amalan standard precaution
+• Menyimpan semua peralatan yang telah dibersihkan ke dalam beg lawatan selepas 
+ selesai rawatan
+• Cuci tangan menggunakan air dan sabun sebaik sampai di klinik
+• Lupuskan sisa klinikal mengikut tatacara standard precaution
+• Lakukan dekontaminasi beg lawatan dan peralatan
+Selepas lawatan;
+4.
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BORANG PENILAIAN RISIKO JANGKITAN COVID-19
+Nama :
+No. Kad Pengenalan :
+Alamat / No. Telefon :
+*Sekiranya klien memenuhi kriteria definisi kes Patient Under Investigation (PUI) COVID-19, sila tangguhkan lawatan ke rumah dan maklumkan kepada Penyelia Jururawat untuk tindakan selanjutnya.
+*Definisi kes PUI COVID-19 :
+Acute respiratory infection (sudden onset of respiratory infection with at least one of: shortness of breath, cough or sore throat) with or without Fever
+AND
+Travelled to / resided in foreign country within 14 days before the onset of illess 
+OR
+Close contact in 14 days before illness onset with a confirmed cases of COVID-19
+OR
+Attended an event associated with known COVID-19 outbreak
+*Sumber rujukan : Guideline COVID-19 Management in Malaysia No.05/2020 (EDISI 
+KELIMA)
+Panduan Pencegahan Dan Kawalan Infeksi Covid-19 Untuk Anggota Kesihatan Semasa Perawatan Di 
+Rumah, 27 Mac 2020
+No. 
+Kriteria 
+Ya 
+Tidak 
+1. 
+Gejala pernafasan akut 
+ 
+ 
+ 
+• Batuk 
+ 
+ 
+ 
+• Sesak nafas 
+ 
+ 
+ 
+• Sakit tekak 
+ 
+ 
+2. 
+Demam 
+ 
+ 
+3. 
+Sejarah perjalanan ke luar negara / menetap di luar negara 
+(dalam masa 14 hari sebelum timbul gejala) 
+ 
+ 
+4. 
+Menghadiri majlis / perjumpaan yang mempunyai kaitan dengan wabak COVID-19 
+ 
+ 
+5. 
+Kontak rapat (dalam masa 14 hari sebelum timbul gejala) 
+ 
+ 
+ 
+• Kontak dengan anggota kesihatan yang terdedah kepada risiko COVID-19 
+ 
+ 
+ 
+• Berkongsi ruang kerja / ruang belajar bersama pesakit 
+COVID-19 
+ 
+ 
+ 
+• Berkongsi kenderaan bersama pesakit COVID-19 
+ 
+ 
+ 
+• Tinggal bersama pesakit COVID-19 
+ 
+ 
+
+LAMPIRAN X 
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+SURAT AKTA FI
+LAMPIRAN XI
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+SARINGAN MASALAH PENELANAN
+Lampiran XII
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+CARTA ALIR INTERVENSI TERAPI PEMAKANAN PERUBATAN (MNT) 
+SOKONGAN PEMAKANAN
+LAMPIRAN XIII (a)
+
+LAMPIRAN XIII (b)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BAHAGIAN PEMBANGUNAN KESIHATAN KELUARGA 
+KEMENTERIAN KESIHATAN MALAYSIA 
+ 
+KURSUS PENJAGAAN PERAWATAN DOMISILIARI 
+ 
+(CONTOH BUKU LOG) 
+ 
+ 
+ 
+ 
+ 
+LAMPIRAN XIV
+ 
+ 
+NAMA ANGGOTA 
+ 
+JAWATAN 
+ 
+ 
+TEMPAT BERTUGAS 
+ 
+ 
+ 
+TEMPAT LATIH AMAL (HOSPITAL) 
+ 
+ 
+ 
+TARIKH MULA LATIHAN 
+ 
+ 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+TANGGUNGJAWAB ANGGOTA : 
+Anda Harus 
+ 
+1. Merancang pengalaman klinikal anda sendiri untuk memperolehi kemahiran di hospital yang berdekatan 
+ 
+2. Melengkapkan catatan dengan kemas serta di tandatangani oleh Pegawai Penyelia 
+ 
+3. Merekodkan kes-kes yang diuruskan sahaja 
+ 
+SENARAI PENGALAMAN KLINIKAL
+1. 
+MEMASUKKAN RYLE’S TUBE KEPADA PESAKIT 
+ 
+Bil. 
+Tarikh 
+Nama 
+ 
+No. K/P 
+Penyelia 
+
+Nama 
+TT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1. 
+MENJALANKAN GASTROSTOMY FEEDING KEPADA PESAKIT 
+ 
+Bil. 
+Tarikh 
+Nama 
+ 
+No. K/P 
+Penyelia 
+
+Nama 
+TT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+1. 
+JAGAAN TRACHEOSTOMY WOUND 
+ 
+Bil. 
+Tarikh 
+Nama 
+ 
+No. K/P 
+Penyelia 
+
+Nama 
+TT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1. 
+JAGAAN PESAKIT PALIATIF 
+ 
+Bil. 
+Tarikh 
+Nama 
+ 
+No. K/P 
+Penyelia 
+
+Nama 
+TT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+BAB 6
+RUJUKAN
+
+RUJUKAN
+Akta FI 1951
+1.
+Consensus Statement on the Management of Ischaemic Stroke, Ministry of Health, 
+Malaysia Academy of Medicine of Malaysia, 2000
+2.
+Care Of Children With Special Needs - A Series of Six Manuals on the Management of 
+Children With Disabilities, by FHDD, MOH, 2006 
+3.
+Differencial Diagnosis and Treatment in Social Work, Francis J. Turner. The Free Press 
+A. Div. of Macmillan, USA 1995.
+4.
+Domiciliary Care 101 by Commonwealth of Pennsylvania, May 2006
+5.
+Geblert. S. and Browne T. Handbook of Health Social Work, Wiley and Sons, Inc. New 
+Jersey, 2006
+6.
+Garis Panduan Melaksanakan Perkhidmatan Pesihatan Warga Tua Di Peringkat Daerah, 
+Klinik Kesihatan Dan Penglibatan Komuniti, Bahagian Pembangunan Kesihatan
+Keluarga, KKM 2002.
+7.
+Garis Panduan Perkhidmatan Rehabilitasi Di Klinik Kesihatan, Bahagian Pembangunan 
+Kesihatan Keluarga, KKM 2014. 
+8.
+Garis Panduan Perkhidmatan Minda Sihat, Edisi 1 (BPKK, KKM), Mac 2007
+9.
+Garis Panduan Melaksanakan Perkhidmatan Kesihatan Warga Emas di Peringkat 
+Daerah, Klinik Kesihatan dan Penglibatan Komuniti, Edisi 2 (BPKK, KKM) Oktober 
+
+10.
+Garis Panduan Pelaksanaan Program Penjagaan Kanak-Kanak Berkeperluan Khas Di 
+Klinik Kesihatan, Bahagian Pembangunan Kesihatan Keluarga, Kementerian Kesihatan 
+Malaysia, 2006 
+11.
+Garis Panduan Pendaftaran Orang Kurang Upaya, Jabatan Pembangunan Orang 
+Kurang Upaya, Jabatan Kebajikan Masyarakat
+12.
+Gloucestershire Community Steps Service Domiciliary Care Policy and Procedures. 
+Janet Water Oct. 2010. Revised for MCA Compliance by David Pugh, MHA & MCA Nov 
+
+13.
+Let’s talk About Stroke. An Information Guide For Survivors and Their Families. Heart and Stroke Foudation 2005.
+14.
+Modul Latihan Geriatric Bagi Jururawat Dan Pembantu Perubatan, Jabatan Fisioterapi, 
+Hospital Kuala Lumpur 2005.
+15.
+Manual Pengendalian Fisioterapi Asas untuk Warga Emas oleh PPP dan Jururawat 
+Peringkat Penjagaan Kesihatan Primer (BPKK, KKM dan Jabatan Fisioterapi, Hospital 
+Kuala Lumpur) 2013 
+16.
+Manual Latihan Bagi Penjaga, Jagaan Asas OKU di Institusi & di Rumah (BPKK, KKM) edit semula Julai 2013
+17.
+Pakej Modul Penjagaan Kesihatan Mental Kanak-Kanak dan Remaja, Edisi 1 (BPKK, 
+KKM) 2005
+18.
+Promoting Stroke Recovery: A Reseach – Based Approach For Nurses. Kathryn S.B. RN, 
+Phd, CS.Et All. Mosby – Year Book, St. Louis, 1991.
+19.
+Promoting Independence Following a Stroke: A Guide for Therapists and
+Profesionals Working in Primary Health Care, WHO 1999. 
+20.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Richard C. Senlick, M.D, Peter W.Rossi, M.D.,and Karla Dougherty. Living with Stroke
+(Revised Version) A Guide For Families. 1999. Contemparay Books
+22.
+Workshop on Stroke and Head Injury Rehabilitation – Hospital Sultanah Aminah 2000.
+23.
+www.heartandstroke.ca
+24.
+National Palliative Care Policy And Strategic Plan 2019-2030 (MOH/P/PAK/428.19 
+(BP)-e, 2019 
+25.
+Surat 
+Bahagian 
+Pembangunan 
+Kesihatan 
+Keluarga 
+(BPKK), 
+KKM rujukan 
+KKM.600-30/6/4 Jld 5(16), 5 April 2019
+26.
+Surat 
+Bahagian 
+Pembangunan 
+Kesihatan 
+Keluarga 
+(BPKK), 
+KKM rujukan 
+KKM.600-30/6/4 Jld 6(8), 18 Februari 2020
+27.
+Surat 
+Bahagian 
+Pembangunan 
+Kesihatan 
+Keluarga 
+(BPKK), 
+KKM rujukan 
+KKM.600-30/12/30 Jld 2(44), 27 Mac 2020
+28.
+Surat Rujukan Intervensi Sokongan Pemakanan Dari Hospital Dalam Garis Panduan 
+Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer Semakan Edisi 2, rujukan 
+KKM.600-32/8/1 Jld.3 (30), 17 Februari 2021 
+29.
+Predretti L.W., Lilie S. M., Foti D., (1996) Occupational Therapy Practice Skills For 
+Physical Dysfunction : Activities of Daily Living, Mosby, 4 Ed. USA, Pg 463 – 506.
+th
+21.
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+BAB 7
+PENGHARGAAN 
+DAN
+SUMBANGAN
+
+SENARAI PENGHARGAAN DAN PENYUMBANG (EDISI 2)
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+1. 
+Dr. Adliah Binti Mohamed Soid 
+Ketua Penolong Pengarah Kanan 
+JKN Perak 
+ 
+ 
+2. 
+Pn. Amal Farhana Binti Adenan 
+Pegawai Pemulihan Perubatan 
+(Fisioterapi) 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+ 
+3. 
+Pn. Amiratu Naimah Binti Zolkiffle 
+Pembantu Tadbir 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+ 
+ 
+4. 
+Dr Baitil Ai`zah Binti Mohd Sibi 
+Pegawai Perubatan 
+PKD Larut Matang dan Selama 
+5. 
+Dr. Caryn Khoo Shiao Yen 
+Pakar Perubatan Paliatif 
+Institut Kanser Negara 
+W.P Putrajaya 
+ 
+ 
+6. 
+En Chew Jee Kang 
+Penolong Pegawai Perubatan 
+Unit Kesihatan Primer 
+JKN Selangor 
+7. 
+Pn. Fazidah Binti Zakaria 
+Pegawai Kerja Sosial Perubatan 
+Pejabat Kesihatan Daerah Klang 
+ 
+7. 
+Dr. Fazlina Binti Ahmad 
+Pakar Perubatan Paliatif 
+Hospital Sultanah Bahiyah 
+ 
+9. 
+Dr. Habshoh Binti Hat 
+Pakar Perubatan Keluarga 
+KK Bandar Sungai Petani, 
+PKD Kuala Muda 
+ 
+10. 
+Dr. Harre Haren A/L 
+Ramasamy@Rajoo 
+Pakar Perubatan Paliatif 
+Hospital Tengku Ampuan Rahimah 
+ 
+11. 
+Dr. Jaishree Sharmini A/P 
+Jivanadham 
+Pakar Perubatan Paliatif 
+Hospital Pulau Pinang 
+ 
+ 
+12. 
+Dr. Jamilah Binti Abdullah 
+Pakar Perubatan Keluarga 
+KK Pendang, PKD Pendang 
+13. 
+Dr. Junita Harizon Binti Aris 
+Pakar Perubatan Keluarga 
+Klinik Kesihatan Batu 14, 
+PKD Hulu Langat 
+ 
+ 
+14. 
+En Lim Chin Kang 
+Penolong Pegawai Perubatan 
+KK Telok Datok, 
+PKD Kuala Langat 
+ 
+15. 
+Dr. Malini A/P Supayah 
+Pakar Perubatan Keluarga 
+KK Bandar Tasik Mutiara, 
+PKD Seberang Perai Selatan 
+ 
+ 
+16. 
+Dr. Mardhiyah Binti Yusoff 
+Pegawai Perubatan 
+KK Meru, PKD Klang 
+17. 
+Dr. Mohammad Zawawi Bin Abu 
+Bakar 
+Pakar Perubatan Keluarga 
+KK Gunung Rapat, PKD Kinta 
+ 
+18. 
+Puan Najwa Binti Ahmad Hamdi 
+Ketua Penolong Pengarah Kanan 
+Bahagian Perkembangan Kesihatan 
+Awam, KKM 
+ 
+19. 
+Dr Nasim Muhammad Bin Abdul 
+Kuthoose 
+Ketua Penolong Pengarah JKN 
+Pulau Pinang 
+ 
+20. 
+Pn. Noor Afni Binti Mohd Arif 
+Pembantu Tadbir 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+ 
+21. 
+Dr Nor Anizah Binti Muzaid 
+Pakar Perubatan Keluarga 
+KK Kuala Selangor 
+PKD Kuala Selangor 
+ 
+ 
+22. 
+Pn Noraaliza Binti Dannuri 
+Ketua Jururawat Kanan 
+PKD Kuala Selangor 
+
+23. 
+Pn Norasimah Binti Kassim 
+Pegawai Dietetik 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+ 
+ 
+24. 
+Dr. Norasnita Binti Nordin 
+Pakar Perubatan Keluarga 
+KK Kapar, PKD Klang 
+ 
+25. 
+Dr. Norizan Binti Ahmad 
+Ketua Penolong Pengarah Kanan 
+JKN Kedah 
+ 
+26. 
+Dr Nurazlin Binti Jamaluddin 
+Pakar Perubatan Keluarga 
+KK Batu Kurau, PKD Larut Matang dan Selama 
+ 
+27. 
+Dr. Nurhayati Binti Isa 
+Ketua Pakar Perubatan Keluarga 
+Negeri Perak 
+KK Padang Rengas, 
+PKD Kuala Kangsar 
+ 
+ 
+28. 
+Pn Nurul Huda Binti Ibrahim 
+Pegawai Dietetik 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+29. 
+Dr Nurul Izzah Binti Mahfar 
+Pegawai Perubatan 
+JKN Selangor 
+ 
+30. 
+Dr. Nuzul Elme Binti Abdul Razak 
+Penolong Pengarah Kanan Bahagian 
+Pembangunan Kesihatan Keluarga, 
+KKM 
+ 
+31. 
+Dr. Rafidah Binti Md. Noor 
+Ketua Penolong Pengarah Kanan 
+JKN Pulau Pinang 
+ 
+32. 
+Dr. Rasina Nilofer Binti Jabrulla Khan 
+Pakar Perubatan Keluarga 
+KK Telok Datuk, 
+PKD Kuala Langat 
+33. 
+Dr. Richard Lim Boon Leong Pakar 
+Perunding Perubatan Paliatif 
+Hospital Selayang 
+ 
+34. 
+Dr. Rokiah Binti Mohd 
+Timbalan Pengarah 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+ 
+35. 
+Dr. Salimah Binti Othman 
+Pakar Perubatan Kesihatan Awam 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+ 
+ 
+36. 
+Dr Shahnul Kamal Bin Hj. Sidek 
+Pakar Perubatan Keluarga 
+Klinik Kesihatan Tanjung Malim 
+PKD Mualim 
+37. 
+Pn. Shamsuhaima Binti Shamsuddin 
+Jurupulih Perubatan Carakerja 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+ 
+ 
+38. 
+Datin Shantini A/P Thevendran 
+Ketua Penolong Pengarah Kanan 
+Sektor Perkhidmatan Farmasi 
+Bahagian Perkembangan Kesihatan 
+Awam, KKM 
+39. 
+Dr. Sharifah Nurul Aida Binti Syed 
+Ghazali 
+Pakar Perubatan Keluarga 
+KK Bestari Jaya, 
+PKD Kuala Selangor 
+ 
+ 
+40. 
+Dr. Siow Yen Ching 
+Pakar Perubatan Paliatif 
+Hospital Selayang 
+41. 
+Dr Siti Nur Fathiah Binti Abdul 
+Raman 
+Ketua Penolong Pengarah Jabatan 
+Kesihatan Negeri Selangor 
+ 
+ 
+42. 
+Pn.Siti Shazana Binti Sahrani 
+Pegawai Penyelidik 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+43. 
+Dr Siti Zubaidah Binti Ahmad Subki 
+Ketua Penolong Pengarah Kanan 
+Bahagian Perkembangan Perubatan, 
+KKM 
+ 
+ 
+44. 
+Dr. Sri Wahyu Binti Taher 
+Pakar Perubatan Keluarga 
+KK Simpang Kuala, 
+PKD Kota Setar 
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+45. 
+Dr. Suhaida Binti Mohd Sidek 
+Ketua Penolong Pengarah Kanan 
+JKN Selangor 
+ 
+ 
+46. 
+En. Thillainathan A/L Krishnan 
+Pegawai Pemulihan Perubatan 
+(Carakerja) 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+ 
+47. 
+Dr. Vengketeswara Rao A/L 
+Seetharaman 
+Pakar Perubatan Keluarga 
+KK Kalumpang, PKD Hulu Selangor 
+ 
+48. 
+Pn. Wahida Binti Mohd Abdul Wahab 
+Pegawai Pemulihan Perubatan 
+(Pertuturan) 
+Hospital Kuala Lumpur 
+49. 
+Dr. Yeat Choi Ling 
+Pakar Perunding Perubatan Paliatif 
+Hospital Raja Permaisuri Bainon 
+ 
+50. 
+Pn. Ramlah Ali 
+Pegawai Dietetik 
+Hospital Sultanah Nur Zahirah 
+Kuala Terengganu 
+ 
+51. 
+En. Rosli Mohd Sali 
+Pegawai Dietetik 
+Hospital Wanita dan Kanak-Kanak 
+Sabah, Likas 
+ 
+ 
+ 
+
+Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
+Edisi 2020
+
+1. 
+Dr. Salimah Bt. Hj. Othman 
+Ketua Penolong Pengarah Kanan 
+Bahagian Pembangunan Kesihatan 
+Keluarga, KKM 
+ 
+ 
+2. 
+Dr. Nuzul Elme Bt. Abdul Razak 
+Penolong Pengarah Kanan 
+Bahagian Pembangunan 
+Kesihatan Keluarga, KKM 
+ 
+3. 
+Dr. Fazlina Binti Ahmad 
+Pakar Perubatan Paliatif 
+Hospital Sultanah Bahiyah 
+ 
+4. 
+Pn Nurul Huda Binti Ibrahim 
+Pegawai Dietetik 
+Bahagian Pembangunan 
+Kesihatan Keluarga, KKM 
+5. 
+Datin Shantini A/P Thevendran 
+Ketua Penolong Pengarah Kanan 
+Sektor Perkhidmatan Farmasi 
+Bahagian Perkembangan Kesihatan 
+Awam, KKM 
+ 
+ 
+ 
+PENYUNTING
+
+KEMENTERIAN KESIHATAN MALAYSIA
+BAHAGIAN PEMBANGUNAN KESIHATAN KELUARGA
+Aras 7 & 8, Blok E10, Kompleks E
+Pusat Pentadbiran Kerajaan Persekutuan
+62590 Putrajaya

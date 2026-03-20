@@ -1,0 +1,443 @@
+PANDUAN 
+PERIZINAN USAHA MIKRO KECIL (UMK) 
+RISIKO RENDAH DAN MENENGAH RENDAH
+ONLINE SINGLE SUBMISSION (OSS)
+BERBASIS RISIKO
+ORANG PERSEORANGAN
+Panduan ini dapat diakses secara gratis melalui http://oss.go.id/panduan, dapat digandakan dan disebarluaskan, namun tidak untuk diperjualbelikan. Konten dirumuskan per tanggal 22 November 2021 dan merupakan subjek terhadap perubahan.
+Jika terdapat perubahan konten akan dituangkan dalam panduan baru dan mengakibatkan tidak berlakunya panduan ini.
+
+Online Single Submission (OSS) adalah sistem perizinan berusaha terintegrasi secara elektronik yang dikelola dan diselenggarakan oleh Lembaga OSS (Kementerian Investasi/BKPM). Penyelenggaraan Perizinan Berusaha 
+Berbasis Risiko melalui Sistem OSS merupakan pelaksanaan Undang-Undang Nomor 11 Tahun 2020 Tentang 
+Cipta Kerja.
+Dengan semangat Undang-Undang Cipta Kerja, kini sistem OSS melayani Perizinan Berusaha Berbasis Risiko. 
+Mulai tanggal 4 Agustus 2021, Pelaku Usaha dapat mengakses Sistem OSS berbasis risiko melalui laman https://oss.go.id/. 
+OSS Berbasis Risiko wajib digunakan oleh Pelaku Usaha, Kementerian/Lembaga, Pemerintah Daerah, 
+Administrator Kawasan Ekonomi Khusus (KEK), dan Badan Pengusahaan Kawasan Perdagangan Bebas 
+Pelabuhan Bebas (KPBPB).
+Berdasarkan Peraturan Pemerintah Nomor 5 Tahun 2021 terdapat 1.702 kegiatan usaha yang terdiri atas 1.349 
+Klasiﬁkasi Baku Lapangan Usaha Indonesia (KBLI) yang sudah diimplementasikan dalam Sistem OSS Berbasis 
+Risiko. Sementara itu 353 KBLI yang belum diatur dalam Peraturan Pemerintah Nomor 5 Tahun 2021 akan diterapkan dalam sistem selambat-lambatnya akhir Agustus 2021.
+ 
+
+AHU
+Administrasi Hukum Umum
+AMDAL
+Analisis Mengenai Dampak Lingkungan
+API
+Angka Pengenal Importir
+BPJS
+Badan Penyelenggara Jaminan Sosial
+CAPTCHA
+Completely Automated Public Turing test to tell Computers and 
+Humans Apart
+CV
+Commanditaire Vennootschap
+Ditjen
+Direktorat Jenderal
+KBLI
+Klasiﬁkasi Baku Lapangan Usaha Indonesia
+KEK
+Kawasan Ekonomi Khusus
+
+Kemenkumham
+Kementerian Hukum dan Hak Asasi Manusia
+KI
+Kawasan Industri
+KPBPB
+Kawasan Perdagangan Bebas dan Pelabuhan Bebas
+NIB
+Nomor Induk Berusaha
+NIK
+Nomor Induk Kependudukan
+NPWP
+Nomor Pokok Wajib Pajak
+PKPLH
+Pernyataan Kesanggupan Pengelolaan Lingkungan Hidup
+PMDN
+Penanaman Modal Dalam Negeri
+
+SKKL
+Surat Keputusan Kelayakan Lingkungan Hidup
+SPPL
+Surat Pernyataan Kesanggupan Pengelolaan dan Pemantauan 
+Lingkungan Hidup
+SS
+Sertiﬁkat Standar
+UKL-UPL
+Upaya Pengelolaan Lingkungan Hidup - Upaya Pemantauan 
+Lingkungan Hidup
+UMK
+Usaha Mikro dan Kecil
+UMKU
+Untuk Menunjang Kegiatan Usaha
+UU CK
+Undang-Undang Cipta Kerja
+
+Orang 
+Perseorangan
+Badan Usaha
+- KPPA
+- KPPA (Jasa Penunjang Tenaga 
+Listrik Asing)
+- KP3A
+- KP3A - PMSE
+- BUJKA
+-Pemberi Waralaba dari Luar Negeri
+-Pedagang Berjangka Asing
+-PSE Asing
+-Bentuk Usaha Tetap
+-Persyarikatan atau Persekutuan
+-Yayasan
+-Perseroan Terbatas (PT)
+-Perseroan Terbatas (PT) Perorangan
+-Persekutuan Komanditer
+-Badan Hukum Lainnya
+-Persekutuan Firma
+-Persekutuan Perdata
+-Koperasi
+-Perusahaan Umum
+OSS
+Perwakilan
+Online Single Submission 
+(OSS) berbasis risiko memberikan layanan bagi pelaku usaha yang terbagi ke dalam kedua kelompok besar, yaitu 
+Usaha Mikro Kecil (UMK) dan Non Usaha 
+Badan Usaha
+Luar Negeri
+Orang 
+Perseorangan
+Badan Usaha
+Kantor 
+Perwakilan
+Badan Usaha
+Luar Negeri
+UMK
+Non UMK g
+
+Usaha Mikro dan Kecil (UMK) adalah usaha milik Warga Negara Indonesia (WNI), baik orang perseorangan maupun badan usaha, dengan modal usaha maksimal Rp 5 miliar, tidak termasuk tanah dan bangunan tempat usaha. Sesuai dengan Undang-Undang Nomor 11 Tahun 2020 tentang 
+Cipta Kerja, terdapat perubahan kriteria modal usaha UMK sebagai berikut:
+MIKRO
+Sebelum UU CK:
+< Rp 50 juta
+< Rp 1 Miliar
+KECIL
+Sebelum UU CK:
+> Rp 50 juta < 500 juta
+> Rp 1 Miliar s/d Rp 5 Miliar
+
+Perizinan Berusaha Berbasis Risiko adalah perizinan berusaha berdasarkan tingkat risiko kegiatan usaha dan tingkat risiko tersebut menentukan jenis perizinan berusaha. Pemerintah telah memetakan tingkat risiko sesuai dengan bidang usaha atau KBLI (Klasiﬁkasi Baku Lapangan Usaha 
+Indonesia) yang dapat dicek di tautan ini. KBLI yang berlaku saat ini adalah KBLI tahun 2020 dengan angka 5 digit sebagai kode bidang usaha. Berikut adalah pembagian tingkat risiko usaha dan jenis perizinan berusahanya :
+TINGKAT 
+RISIKO
+Risiko Rendah 
+(R)
+Risiko Menengah 
+Rendah (MR)
+Risiko Menengah 
+Tinggi (MT)
+Risiko Tinggi (T)
+PERIZINAN 
+BERUSAHA
+Nomor Induk 
+Berusaha 
+(NIB)
+Nomor Induk 
+Berusaha (NIB) dan
+Sertiﬁkat Standar 
+(SS) berupa 
+
+Nomor Induk 
+Berusaha (NIB) dan
+Sertiﬁkat Standar 
+(SS) yang harus diveriﬁkasi oleh 
+Kementerian/Lemba ga/Pemerintah 
+Daerah
+Nomor Induk 
+Berusaha (NIB),
+Izin yang harus disetujui oleh 
+Kementerian/Lemba ga/Pemerintah 
+Daerah, dan/atau 
+Sertiﬁkat Standar 
+(SS) jika dibutuhkan
+
+Untuk usaha dengan tingkat Risiko Rendah (R) dan Menengah Rendah (MR), proses perizinan berusaha cukup diselesaikan melalui sistem Online Single Submission (OSS) tanpa membutuhkan veriﬁkasi atau persetujuan dari Kementerian/Lembaga/Pemerintah Daerah, sedangkan usaha dengan tingkat Risiko Menengah Tinggi (MT) dan Risiko Tinggi (T) membutuhkan veriﬁkasi atau persetujuan dari Kementerian/Lembaga/Pemerintah Daerah.
+
+Orang Perseorangan
+9.
+Lengkapi Data Produk/Jasa Bidang 
+Usaha
+10.
+Periksa Daftar Produk/Jasa
+11.
+Periksa Data Usaha
+12.
+Periksa Daftar Kegiatan Usaha
+13.
+Periksa dan Lengkapi Dokumen 
+Persetujuan Lingkungan (KBLI/Bidang 
+Usaha Tertentu)
+14.
+Pahami dan Centang Pernyataan 
+Mandiri
+15.
+Periksa Draf Perizinan Berusaha
+16.
+Perizinan Berusaha terbit
+1.
+Pastikan Anda telah memiliki hak akses
+2.
+Kunjungi https://oss.go.id/
+3.
+Pilih MASUK
+4.
+Masukkan Username dan Password beserta Captcha yang tertera, lalu klik tombol MASUK
+5.
+Klik Menu Perizinan Berusaha dan pilih 
+Permohonan Baru
+6.
+Lengkapi Data Pelaku Usaha
+7.
+Lengkapi Data Bidang Usaha
+8.
+Lengkapi Data Detail Bidang Usaha
+
+Hak akses berupa username dan password yang dikirimkan ke e-mail yang dicantumkan pada saat pendaftaran
+ j g p g
+
+ tertera, lalu klik tombol MASUK
+ p
+ g p
+●
+Sistem akan menampilkan data secara otomatis:
+1.
+Nomor Induk Kependudukan (NIK)
+2.
+Nama
+3.
+Jenis Kelamin
+4.
+Tempat/Tanggal Lahir
+5.
+Nomor Telepon
+6.
+Alamat Sesuai KTP
+●
+Data yang harus Anda lengkapi:
+1.
+Nomor Pokok Wajib Pajak (NPWP) Pribadi
+2.
+Email
+3.
+BPJS Ketenagakerjaan (Jika sudah memiliki)
+4.
+BPJS Kesehatan (Jika sudah memiliki)
+Proses perizinan akan tetap bisa dilanjutkan walaupun Pelaku Usaha belum memiliki BPJS Kesehatan atau 
+BPJS Ketenagakerjaan
+●
+Klik tombol SIMPAN DATA
+Klik b l ISI BIDANG USAHA
+ g p g
+• Sistem akan menampilkan Form Pemilihan 
+Bidang Usaha
+•
+Data yang harus Anda lengkapi:
+1.
+Jenis Kegiatan Usaha (Utama, Pendung, 
+Kantor Cabang Administrasi, atau 
+Pendukung UMKU)
+2.
+Bidang Usaha
+(Apabila bidang usaha yang dipilih masuk dalam ketentuan BUPM, sistem akan menampilkan pilihan kegiatan. Pilih kegiatan usaha yang sesuai dengan kegiatan yang dilakukan Pelaku Usaha)
+3.
+Uraian Bidang Usaha, akan otomatis terisi oleh sistem setelah memilih KBLI/Bidang 
+Usaha
+4.
+Ruang Lingkup Kegiatan
+•
+Klik tombol SIMPAN.
+Catatan: Pelaku Usaha dapat mengecek nomor KBLI melalui https://oss.go.id/informasi/kbli-berbasis-risiko
+ g p g
+●
+Data yang harus Anda lengkapi:
+1.
+Nama Usaha/Kegiatan
+2.
+Luas Lahan Usaha
+3.
+Alamat Usaha
+4.
+Provinsi
+5.
+Kabupaten/Kota
+6.
+Kecamatan
+7.
+Kelurahan/Desa
+8.
+Kode Pos
+9.
+Apakah kegiatan ini sudah berjalan?
+10.
+Modal Usaha 
+●
+Klik VALIDASI RISIKO
+ g p g
+●
+Sistem akan otomatis menampilkan skala usaha dan tingkat risiko pada usaha Anda berdasarkan pengisian data.
+●
+Data yang harus Anda lengkapi:
+1.
+Apakah sudah memiliki perizinan berusaha yang sebelumnya? (Jika Ya, isi data perizinan berusaha yang dimiliki)
+2.
+Jangka Waktu Perkiraan 
+Beroperasi/Produksi
+3.
+Deskripsi kegiatan usaha
+4.
+Jumlah Tenaga Kerja Indonesia
+●
+Klik tombol TAMBAH PRODUK JASA
+ g p
+●
+Data yang harus Anda lengkapi:
+1.
+Jenis Produk/Jasa
+2.
+Kapasitas (/Tahun)
+3.
+Satuan Kapasitas
+●
+Klik tombol SIMPAN
+ untuk Perizinan Tunggal dan KBLI Tertentu)
+●
+Data yang harus Anda lengkapi:
+1.
+Jenis Produk/Jasa
+2.
+Kapasitas (/Tahun)
+3.
+Satuan Kapasitas
+4.
+Apakah Anda sudah memiliki Sertiﬁkat 
+SNI?
+(Jika Ya, isi Nomor Sertiﬁkat SNI dan 
+Masa berlaku SNI)
+5.
+Apakah Anda sudah memiliki Sertiﬁkat 
+Halal?
+(Jika Ya, isi Nomor Sertiﬁkat Halal, 
+Tanggal Terbit dan Tanggal Berakhir)
+●
+Klik tombol SIMPAN
+
+•
+Sistem akan menampilkan:
+1.
+Kapasitas
+2.
+Satuan
+3.
+Jenis Produksi
+• Klik tombol SELESAI.
+
+●
+Sistem akan menampilkan data:
+1.
+Bidang Usaha (KBLI)
+2.
+Lokasi Usaha
+3.
+Data Usaha (Jumlah tenaga kerja dan Modal Usaha)
+
+• Sistem akan menampilkan:
+1.
+KBLI
+2.
+Lokasi Usaha
+3.
+Data Usaha
+4.
+Skala Usaha
+5.
+Tingkat Risiko
+6.
+
+7.
+Status
+• Klik ikon “V”.
+• Klik tombol PROSES PERIZINAN BERUSAHA.
+• Untuk Perizinan UMK dengan Risiko Rendah lanjut ke langkah 14.
+• Untuk Perizinan UMK dengan Risiko Menengah Rendah lanjut ke langkah 13.
+
+(KBLI/Bidang Usaha tertentu)
+• Sistem akan menampilkan pertanyaan konﬁrmasi “Apakah sudah memiliki 
+Dokumen Persetujuan Lingkungan atas kegiatan ini?” yang harus Anda pilih: a. Jika pilih Sudah, lanjut ke langkah 13.a untuk memilih jenis dokumen persetujuan lingkungan yang dimiliki.
+b. Jika pilih Belum, lanjut ke langkah 13.b untuk lengkapi formulir parameter kewajiban persetujuan lingkungan sesuai dengan kondisi pada kegiatan usaha terpilih.
+• Klik tombol LANJUT.
+
+• Jika pilih Sudah, akan muncul pilihan jenis dokumen persetujuan lingkungan yang dimiliki.
+• Klik tombol LANJUT, untuk ke langkah selanjutnya (langkah 14) tanpa melalui proses pemilihan parameter
+(KBLI/Bidang Usaha tertentu)
+
+•
+Jika pilih Belum, sistem akan menampilkan konﬁrmasi “Pilih Jenis Usaha dan/atau Kegiatan” yang harus Anda pilih berdasarkan KBLI/Bidang Usaha terpilih.
+•
+Klik tombol LANJUT.
+(KBLI/Bidang Usaha tertentu)
+
+• Jika Anda belum memiliki Dokumen 
+Persetujuan Lingkungan, maka data yang harus Anda lengkapi:
+1.
+Parameter Lingkungan, pilihlah kondisi parameter yang tertera pada formulir sesuai dengan kegiatan usaha yang dilakukan.
+(Kemudian, sistem akan menampilkan jenis kewajiban dokumen lingkungan yang harus dipenuhi, seperti SPPL, 
+UKL/UPL, atau AMDAL.)
+2.
+Uraian Usaha, isilah sesuai dengan uraian kegiatan usaha yang dilakukan.
+• Klik tombol LANJUT
+(KBLI/Bidang Usaha tertentu)
+ g y
+●
+Sistem akan menampilkan berbagai macam sesuai dengan data dan informasi yang tersimpan sebelumnya, seperti 
+ K3L, Kesediaan 
+Memenuhi Standar Usaha (risiko 
+Menengah Tinggi)/Kesediaan 
+Memenuhi Persyaratan izin (risiko 
+Tinggi), SPPL, dan lain-lain.
+●
+Baca, pahami dan klik checkbox masing-masing PERNYATAAN 
+MANDIRI, 
+●
+Klik LANJUT
+ g y
+●
+Khusus untuk perizinan tunggal dan pada KBLI tertentu yang membutuhkan Standar Nasional 
+Indonesia (SNI) dan Sertiﬁkasi Halal, sistem akan menampilkan 
+ terkait hal tersebut.
+ g y
+●
+Khusus untuk perizinan yang membutuhkan komitmen terkait lingkungan hidup, sistem akan menampilkan terkait lingkungan hidup (SPPL/PKPLH)
+
+• Sistem akan menampilkan draf NIB, lalu klik kotak centang/checkbox.
+• Klik tombol TERBITKAN PERIZINAN BERUSAHA.
+
+•
+Perizinan Berusaha telah terbit, meliputi:
+1.
+NIB, klik tombol CETAK NIB.
+2.
+, klik tulisan Cetak.
+•
+Selanjutnya Anda dapat melihat, mengunduh, dan mencetak produk perizinan berusaha tersebut.
+
+•
+Perizinan Berusaha telah terbit, meliputi:
+1.
+NIB, klik tombol CETAK NIB.
+2.
+Sertiﬁkat Standar, klik tombol CETAK SERTIFIKAT STANDAR.
+3.
+PKPLH/SKKL, klik CETAK Persetujuan PKPLH/SKKL. (Jika ada)
+4.
+, klik tulisan Cetak.
+•
+Selanjutnya Anda dapat melihat, mengunduh, dan mencetak produk perizinan berusaha tersebut

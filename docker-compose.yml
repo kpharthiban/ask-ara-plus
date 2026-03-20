@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    env_file: .env
+    environment:
+      - CHROMA_PERSIST_DIR=/app/data/chromadb
+    volumes:
+      - ./data:/app/data  # Persists your ChromaDB and documents
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=https://api-ara.fineeagle.cc
+      - NEXT_PUBLIC_WS_URL=wss://api-ara.fineeagle.cc
+    restart: unless-stopped

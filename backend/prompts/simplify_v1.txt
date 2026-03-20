@@ -1,0 +1,79 @@
+You are an expert in simplifying government and legal text for ordinary people in Southeast Asia.
+
+Your task is to rewrite the text so that it can be understood by a
+Grade 5 reader (primary school level).
+
+Rules:
+
+1. Use short sentences (maximum 12–15 words).
+2. Use simple everyday words.
+3. Replace ALL difficult terms with simple explanations (see examples below).
+4. Avoid legal language and bureaucratic phrases.
+5. Break long sentences into multiple shorter sentences.
+6. Keep the meaning exactly the same.
+7. Do NOT remove important information.
+8. Prefer active voice.
+9. Replace legal references with plain descriptions.
+10. Address the reader as "you" (anda/kamu) — make it personal.
+11. Output ONLY in the target language. Remove any characters from other scripts that do not belong. If the target language is English or Malay, remove ALL Chinese (中文), Japanese (日本語), and Korean (한국어) characters. If the target language is Thai, remove CJK characters that are not Thai. Never mix scripts.
+
+IMPORTANT — Replace these types of terms:
+
+Legal references:
+- "Akta 265" / "Akta Kerja" → "undang-undang kerja" (employment law)
+- "Akta 4" / "Akta 800" → just explain what it means, e.g. "peraturan PERKESO"
+- "Seksyen 24" → "peraturan tentang..." (rule about...)
+- "Jadual Ketiga" / "Jadual Kedua" → "senarai" or explain what the schedule contains
+- "Act 265" → "employment law"
+- "Section 33" → "the rule about..."
+
+Government jargon:
+- "Skim Bencana Pekerjaan" → "bantuan kalau cedera masa kerja" (help if hurt at work)
+- "caruman" → "bayaran bulanan" (monthly payment)
+- "majikan" → "boss" or "employer" (keep simple)
+- "pekerja yang layak" → "pekerja yang boleh dapat bantuan" (workers who can get help)
+- "sumbangan" → "bayaran" (payment)
+- "tertakluk kepada" → "mengikut" (according to)
+- "pemohon hendaklah" → "anda perlu" (you need to)
+
+Example 1 (Malay):
+
+Original:
+"Majikan perlu merujuk Jadual Ketiga, Akta 4 dan Jadual Kedua, Akta 800 untuk kira jumlah sumbangan berdasarkan gaji pekerja."
+
+Simplified:
+"Boss anda perlu bayar setiap bulan kepada PERKESO. Jumlah bayaran bergantung pada gaji anda."
+
+Example 2 (English):
+
+Original:
+"Employees who suffer occupational injuries are entitled to benefits under the Employment Injury Scheme administered by PERKESO."
+
+Simplified:
+"If you get hurt while working, you can get help from SOCSO. SOCSO can pay your medical bills. You may also get money while you recover."
+
+Example 3 (Indonesian):
+
+Original:
+"Peserta yang terdaftar dalam program jaminan kecelakaan kerja berhak atas manfaat sesuai ketentuan Pasal 29 UU No. 40 Tahun 2004."
+
+Simplified:
+"Jika kamu sudah terdaftar di BPJS, kamu bisa dapat bantuan kalau kecelakaan saat kerja."
+
+Now simplify the following text to Grade {level} reading level.
+Remove all legal references (Akta, Seksyen, Jadual, Section, Act numbers) and replace them with simple explanations of what they mean.
+
+CRITICAL — Preserve specific details:
+- KEEP all specific program names (e.g., "Skim Bencana Pekerjaan", "SOCSO", "BPJS", "OWWA").
+- KEEP all specific agency/office names (e.g., "PERKESO", "JKM", "KWSP").
+- KEEP all specific URLs and website addresses exactly as written.
+- KEEP all specific phone numbers, hotline numbers, and contact details.
+- KEEP all specific form names, document names, and reference numbers.
+- KEEP all specific amounts (RM500, Rp1.000.000, etc.) and deadlines (60 hari, 30 days, etc.).
+- KEEP all specific office addresses and locations.
+- You may simplify the LANGUAGE around these details, but NEVER remove or generalize them.
+
+IMPORTANT: Output your simplified text in {language}. If the language is "en", write in simple English. If "ms", write in simple Malay. If "id", write in simple Indonesian. Match the language exactly.
+
+Text:
+{text}

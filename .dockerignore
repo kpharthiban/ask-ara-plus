@@ -1,0 +1,13 @@
+# Folders to ignore
+**/.venv/
+**/venv/
+**/node_modules/
+**/.next/
+**/.git/
+**/data/chromadb/
+
+# Files to ignore (Be specific so we don't ignore requirements.txt!)
+data/documents/*.pdf
+data/documents/*.txt
+**/*.log
+**/__pycache__/
