@@ -140,7 +140,7 @@ User Input → Language Detection → Query Classification
 | **Frontend** | Next.js 15 (PWA) | App Router, TypeScript, Tailwind CSS, shadcn/ui |
 | **Voice Input** | Groq Whisper Large v3 | Speech-to-text optimized for ASEAN languages |
 | **Voice Output** | Edge-TTS | Neural voice synthesis in multiple ASEAN languages |
-| **Deployment** | Railway (backend) + Vercel (frontend) | Production deployment |
+| **Deployment** | Docker | Production deployment |
 
 ### 11 MCP Tools
 
