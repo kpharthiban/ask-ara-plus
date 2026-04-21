@@ -20,7 +20,7 @@ Day 2 morning (with Lineysha):
 
 Tool ownership:
   Pharthiban:  search_documents (Day 2), detect_language (Day 2),
-               scan_document (Day 5), fetch_gov_portal (Tier 3)
+               fetch_gov_portal (Tier 3)
   Lineysha:    simplify (Day 3), summarize (Day 3), assess_complexity (Day 3),
                translate (Day 4), dialect_adapt (Day 4), profile_match (Day 5)
   TBD:         text_to_speech (may stay on frontend)
@@ -38,7 +38,8 @@ from tools.summarize import summarize_text as _summarize_text
 from tools.dialect import dialect_adapt as _dialect_adapt
 from tools.complexity import assess_complexity as _assess_complexity
 from tools.speech import text_to_speech as _text_to_speech
-from tools.scanner import scan_document as _scan_document
+# scan_document removed — image analysis is handled directly by the
+# vision model (Gemma-SEA-LION-v4-27B-IT) via the WebSocket chat pipeline.
 from tools.portal import fetch_gov_portal as _fetch_gov_portal
 from tools.profiler import profile_match as _profile_match
 
@@ -209,23 +210,8 @@ async def dialect_adapt(text: str, target_dialect: str) -> str:
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
-@mcp.tool()
-async def scan_document(image_base64: str, source_hint: str = "") -> str:
-    """OCR a photographed government document (Snap & Understand).
-
-    User photographs a letter, form, or notice → this extracts text,
-    identifies the document type and issuing agency, and pulls out
-    key info (dates, amounts, reference numbers).
-
-    Args:
-        image_base64: Base64-encoded image from camera (JPEG/PNG).
-        source_hint: Optional hint like "PERKESO letter" for better accuracy.
-
-    Returns:
-        JSON with extracted_text, document_type, detected_language,
-        issuing_agency, key_info, and confidence score.
-    """
-    return await _scan_document(image_base64=image_base64, source_hint=source_hint)
+# scan_document MCP tool removed — images are now processed directly by
+# the Gemma-SEA-LION-v4-27B-IT vision model via the agent fast-path.
 
 
 @mcp.tool()
@@ -304,7 +290,6 @@ if __name__ == "__main__":
         "assess_complexity",
         "dialect_adapt",
         "text_to_speech",
-        "scan_document",
         "fetch_gov_portal",
         "profile_match",
     ]

@@ -55,7 +55,7 @@ from tools.dialect import dialect_adapt as _dialect_adapt
 from tools.portal import fetch_gov_portal as _fetch_gov_portal
 from tools.profiler import profile_match as _profile_match
 
-from llm_client import call_llm, call_llm_streaming, LLMError
+from llm_client import call_llm, call_llm_streaming, call_llm_vision_streaming, LLMError
 
 # ── LangGraph ─────────────────────────────────────────────────────────────────
 from langgraph.graph import StateGraph, END
@@ -1174,15 +1174,50 @@ async def run_agent_streaming(
     country: str | None = None,
     language: str | None = None,
     history: list[dict] | None = None,
+    image_base64: str | None = None,
+    image_media_type: str = "image/jpeg",
 ) -> AsyncGenerator[dict, None]:
     """
     Run the LangGraph ReAct agent and yield typed WebSocket events.
+
+    When image_base64 is provided the normal ReAct graph is bypassed entirely.
+    The image + optional text are sent directly to the SEA-LION vision model
+    (Gemma-SEA-LION-v4-27B-IT) which streams back its analysis.
 
     Phase 1 — graph.astream(stream_mode="updates"):
         Iterates node by node; emits tool_start / tool_end / reasoning events.
     Phase 2 — call_llm_streaming:
         Streams the final answer once the graph completes.
     """
+    # ── Vision fast-path — bypass ReAct graph entirely ──────────────────────
+    if image_base64:
+        logger.info(
+            "Vision fast-path: image_media_type=%s  prompt_len=%d",
+            image_media_type,
+            len(message),
+        )
+        full_response = ""
+        try:
+            async for token in call_llm_vision_streaming(
+                image_base64,
+                message,
+                system_prompt=SYSTEM_PROMPT,
+                image_media_type=image_media_type,
+            ):
+                full_response += token
+                yield {"type": "token", "content": token}
+
+            yield {"type": "done", "content": full_response}
+
+        except Exception as exc:
+            logger.error("Vision fast-path error: %s", exc, exc_info=True)
+            yield {
+                "type": "error",
+                "content": "Sorry, I couldn't analyse the image. Please try again.",
+            }
+        return  # <-- do not fall through to the ReAct graph
+
+    # ── Normal text-only path ────────────────────────────────────────────────
     full_response = ""
 
     initial_state: AraState = {
@@ -1271,6 +1306,8 @@ async def run_agent(
     country: str | None = None,
     language: str | None = None,
     history: list[dict] | None = None,
+    image_base64: str | None = None,
+    image_media_type: str = "image/jpeg",
 ) -> dict:
     """Non-streaming wrapper. Returns {reply, sources, tool_calls, structured}."""
     tool_calls: list[str] = []
@@ -1279,7 +1316,12 @@ async def run_agent(
     full_response = ""
 
     async for event in run_agent_streaming(
-        message, country=country, language=language, history=history
+        message,
+        country=country,
+        language=language,
+        history=history,
+        image_base64=image_base64,
+        image_media_type=image_media_type,
     ):
         etype = event.get("type", "")
         if etype == "token":

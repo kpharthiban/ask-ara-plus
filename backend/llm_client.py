@@ -5,13 +5,17 @@ Unified async interface to SEA-LION (primary) via OpenAI-compatible API.
 Every module that needs LLM completions imports from here.
 
 Usage:
-    from llm_client import call_llm, call_llm_streaming
+    from llm_client import call_llm, call_llm_streaming, call_llm_vision_streaming
 
     # Simple completion
     response = await call_llm("What is SOCSO?", system_prompt="You are Ara...")
 
     # Streaming (yields token strings)
     async for token in call_llm_streaming("Explain EPF", system_prompt="..."):
+        print(token, end="")
+
+    # Vision streaming — image + text → yields token strings
+    async for token in call_llm_vision_streaming(image_base64, "What does this say?"):
         print(token, end="")
 """
 
@@ -37,8 +41,9 @@ logger = logging.getLogger("askara.llm")
 SEALION_API_KEY: str = os.getenv("SEALION_API_KEY", "")
 SEALION_API_BASE: str = os.getenv("SEALION_API_BASE", "https://api.sea-lion.ai/v1")
 SEALION_MODEL: str = os.getenv("SEALION_MODEL", "aisingapore/Qwen-SEA-LION-v4-32B-IT")
-# Vision: Gemma-SEA-LION-v4-27B-IT is the multimodal model for Snap & Understand.
-# Qwen-SEA-LION is text-only; Gemma-SEA-LION handles both text + image.
+
+# Vision model — Gemma-SEA-LION-v4-27B-IT handles text + image inputs.
+# Qwen-SEA-LION is text-only; always use the Gemma variant for multimodal requests.
 SEALION_VL_MODEL: str = os.getenv("SEALION_VL_MODEL", "aisingapore/Gemma-SEA-LION-v4-27B-IT")
 
 # Request defaults
@@ -88,6 +93,45 @@ def _build_messages(
     if history:
         messages.extend(history)
     messages.append({"role": "user", "content": prompt})
+    return messages
+
+
+def _build_vision_messages(
+    image_base64: str,
+    prompt: str,
+    system_prompt: str | None = None,
+    image_media_type: str = "image/jpeg",
+) -> list[dict]:
+    """
+    Build messages array with an image content block (OpenAI Vision format).
+
+    Args:
+        image_base64: Raw base64 image data — no data-URI prefix.
+        prompt: Text accompanying the image.
+        system_prompt: Optional system instructions.
+        image_media_type: MIME type, e.g. "image/jpeg" or "image/png".
+    """
+    # Strip data-URI prefix if accidentally included
+    if image_base64.startswith("data:"):
+        image_base64 = image_base64.split(",", 1)[1]
+
+    user_content: list[dict] = [
+        {
+            "type": "image_url",
+            "image_url": {
+                "url": f"data:{image_media_type};base64,{image_base64}",
+            },
+        },
+        {
+            "type": "text",
+            "text": prompt or "Please analyse this image and describe what you see.",
+        },
+    ]
+
+    messages: list[dict] = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": user_content})
     return messages
 
 
@@ -238,7 +282,7 @@ async def call_llm_streaming(
 
 
 # ---------------------------------------------------------------------------
-# Core: Vision model completion (for Snap & Understand)
+# Core: Vision model — non-streaming (used by scanner tool)
 # ---------------------------------------------------------------------------
 
 async def call_llm_vision(
@@ -252,19 +296,18 @@ async def call_llm_vision(
     image_media_type: str = "image/jpeg",
 ) -> str:
     """
-    Send an image + text prompt to the vision model (OpenAI-compatible format).
+    Send an image + text prompt to the vision model and return the full response.
 
-    Uses Gemma-SEA-LION-v4-27B-IT (multimodal) — the Qwen variant is text-only.
-    Same chat completions endpoint but with image_url content blocks.
+    Uses Gemma-SEA-LION-v4-27B-IT (multimodal).
 
     Args:
-        image_base64: Base64-encoded image data (no data URI prefix).
+        image_base64: Base64-encoded image data (no data-URI prefix).
         prompt: Text prompt to accompany the image.
         system_prompt: Optional system instructions.
-        model: Override model (defaults to SEALION_VL_MODEL — Gemma-SEA-LION multimodal).
+        model: Override model (defaults to SEALION_VL_MODEL).
         temperature: Sampling temperature.
         max_tokens: Max response tokens.
-        image_media_type: MIME type of the image ("image/jpeg" or "image/png").
+        image_media_type: MIME type of the image.
 
     Returns:
         The model's response text.
@@ -274,34 +317,10 @@ async def call_llm_vision(
     """
     client = _get_client()
     model = model or SEALION_VL_MODEL
-    
-    # Strip data URI prefix if accidentally included
-    if image_base64.startswith("data:"):
-        # "data:image/jpeg;base64,/9j/4AAQ..." → "/9j/4AAQ..."
-        image_base64 = image_base64.split(",", 1)[1]
-        
-    # Build messages with image content (OpenAI Vision API format)
-    user_content: list[dict] = [
-        {
-            "type": "image_url",
-            "image_url": {
-                "url": f"data:{image_media_type};base64,{image_base64}",
-            },
-        },
-        {
-            "type": "text",
-            "text": prompt,
-        },
-    ]
-
-    messages: list[dict] = []
-    if system_prompt:
-        messages.append({"role": "system", "content": system_prompt})
-    messages.append({"role": "user", "content": user_content})
 
     payload: dict = {
         "model": model,
-        "messages": messages,
+        "messages": _build_vision_messages(image_base64, prompt, system_prompt, image_media_type),
         "temperature": temperature,
         "max_tokens": max_tokens,
     }
@@ -336,6 +355,102 @@ async def call_llm_vision(
     except Exception as exc:
         logger.error("Unexpected VL error: %s", exc)
         raise LLMError(f"Vision call failed: {exc}") from exc
+
+
+# ---------------------------------------------------------------------------
+# Core: Vision model — streaming (used by chat multimodal fast-path)
+# ---------------------------------------------------------------------------
+
+async def call_llm_vision_streaming(
+    image_base64: str,
+    prompt: str,
+    *,
+    system_prompt: str | None = None,
+    model: str | None = None,
+    temperature: float = 0.3,
+    max_tokens: int | None = None,
+    image_media_type: str = "image/jpeg",
+) -> AsyncGenerator[str, None]:
+    """
+    Stream tokens from the vision model (Gemma-SEA-LION-v4-27B-IT).
+
+    Used by the agent fast-path when the user sends an image via chat.
+    Yields individual token strings, same protocol as call_llm_streaming.
+
+    Args:
+        image_base64: Raw base64 image data — no data-URI prefix.
+        prompt: User's text accompanying the image (may be empty).
+        system_prompt: Optional system instructions.
+        model: Override model (defaults to SEALION_VL_MODEL).
+        temperature: Sampling temperature.
+        max_tokens: Max tokens in response.
+        image_media_type: MIME type, e.g. "image/jpeg" or "image/png".
+
+    Yields:
+        Individual token strings.
+
+    Raises:
+        LLMError: On API failure.
+    """
+    client = _get_client()
+    model = model or SEALION_VL_MODEL
+    max_tokens = max_tokens or DEFAULT_MAX_TOKENS
+
+    payload: dict = {
+        "model": model,
+        "messages": _build_vision_messages(
+            image_base64, prompt, system_prompt, image_media_type
+        ),
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "stream": True,
+    }
+
+    url = f"{SEALION_API_BASE}/chat/completions"
+    headers = _build_headers(SEALION_API_KEY)
+
+    logger.debug(
+        "VL stream request → %s  model=%s  tokens=%d  prompt_len=%d",
+        url, model, max_tokens, len(prompt),
+    )
+
+    try:
+        async with client.stream(
+            "POST", url, headers=headers, json=payload
+        ) as resp:
+            resp.raise_for_status()
+            async for line in resp.aiter_lines():
+                if not line.startswith("data: "):
+                    continue
+                data_str = line[len("data: "):]
+                if data_str.strip() == "[DONE]":
+                    break
+                try:
+                    chunk = json.loads(data_str)
+                    delta = chunk["choices"][0].get("delta", {})
+                    content = delta.get("content")
+                    if content:
+                        yield content
+                except (json.JSONDecodeError, KeyError, IndexError):
+                    continue
+
+    except httpx.HTTPStatusError as exc:
+        logger.error(
+            "VL stream error %d: %s",
+            exc.response.status_code,
+            exc.response.text[:500],
+        )
+        raise LLMError(
+            f"Vision stream returned {exc.response.status_code}"
+        ) from exc
+
+    except httpx.TimeoutException as exc:
+        logger.error("VL stream timed out after %.1fs", LLM_TIMEOUT)
+        raise LLMError("Vision stream timed out") from exc
+
+    except Exception as exc:
+        logger.error("Unexpected VL stream error: %s", exc)
+        raise LLMError(f"Vision stream failed: {exc}") from exc
 
 
 # ---------------------------------------------------------------------------

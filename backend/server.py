@@ -7,7 +7,6 @@ Entrypoint for the backend. Provides:
   - WS   /ws/chat         → WebSocket for streaming chat (deterministic pipeline)
   - POST /api/transcribe  → Speech-to-Text via Groq Whisper
   - POST /api/tts         → Text-to-Speech via edge-tts
-  - POST /api/scan        → Document OCR via Gemma-SEA-LION vision model
 
 Run locally:
     cd backend
@@ -17,7 +16,6 @@ Architecture:
     Client → FastAPI (server.py)
                ├── /chat         → agent.py (deterministic pipeline) → tools/*.py → LLM → response
                ├── /ws/chat      → agent.py (streaming) → tools/*.py → LLM → streaming response
-               ├── /api/scan     → tools/scanner.py → Gemma-SEA-LION vision
                ├── /api/transcribe → Groq Whisper
                └── /api/tts      → edge-tts
 """
@@ -69,25 +67,25 @@ logger = logging.getLogger("askara.server")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("AskAra+ backend starting up...")
- 
+
     try:
         collection = get_collection()
         count = collection.count()
         logger.info("ChromaDB ready — %d chunks in collection.", count)
     except Exception as exc:
         logger.warning("ChromaDB check failed: %s (will retry on first query)", exc)
- 
+
     # Connect to MCP server (mcp_server.py must be running on port 8001)
     # Falls back gracefully to direct Python imports if MCP is offline.
     await init_mcp_tools()
     logger.info("LangGraph ReAct agent ready (MCP or direct-import mode).")
- 
+
     yield
- 
+
     logger.info("AskAra+ backend shutting down...")
     await cleanup_agent()
     await close_client()
- 
+
 
 # ---------------------------------------------------------------------------
 # App
@@ -137,6 +135,8 @@ class ChatRequest(BaseModel):
     language: str | None = None
     country: str | None = None
     history: list[dict] | None = None
+    image_base64: str | None = None
+    image_media_type: str = "image/jpeg"
 
 class ChatResponse(BaseModel):
     """Response body for POST /chat."""
@@ -192,6 +192,8 @@ async def chat_rest(req: ChatRequest):
             country=req.country,
             language=req.language,
             history=req.history,
+            image_base64=req.image_base64 or None,
+            image_media_type=req.image_media_type,
         )
 
         return ChatResponse(
@@ -246,11 +248,36 @@ async def chat_websocket(ws: WebSocket):
         { "type": "done",       "content": "..." }
         { "type": "sources",    "content": [...] }
         { "type": "error",      "content": "..." }
+
+    Disconnect handling (v2):
+        - WebSocketDisconnect raised by ws.send_json() during streaming is now
+          caught and re-raised immediately rather than being swallowed by the
+          generic except Exception clause and triggering a pointless LLM
+          fallback on an already-dead connection.
+        - safe_send() wraps every ws.send_json() call: on client disconnect it
+          logs a single INFO line and returns False, letting the caller break
+          out of the streaming loop cleanly without a noisy traceback.
     """
     await ws.accept()
     logger.info("WebSocket client connected.")
 
     cancel_event: asyncio.Event | None = None
+
+    async def safe_send(payload: dict) -> bool:
+        """
+        Send a JSON frame to the client.
+        Returns True on success, False if the client has disconnected.
+        Raises nothing — all disconnect exceptions are absorbed here so the
+        caller can break/return without a cascading traceback.
+        """
+        try:
+            await ws.send_json(payload)
+            return True
+        except WebSocketDisconnect:
+            return False
+        except Exception:
+            # Covers uvicorn's ClientDisconnected and any other send failure
+            return False
 
     try:
         while True:
@@ -259,10 +286,10 @@ async def chat_websocket(ws: WebSocket):
             try:
                 data = json.loads(raw)
             except json.JSONDecodeError:
-                await ws.send_json({"type": "error", "content": "Invalid JSON."})
+                await safe_send({"type": "error", "content": "Invalid JSON."})
                 continue
 
-            # Handle cancel request
+            # Handle cancel request from client
             if data.get("type") == "cancel":
                 if cancel_event:
                     cancel_event.set()
@@ -270,8 +297,12 @@ async def chat_websocket(ws: WebSocket):
                 continue
 
             message = data.get("message", "").strip()
-            if not message:
-                await ws.send_json({"type": "error", "content": "Empty message."})
+            image_base64 = data.get("image_base64") or None
+            image_media_type = data.get("image_media_type") or "image/jpeg"
+
+            # Require at least a text message or an image
+            if not message and not image_base64:
+                await safe_send({"type": "error", "content": "Empty message."})
                 continue
 
             country = data.get("country")
@@ -283,12 +314,15 @@ async def chat_websocket(ws: WebSocket):
             try:
                 full_response = ""
                 cancelled = False
+                client_gone = False
 
                 async for event in run_agent_streaming(
                     message,
                     country=country,
                     language=language,
                     history=history,
+                    image_base64=image_base64,
+                    image_media_type=image_media_type,
                 ):
                     if cancel_event.is_set():
                         cancelled = True
@@ -296,36 +330,56 @@ async def chat_websocket(ws: WebSocket):
 
                     if event.get("type") == "done":
                         full_response = event.get("content", "")
-                    await ws.send_json(event)
 
-                if cancelled:
-                    await ws.send_json({"type": "cancelled", "content": ""})
+                    # If client already gone, stop streaming silently
+                    if not await safe_send(event):
+                        client_gone = True
+                        break
+
+                if cancelled and not client_gone:
+                    await safe_send({"type": "cancelled", "content": ""})
                     logger.info("Generation cancelled by client.")
 
-            except Exception as exc:
-                logger.error("WebSocket agent error: %s", exc, exc_info=True)
+                if client_gone:
+                    # Client disconnected mid-stream — exit the handler
+                    logger.info("Client disconnected mid-stream, aborting.")
+                    return
 
-                # Fallback: stream directly from LLM
+            except WebSocketDisconnect:
+                # Client disconnected before/during agent processing — exit cleanly
+                logger.info("WebSocket client disconnected during agent run.")
+                return
+
+            except Exception as exc:
+                # Genuine agent error (not a client disconnect) — try LLM fallback
+                logger.error("WebSocket agent error: %s", exc, exc_info=True)
                 logger.warning("Agent failed, falling back to direct LLM streaming.")
+
                 try:
                     full_response = ""
                     async for token in call_llm_streaming(
                         message,
-                        system_prompt="You are Ara, a helpful multilingual assistant for ASEAN government services.",
+                        system_prompt=(
+                            "You are Ara, a helpful multilingual assistant "
+                            "for ASEAN government services."
+                        ),
                         history=history,
                     ):
                         if cancel_event and cancel_event.is_set():
                             break
                         full_response += token
-                        await ws.send_json({"type": "token", "content": token})
+                        if not await safe_send({"type": "token", "content": token}):
+                            logger.info("Client disconnected during fallback stream.")
+                            return
 
-                    await ws.send_json({"type": "done", "content": full_response})
+                    await safe_send({"type": "done", "content": full_response})
 
                 except LLMError:
-                    await ws.send_json({
+                    await safe_send({
                         "type": "error",
                         "content": "Sorry, I'm having trouble right now. Please try again.",
                     })
+
             finally:
                 cancel_event = None
 
@@ -488,40 +542,5 @@ async def text_to_speech(req: TTSRequest):
         raise HTTPException(status_code=500, detail="Text-to-speech failed.")
 
 
-# ---------------------------------------------------------------------------
-# POST /api/scan — Document OCR via scan_document (Snap & Understand)
-# ---------------------------------------------------------------------------
-
-class ScanRequest(BaseModel):
-    image_base64: str
-    source_hint: str = ""
-
-
-@app.post("/api/scan")
-async def scan_document_endpoint(req: ScanRequest):
-    """OCR a photographed document image."""
-    if not req.image_base64 or len(req.image_base64.strip()) < 100:
-        raise HTTPException(status_code=400, detail="No image data provided.")
-
-    try:
-        from tools.scanner import scan_document
-
-        result_json = await scan_document(
-            image_base64=req.image_base64,
-            source_hint=req.source_hint,
-        )
-
-        result = json.loads(result_json)
-
-        logger.info(
-            "Document scanned: type=%s agency=%s engine=%s",
-            result.get("document_type", "?"),
-            result.get("issuing_agency", "?"),
-            result.get("engine", "?"),
-        )
-
-        return result
-
-    except Exception as exc:
-        logger.error("Document scan failed: %s", exc, exc_info=True)
-        raise HTTPException(status_code=500, detail="Document scan failed.")
+# /api/scan endpoint removed — image analysis is now handled directly by
+# the vision model (Gemma-SEA-LION-v4-27B-IT) via the WebSocket chat pipeline.
