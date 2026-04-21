@@ -25,7 +25,13 @@ import sys
 from pathlib import Path
 
 # Add backend to path
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "backend"))
+backend_path = Path(__file__).resolve().parents[2] / "backend"
+sys.path.insert(0, str(backend_path))
+
+# Load .env BEFORE importing db (critical!)
+from dotenv import load_dotenv
+load_dotenv(backend_path / "../.env")
+
 from db import get_collection, search  # noqa: E402
 
 SIMILARITY_THRESHOLD = 0.65  # From plan: cosine sim >= 0.65 = confident match

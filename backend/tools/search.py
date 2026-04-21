@@ -10,9 +10,17 @@ from typing import Optional
 
 import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).resolve().parent.parent))
+# sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 logger = logging.getLogger(__name__)
+
+# Add backend to path so we can import db.py
+backend_path = Path(__file__).resolve().parents[2] / "backend"
+sys.path.insert(0, str(backend_path))
+
+# Load .env BEFORE importing db (critical!)
+from dotenv import load_dotenv
+load_dotenv(backend_path / "../.env")
 
 # Import your ChromaDB singleton — adjust path if needed
 from db import get_collection
@@ -85,18 +93,29 @@ def search_documents(query: str, country: str = "", topic: str = "") -> str:
             if similarity < SIMILARITY_THRESHOLD:
                 continue
 
+            # confidence_band makes it easy for the agent to reason about quality
+            if similarity >= 0.75:
+                confidence_band = "high"
+            elif similarity >= 0.60:
+                confidence_band = "medium"
+            else:
+                confidence_band = "low"
+
             formatted_results.append({
-                "text": doc,
+                # ── Identity fields first (critical for mismatch detection) ──
                 "similarity": round(similarity, 4),
+                "confidence_band": confidence_band,
                 "source": {
                     "document_title": meta.get("document_title", "Unknown"),
-                    "country": meta.get("country", "Unknown"),
-                    "topic": meta.get("topic", ""),
-                    "language": meta.get("language", ""),
-                    "source_agency": meta.get("source_agency", ""),
-                    "document_url": meta.get("document_url", ""),
+                    "source_agency":  meta.get("source_agency", ""),
+                    "country":        meta.get("country", "Unknown"),
+                    "topic":          meta.get("topic", ""),
+                    "language":       meta.get("language", ""),
+                    "document_url":   meta.get("document_url", ""),
                     "effective_date": meta.get("effective_date", ""),
                 },
+                # ── Content last (doesn't need to be near the top) ──────────
+                "text": doc,
             })
 
         if not formatted_results:

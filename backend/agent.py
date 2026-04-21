@@ -1,27 +1,42 @@
 """
-AskAra+ — Deterministic Agent Pipeline
------------------------------------------
-Fixed tool-call order per query type. SEA-LION is used ONLY for
-text generation — never for deciding which tools to call.
+AskAra+ — LangGraph ReAct Agent (MCP-aware)
+--------------------------------------------
+Tools are called via the FastMCP server running at MCP_SERVER_URL
+(default: http://localhost:8001/mcp).  If the MCP server is unreachable,
+every tool call automatically falls back to direct Python imports — so
+the agent works in both single-process and two-process deployments.
 
-Tools are imported directly from tools/*.py (no MCP at runtime).
+Process topology:
+    [mcp_server.py :8001]  ←── MCP HTTP ───  [agent.py inside server.py :8000]
+         FastMCP                                  LangGraph ReAct graph
 
-Architecture:
-  1. Classify query → TYPE A/B/C/D/E
-  2. Execute fixed tool chain for that type
-  3. Feed tool results into LLM for final response
-  4. Yield streaming events to the WebSocket
+Startup sequence (called by server.py lifespan):
+    await init_mcp_tools()   → connects to MCP, loads tool objects once
 
-Usage:
-    from agent import run_agent, run_agent_streaming
+Shutdown:
+    await cleanup_agent()    → closes MCP connection
+
+Architecture (LangGraph StateGraph):
+    detect_context → react_agent → [tool_executor → react_agent]* → END
+
+WebSocket event protocol:
+    {"type": "reasoning",  "content": "<thought>"}      ← new
+    {"type": "tool_start", "content": "<tool name>"}
+    {"type": "tool_end",   "content": "<tool name>"}
+    {"type": "structured", "content": {…}}
+    {"type": "sources",    "content": […]}
+    {"type": "token",      "content": "<token>"}
+    {"type": "done",       "content": "<full response>"}
+    {"type": "error",      "content": "<message>"}
 """
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import re
-from typing import Any, AsyncGenerator
+from typing import Any, AsyncGenerator, Optional, TypedDict
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -30,10 +45,7 @@ load_dotenv()
 
 logger = logging.getLogger("askara.agent")
 
-# ---------------------------------------------------------------------------
-# Tool imports — direct, no MCP
-# ---------------------------------------------------------------------------
-
+# ── Direct tool imports (fallback when MCP is unavailable) ───────────────────
 from tools.search import search_documents as _search_documents
 from tools.language import detect_language as _detect_language
 from tools.simplify import simplify_text as _simplify_text
@@ -42,156 +54,237 @@ from tools.summarize import summarize_text as _summarize_text
 from tools.dialect import dialect_adapt as _dialect_adapt
 from tools.portal import fetch_gov_portal as _fetch_gov_portal
 from tools.profiler import profile_match as _profile_match
-# scanner is called from server.py directly via /api/scan endpoint
-
-# ---------------------------------------------------------------------------
-# LLM client (for final response generation)
-# ---------------------------------------------------------------------------
 
 from llm_client import call_llm, call_llm_streaming, LLMError
 
-# ---------------------------------------------------------------------------
-# System prompt
-# ---------------------------------------------------------------------------
+# ── LangGraph ─────────────────────────────────────────────────────────────────
+from langgraph.graph import StateGraph, END
 
-_PROMPTS_DIR = Path(__file__).parent / "prompts"
-_prompt_file = _PROMPTS_DIR / "system_prompt.txt"
-
-# Also try the same directory as agent.py (flat layout fallback)
-if not _prompt_file.exists():
-    _prompt_file = Path(__file__).parent / "system_prompt.txt"
-
-if _prompt_file.exists():
-    SYSTEM_PROMPT = _prompt_file.read_text(encoding="utf-8")
-else:
-    logger.warning("system_prompt.txt not found — using fallback prompt")
-    SYSTEM_PROMPT = (
-        "You are Ara, the AI assistant inside AskAra+. "
-        "You help people across Southeast Asia understand government programs "
-        "and services in simple language."
-    )
-
-# ---------------------------------------------------------------------------
-# Tools that produce structured frontend data (step_cards / recommendations)
-# ---------------------------------------------------------------------------
-
-STRUCTURED_OUTPUT_TOOLS = {"summarize", "profile_match"}
-
-# ---------------------------------------------------------------------------
-# Greeting detection
-# ---------------------------------------------------------------------------
-
-GREETING_PATTERNS = re.compile(
-    r"^\s*(hi|hello|hey|helo|hai|hola|salam|assalamualaikum|selamat|"
-    r"terima\s*kasih|thank\s*you|thanks|ok|okay|got\s*it|noted|"
-    r"good\s*morning|good\s*afternoon|good\s*evening|"
-    r"sawadee|kumusta|magandang|apa\s*khabar|apa\s*kabar)\s*[.!?]*\s*$",
-    re.IGNORECASE,
+# ── System Prompt ─────────────────────────────────────────────────────────────
+_PROMPT_CANDIDATES = [
+    Path(__file__).parent / "system_prompt.txt",
+    Path(__file__).parent / "prompts" / "system_prompt.txt",
+]
+SYSTEM_PROMPT = next(
+    (p.read_text(encoding="utf-8") for p in _PROMPT_CANDIDATES if p.exists()),
+    (
+        "You are Ara, a warm multilingual assistant for AskAra+. "
+        "Help ASEAN migrant workers and vulnerable populations access "
+        "government programs and services in simple, clear language."
+    ),
 )
 
+# ── MCP Configuration ─────────────────────────────────────────────────────────
+MCP_SERVER_URL = "http://localhost:8001/mcp"   # FastMCP streamable-http endpoint
 
-def _is_greeting(text: str) -> bool:
-    return bool(GREETING_PATTERNS.match(text.strip()))
+MAX_ITERATIONS = 5
 
-
-# ---------------------------------------------------------------------------
-# Query classification — keyword heuristics (no LLM needed)
-# ---------------------------------------------------------------------------
-
-# TYPE D keywords — profiling / program discovery
-PROFILING_PATTERNS = re.compile(
-    r"("
-    # Direct match for profiling structured format (from ProfilingFlow)
-    r"country:\s*[A-Z]{2}.*situation:\s*\w+"
-    # English phrases
-    r"|find\s+(?:\w+\s+)?programs?\s+for\s+me"
-    r"|what\s+(?:help|programs?|aid|benefits?)\s+can\s+I\s+get"
-    r"|what\s+am\s+I\s+eligible\s+for"
-    r"|am\s+I\s+eligible"
-    # Malay
-    r"|cari\s+program"
-    r"|bantuan\s+apa\s+(?:yang\s+)?(?:saya|aku)"
-    r"|kelayakan"
-    r"|profil"
-    # Program matching keywords
-    r"|program\s+matching"
-    # Identity + situation patterns
-    r"|I\s+am\s+a\s+(?:worker|student|business|disaster)"
-    r"|saya\s+(?:pekerja|pelajar|mangsa)"
-    r")",
-    re.IGNORECASE,
-)
-
-# TYPE C keywords — document scan (image/photo)
-SCAN_PATTERNS = re.compile(
-    r"(I\s+photographed|scanned?\s+document|saya\s+ambil\s+gambar|"
-    r"document\s+type:|extracted\s+text:|Issuing\s+agency:)",
-    re.IGNORECASE,
-)
-
-# TYPE B keywords — procedural (how-to)
-# Broad patterns: any query about registering, applying, claiming, steps, etc.
-PROCEDURAL_PATTERNS = re.compile(
-    r"("
-    # English
-    r"how\s+(to|do\s+I|can\s+I|should\s+I)"
-    r"|steps?\s+(to|for)"
-    r"|process\s+(to|for|of)"
-    r"|procedure"
-    r"|apply\s+(for|to)"
-    r"|register\s+(for|with|at)"
-    r"|claim\s+(for|from|my)"
-    r"|where\s+(to|do\s+I|can\s+I)\s+(go|apply|register|claim|get|submit)"
-    r"|what\s+do\s+I\s+need\s+to"
-    r"|what\s+documents?\s+(do\s+I\s+need|are\s+required|should\s+I)"
-    # Malay — broad
-    r"|cara\s+(nak|untuk|memohon|mendaftar|daftar|tuntut|buat|dapatkan|ambil)"
-    r"|macam\s*mana\s*(nak|nok|untuk)?"
-    r"|bagaimana"
-    r"|langkah"
-    r"|nak\s+(mohon|daftar|claim|tuntut|buat|dapatkan)"
-    r"|nok\s+(daftar|mohon|buat|dapat)"
-    r"|boleh\s+ke\s+(saya|aku)"
-    r"|mohon|permohonan|mendaftar|pendaftaran"
-    r"|tuntut(an)?|menuntut"
-    # Indonesian
-    r"|bagaimana\s+cara"
-    r"|gimana\s+cara"
-    r"|cara\s+daftar"
-    r"|langkah.langkah"
-    r"|persyaratan"
-    # Filipino
-    r"|paano"
-    r"|mag-?apply|mag-?register|mag-?claim"
-    r"|saan\s+(ako|po)\s+(mag|puwede)"
-    r"|ano\s+ang\s+(kailangan|proseso|requirements?)"
-    # Thai
-    r"|วิธี|ขั้นตอน|สมัคร|ลงทะเบียน"
-    r")",
-    re.IGNORECASE,
-)
+# ── MCP tools (populated by init_mcp_tools, reused across requests) ───────────
+# Keys are the exact tool names registered on the MCP server.
+_mcp_client: Any = None          # langchain_mcp_adapters.MultiServerMCPClient instance
+_mcp_tools: dict[str, Any] = {}  # {tool_name: LangChain BaseTool}
 
 
-def _classify_query(text: str) -> str:
-    """Classify user query into TYPE A/B/C/D/E."""
-    if _is_greeting(text):
-        return "E"
-    if SCAN_PATTERNS.search(text):
-        return "C"
-    if PROFILING_PATTERNS.search(text):
-        return "D"
-    if PROCEDURAL_PATTERNS.search(text):
-        return "B"
-    # Default: informational (TYPE A)
-    return "A"
+# ── Tool descriptions (match MCP server tool names exactly) ──────────────────
+TOOL_DESCRIPTIONS = """\
+- search_documents
+    Search the AskAra+ knowledge base: government programs, worker rights,
+    health services, flood / emergency relief, social aid, emergency contacts.
+    Parameters: {"query": str, "country": str (MY/ID/PH/TH, optional)}
+
+- fetch_gov_portal
+    Search government websites for fresh information when the knowledge base
+    is insufficient. Pass a descriptive search query, not a URL.
+    Parameters: {"query": str, "country": str (optional)}
+
+- profile_match
+    Find government programs matching the user's situation and eligibility.
+    Parameters: {
+      "country": str,
+      "situation": str  (worker | business_owner | family | disaster_victim | unemployed | student),
+      "need": str       (financial_aid | healthcare | worker_rights | business_support | housing | legal_aid | education)
+    }
+
+- simplify
+    Simplify complex government text to Grade 5 reading level.
+    Parameters: {"text": str, "country": str (optional), "language": str (optional)}
+    Tip: omit "text" to automatically use the last retrieved content.
+
+- summarize
+    Convert procedural text into numbered step-by-step cards. Use for
+    "how to apply / register / claim" questions.
+    Parameters: {"text": str, "language": str (optional)}
+    Tip: omit "text" to automatically use the last simplified/retrieved content.
+
+- translate
+    Translate text between languages.
+    Parameters: {"text": str, "source_lang": str, "target_lang": str}
+
+- dialect_adapt
+    Adapt text to a regional dialect.
+    Valid dialects: kelantan_malay | javanese | waray | kham_mueang
+    Parameters: {"text": str, "target_dialect": str}
+
+- FINISH
+    You have enough information to give the user a final answer.
+    Parameters: {}"""
 
 
-# ---------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────────────────
+# MCP lifecycle — init / invoke / cleanup
+# ─────────────────────────────────────────────────────────────────────────────
+
+async def init_mcp_tools() -> None:
+    """
+    Connect to the MCP server and cache tool objects.
+    Call once from server.py lifespan on startup.
+    Safe to call even if the MCP server isn't running yet — failure is logged
+    as a warning and the agent falls back to direct imports.
+    """
+    global _mcp_client, _mcp_tools
+
+    try:
+        from langchain_mcp_adapters.client import MultiServerMCPClient
+
+        # langchain-mcp-adapters >=0.1.0 — do NOT use as context manager
+        _mcp_client = MultiServerMCPClient({
+            "askara": {
+                "transport": "streamable_http",
+                "url": MCP_SERVER_URL,
+            }
+        })
+        tools_list = await _mcp_client.get_tools()
+        _mcp_tools = {t.name: t for t in tools_list}
+
+        logger.info(
+            "MCP server connected at %s — %d tools loaded: %s",
+            MCP_SERVER_URL,
+            len(_mcp_tools),
+            list(_mcp_tools.keys()),
+        )
+    except Exception as exc:
+        logger.warning(
+            "MCP server not available (%s) — agent will use direct imports as fallback.",
+            exc,
+        )
+        _mcp_client = None
+        _mcp_tools = {}
+
+
+async def _mcp_invoke(tool_name: str, params: dict) -> str:
+    """
+    Call a tool via MCP server if connected; otherwise fall back to the
+    direct Python import.  Returns the result as a JSON string.
+    """
+    # ── Try MCP ──────────────────────────────────────────────────────────────
+    if _mcp_tools and tool_name in _mcp_tools:
+        try:
+            result = await _mcp_tools[tool_name].ainvoke(params)
+            return str(result)
+        except Exception as exc:
+            logger.warning(
+                "MCP tool '%s' failed: %s — falling back to direct import",
+                tool_name, exc,
+            )
+
+    # ── Direct import fallback ────────────────────────────────────────────────
+    return await _direct_invoke(tool_name, params)
+
+
+async def _direct_invoke(tool_name: str, params: dict) -> str:
+    """Call a tool directly via the Python implementation (no MCP)."""
+    try:
+        if tool_name == "search_documents":
+            return _search_documents(
+                query=params.get("query", ""),
+                country=params.get("country", ""),
+                topic=params.get("topic", ""),
+            )
+        if tool_name == "fetch_gov_portal":
+            return await _fetch_gov_portal(
+                url=params.get("query", params.get("url", "")),
+                country=params.get("country", ""),
+            )
+        if tool_name == "profile_match":
+            return await _profile_match(
+                country=params.get("country", ""),
+                situation=params.get("situation", ""),
+                need=params.get("need", ""),
+            )
+        if tool_name == "simplify":
+            return await _simplify_text(
+                text=params.get("text", ""),
+                target_grade_level=5,
+                country=params.get("country", ""),
+                language=params.get("language", ""),
+            )
+        if tool_name == "summarize":
+            return await _summarize_text(
+                text=params.get("text", ""),
+                format="step_cards",
+                language=params.get("language", "en"),
+                max_steps=5,
+            )
+        if tool_name == "translate":
+            return await _translate_text(
+                text=params.get("text", ""),
+                source_lang=params.get("source_lang", "en"),
+                target_lang=params.get("target_lang", "en"),
+            )
+        if tool_name == "dialect_adapt":
+            return await _dialect_adapt(
+                text=params.get("text", ""),
+                target_dialect=params.get("target_dialect", ""),
+            )
+        return json.dumps({"status": "error", "message": f"Unknown tool: {tool_name}"})
+
+    except Exception as exc:
+        logger.error("Direct invoke '%s' failed: %s", tool_name, exc)
+        return json.dumps({"status": "error", "message": str(exc)})
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Agent State
+# ─────────────────────────────────────────────────────────────────────────────
+
+class AraState(TypedDict):
+    # Input (read-only after initialisation)
+    user_message: str
+    country: str
+    language: str
+    history: list[dict]
+
+    # Context (set by detect_context_node)
+    detected_lang: str
+    detected_country: str
+    detected_dialect: str
+
+    # ReAct loop control
+    scratchpad: str
+    iterations: int
+    last_thought: str
+    next_action: str        # MCP tool name or "FINISH"
+    next_action_input: dict
+
+    # Accumulated output (each node writes the FULL list, not just a delta)
+    tool_calls_made: list[str]
+    sources: list[dict]
+    structured: Optional[dict]
+
+    # Content pipeline
+    last_text_content: str  # most recent text output — auto-fed to next tool
+    source_tier: str        # "knowledge_base" | "web"
+
+    # Mismatch recovery (set by tool_executor when agency mismatch detected)
+    forced_next_action: str   # non-empty → react_agent_node bypasses LLM reasoning
+    forced_next_params: dict  # params to pass to the forced action
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Helpers
-# ---------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────────────────
 
-def _safe_json_loads(data: str | dict | list) -> dict:
-    """Universal sanitizer and normalizer for tool outputs."""
+def _safe_json_loads(data: Any) -> dict:
     if isinstance(data, dict):
         return data
     if isinstance(data, list):
@@ -208,291 +301,29 @@ def _safe_json_loads(data: str | dict | list) -> dict:
     return {"status": "error", "results": []}
 
 
-def _try_parse_structured(content) -> dict | None:
-    """Try to parse structured output (step_cards / recommendations) from tool result."""
-    if isinstance(content, str):
-        data = _safe_json_loads(content)
-    elif isinstance(content, dict):
-        data = content
-    else:
-        data = _safe_json_loads(str(content))
-
-    if isinstance(data, dict):
-        if data.get("type") == "step_cards" and data.get("cards"):
-            return data
-        if data.get("type") == "recommendations" and data.get("items"):
-            return data
+def _try_parse_structured(data: Any) -> dict | None:
+    d = _safe_json_loads(data) if not isinstance(data, dict) else data
+    if isinstance(d, dict):
+        if d.get("type") == "step_cards" and d.get("cards"):
+            return d
+        if d.get("type") == "recommendations" and d.get("items"):
+            return d
     return None
 
 
-# ---------------------------------------------------------------------------
-# Search query cleaning — strip procedural noise, keep the subject
-# ---------------------------------------------------------------------------
-
-# Words/phrases that are NOT useful for semantic search
-_NOISE_PATTERNS = re.compile(
-    r"\b("
-    r"how\s+(?:to|do\s+I|can\s+I|should\s+I)"
-    r"|what\s+(?:is|are|do\s+I\s+need)"
-    r"|where\s+(?:to|do\s+I|can\s+I)"
-    r"|steps?\s+(?:to|for)"
-    r"|process\s+(?:to|for|of)"
-    r"|procedure\s+(?:to|for)"
-    r"|cara\s+(?:nak|untuk|memohon|mendaftar|daftar|tuntut|buat|dapatkan)"
-    r"|macam\s*mana\s*(?:nak|nok|untuk)?"
-    r"|bagaimana\s*(?:cara)?"
-    r"|gimana\s*(?:cara)?"
-    r"|nak\s+(?:mohon|daftar|claim|tuntut|buat)"
-    r"|nok\s+(?:daftar|mohon|buat|dapat)"
-    r"|boleh\s+ke\s+(?:saya|aku)"
-    r"|paano\s*(?:mag|po)?"
-    r"|ano\s+ang\s+(?:kailangan|proseso)"
-    r"|tolong|please|sila|help\s+me"
-    r"|can\s+you|boleh\s+tak"
-    r"|I\s+(?:want|need)\s+to"
-    r"|saya\s+(?:nak|mau|ingin)"
-    r")\b",
-    re.IGNORECASE,
-)
-
-# Extra filler words to strip after noise removal
-_FILLER_WORDS = re.compile(
-    r"\b(the|a|an|for|to|in|at|on|my|me|I|di|ke|dari|yang|dan|atau|saya|aku|po|ko|ka|ba)\b",
-    re.IGNORECASE,
-)
-
-
-def _clean_search_query(message: str) -> str:
-    """Extract the core subject from a user message for better embedding search.
-
-    e.g. "macam mana nak daftar SOCSO?" → "daftar SOCSO"
-         "how to apply for flood relief?" → "apply flood relief"
-    """
-    cleaned = _NOISE_PATTERNS.sub("", message)
-    # Remove punctuation
-    cleaned = re.sub(r"[?!.,;:\"'()]+", " ", cleaned)
-    # Strip filler words only if the result still has substance
-    without_filler = _FILLER_WORDS.sub("", cleaned)
-    without_filler = re.sub(r"\s+", " ", without_filler).strip()
-
-    # If stripping filler words left almost nothing, keep the original cleaned version
-    if len(without_filler) < 3:
-        cleaned = re.sub(r"\s+", " ", cleaned).strip()
-    else:
-        cleaned = without_filler
-
-    # If still too short (e.g. "SOCSO"), that's fine — it's a focused query
-    # If empty after all cleaning, fall back to original message
-    return cleaned if cleaned else message.strip()
-
-
-# ---------------------------------------------------------------------------
-# Topic inference from keywords in the user message
-# ---------------------------------------------------------------------------
-
-_TOPIC_KEYWORDS: dict[str, list[str]] = {
-    "worker_rights": [
-        "socso", "perkeso", "employment", "worker", "pekerja", "majikan",
-        "employer", "gaji", "salary", "wage", "kerja", "labour", "labor",
-        "retrenchment", "dismissal", "buang kerja", "overtime", "kerja lebih",
-        "kontrak", "contract", "bpjs ketenagakerjaan", "jamsostek",
-        "owwa", "ofw", "dole", "migrant",
-    ],
-    "social_aid": [
-        "bantuan", "aid", "welfare", "kebajikan", "jkm", "brim", "bsh",
-        "sara", "bansos", "pkh", "sss", "pag-ibig", "pagibig",
-        "subsidi", "subsidy", "b40", "miskin", "poor", "poverty",
-        "4ps", "pantawid",
-    ],
-    "flood_relief": [
-        "banjir", "flood", "bencana", "disaster", "mangsa", "victim",
-        "pemindahan", "evacuation", "relief", "wang ihsan",
-        "nadma", "fema",
-    ],
-    "health": [
-        "kesihatan", "health", "hospital", "clinic", "klinik", "doctor",
-        "doktor", "mysejahtera", "bpjs kesehatan", "philhealth",
-        "vaksin", "vaccine", "denggi", "dengue", "insurance",
-        "perlindungan", "coverage", "medical",
-    ],
-    "business_support": [
-        "business", "perniagaan", "usahawan", "entrepreneur", "sme",
-        "grant", "geran", "loan", "pinjaman", "dti", "tekun", "mara",
-        "lesen", "license", "permit", "ssm", "registration",
-    ],
-    "education": [
-        "education", "pendidikan", "scholarship", "biasiswa", "sekolah",
-        "school", "university", "universiti", "ptptn", "training",
-        "latihan", "tesda", "skills",
-    ],
-}
-
-
-def _infer_topic(text: str) -> str:
-    """Infer the most likely ChromaDB topic from keywords in the message.
-    Returns empty string if no confident match."""
-    text_lower = text.lower()
-    scores: dict[str, int] = {}
-
-    for topic, keywords in _TOPIC_KEYWORDS.items():
-        count = sum(1 for kw in keywords if kw in text_lower)
-        if count > 0:
-            scores[topic] = count
-
-    if not scores:
-        return ""
-
-    # Return topic with highest keyword count (ties go to first alphabetically)
-    best_topic = max(scores, key=scores.get)  # type: ignore
-    logger.debug("Topic inferred: %s (scores=%s)", best_topic, scores)
-    return best_topic
-
-
-# ---------------------------------------------------------------------------
-# Relevance check — are search results about what the user asked?
-# ---------------------------------------------------------------------------
-
-def _check_relevance(search_result: dict, user_query: str, inferred_topic: str) -> bool:
-    """Quick heuristic: do the top results seem relevant to the query subject?
-
-    Returns True if results look relevant, False if they seem off-topic.
-    Checks:
-    1. If user mentions a specific program/entity, it must appear in results.
-    2. If topic was inferred, at least one top result should match that topic.
-    3. Fallback: keyword overlap between query and top result text.
-    """
-    results = search_result.get("results", [])
-    if not results:
+def _has_good_results(result: dict) -> bool:
+    if result.get("status") in ("no_results", "low_confidence", "error"):
         return False
-
-    # ── Check 1: Specific entity / program name match ──
-    # If the user mentions a known program, the results MUST mention it too
-    # (using any of its aliases). Otherwise we're returning the wrong document.
-    entity = _extract_entity(user_query)
-    if entity:
-        aliases = _KNOWN_ENTITIES.get(entity, [entity])
-        # Check if any top-3 result mentions any alias of this entity
-        entity_found = False
-        for r in results[:3]:
-            text = r.get("text", "").lower()
-            title = r.get("source", {}).get("document_title", "").lower()
-            combined = text + " " + title
-            if any(alias in combined for alias in aliases):
-                entity_found = True
-                break
-        if not entity_found:
-            logger.info(
-                "Relevance check FAILED: entity '%s' (aliases=%s) not found in top results",
-                entity, aliases,
-            )
-            return False
-
-    # ── Check 2: Topic match ──
-    if inferred_topic:
-        topic_matched = any(
-            r.get("source", {}).get("topic", "") == inferred_topic
-            for r in results[:3]
-        )
-        if topic_matched:
-            return True
-
-    # If we couldn't infer a topic, trust the similarity score
-    if not inferred_topic:
-        return True
-
-    # ── Check 3: Keyword overlap fallback ──
-    top_text = results[0].get("text", "").lower()
-    query_words = [w for w in user_query.lower().split() if len(w) > 3]
-    overlap = sum(1 for w in query_words if w in top_text)
-
-    if overlap >= 2 or (len(query_words) <= 2 and overlap >= 1):
-        return True
-
-    logger.info(
-        "Relevance check FAILED: inferred_topic=%s, top_doc_topic=%s, query_word_overlap=%d",
-        inferred_topic,
-        results[0].get("source", {}).get("topic", ""),
-        overlap,
-    )
-    return False
+    return len(result.get("results", [])) > 0
 
 
-# ---------------------------------------------------------------------------
-# Entity / program name extraction
-# ---------------------------------------------------------------------------
-
-# Known ASEAN government programs and agencies — if a user mentions these,
-# the search results MUST contain them or we fall back to gov portal.
-_KNOWN_ENTITIES: dict[str, list[str]] = {
-    # Malaysia
-    "socso": ["socso", "perkeso", "keselamatan sosial"],
-    "perkeso": ["socso", "perkeso", "keselamatan sosial"],
-    "epf": ["epf", "kwsp", "kumpulan wang simpanan"],
-    "kwsp": ["epf", "kwsp", "kumpulan wang simpanan"],
-    "jkm": ["jkm", "jabatan kebajikan masyarakat", "kebajikan"],
-    "brim": ["brim", "bsh", "bantuan sara hidup", "sumbangan tunai"],
-    "mysejahtera": ["mysejahtera"],
-    "mara": ["mara", "majlis amanah rakyat"],
-    "ptptn": ["ptptn"],
-    # Indonesia
-    "bpjs": ["bpjs", "jaminan sosial"],
-    "ktp": ["ktp", "kartu tanda penduduk"],
-    "bansos": ["bansos", "bantuan sosial"],
-    "pkh": ["pkh", "program keluarga harapan"],
-    # Philippines
-    "philhealth": ["philhealth"],
-    "sss": ["sss", "social security system"],
-    "pagibig": ["pag-ibig", "pagibig", "hdmf"],
-    "owwa": ["owwa"],
-    "dti": ["dti", "department of trade"],
-    "tesda": ["tesda"],
-    "4ps": ["4ps", "pantawid"],
-    # Thailand
-    "ประกันสังคม": ["ประกันสังคม", "social security"],
-    "บัตรทอง": ["บัตรทอง", "30 baht"],
-}
+def _get_text_from_search(result: dict) -> str:
+    return "\n\n".join(r.get("text", "") for r in result.get("results", []) if r.get("text"))
 
 
-def _extract_entity(query: str) -> str | None:
-    """Check if the user's query mentions a known government program or agency.
-    Returns the canonical lowercase name, or None if no match."""
-    query_lower = query.lower()
-    for entity_key in _KNOWN_ENTITIES:
-        if entity_key in query_lower:
-            return entity_key
-    return None
-
-
-# ---------------------------------------------------------------------------
-# URL hallucination guard
-# ---------------------------------------------------------------------------
-
-URL_PATTERN = re.compile(r'https?://[^\s)\]>"\']+')
-
-
-def _strip_hallucinated_urls(text: str, allowed_urls: set[str]) -> str:
-    """Remove any URL from text that isn't in the allowed set."""
-    if not allowed_urls:
-        return URL_PATTERN.sub("[link removed]", text)
-
-    def replace_url(match: re.Match) -> str:
-        url = match.group(0).rstrip(".,;:!?)")
-        for allowed in allowed_urls:
-            if url.startswith(allowed) or allowed.startswith(url):
-                return match.group(0)
-        return "[link removed]"
-
-    return URL_PATTERN.sub(replace_url, text)
-
-
-# ---------------------------------------------------------------------------
-# Source extraction helpers
-# ---------------------------------------------------------------------------
-
-def _extract_sources_from_search(search_result: dict) -> list[dict]:
-    """Extract source citations from search_documents result."""
+def _extract_sources_from_search(result: dict) -> list[dict]:
     sources = []
-    for r in search_result.get("results", []):
+    for r in result.get("results", []):
         src = r.get("source", {})
         if src:
             entry = {
@@ -507,145 +338,835 @@ def _extract_sources_from_search(search_result: dict) -> list[dict]:
     return sources
 
 
-def _extract_sources_from_portal(portal_result: dict) -> list[dict]:
-    """Extract source citations from fetch_gov_portal result."""
+def _extract_sources_from_portal(result: dict) -> list[dict]:
     sources = []
-    for r in portal_result.get("results", []):
+    for r in result.get("results", []):
         entry = {
             "title": r.get("title", ""),
             "url": r.get("url", ""),
             "source_agency": "",
-            "country": portal_result.get("country", ""),
+            "country": result.get("country", ""),
         }
         if entry["title"] and entry not in sources:
             sources.append(entry)
     return sources
 
 
+URL_PATTERN = re.compile(r'https?://[^\s)\]>"\']+')
+
+
 def _collect_allowed_urls(sources: list[dict]) -> set[str]:
-    """Collect all URLs from sources for hallucination guard."""
     return {s.get("url", "") for s in sources if s.get("url")}
 
 
-def _build_context_hint(country: str | None, language: str | None) -> str:
-    """Build context hint to append to user message."""
-    parts = []
-    if country:
-        parts.append(f"country={country}")
-    if language:
-        parts.append(f"language={language}")
-    if parts:
-        return f"\n\n[Context: {' '.join(parts)}]"
-    return ""
+def _strip_hallucinated_urls(text: str, allowed_urls: set[str]) -> str:
+    if not allowed_urls:
+        return URL_PATTERN.sub("[link removed]", text)
 
+    def _replace(m: re.Match) -> str:
+        url = m.group(0).rstrip(".,;:!?)")
+        for a in allowed_urls:
+            if url.startswith(a) or a.startswith(url):
+                return m.group(0)
+        return "[link removed]"
 
-def _get_text_from_search(result: dict) -> str:
-    """Combine document texts from search results."""
-    texts = []
-    for r in result.get("results", []):
-        text = r.get("text", "")
-        if text:
-            texts.append(text)
-    return "\n\n".join(texts)
-
-
-def _has_good_results(result: dict) -> bool:
-    """Check if search results are relevant (not empty/low-confidence)."""
-    status = result.get("status", "")
-    if status in ("no_results", "low_confidence", "error"):
-        return False
-    results = result.get("results", [])
-    return len(results) > 0
+    return URL_PATTERN.sub(_replace, text)
 
 
 def _extract_profiling_data(text: str) -> dict | None:
-    """Try to extract profiling data (country/situation/need) from a structured message.
-
-    Handles both:
-    - Structured: "country: MY, situation: disaster_victim, need: financial_aid"
-    - Natural:    "I am in Malaysia (MY). My situation: disaster affected. I need: financial aid."
-    """
-    # ── Country — match ISO code ──
-    country_match = re.search(r'country[:\s]+([A-Z]{2})', text, re.IGNORECASE)
-    if not country_match:
-        # Fallback: "I am in Malaysia (MY)"
-        country_match = re.search(r'\(([A-Z]{2})\)', text)
-    if not country_match:
+    country_m = re.search(r"country[:\s]+([A-Z]{2})", text, re.IGNORECASE)
+    if not country_m:
+        country_m = re.search(r"\(([A-Z]{2})\)", text)
+    if not country_m:
         return None
 
-    # ── Situation — exact enum values first, then fuzzy mapping ──
-    situation_match = re.search(
-        r'situation[:\s]+(worker|business_owner|family|disaster_victim|unemployed|student)',
-        text, re.IGNORECASE,
-    )
-    if not situation_match:
-        # Fuzzy fallback: map human labels to enum values
-        situation_map = {
-            "worker": "worker",
-            "business owner": "business_owner",
-            "business": "business_owner",
-            "family": "family",
-            "resident": "family",
-            "disaster": "disaster_victim",
-            "disaster affected": "disaster_victim",
-            "flood": "disaster_victim",
-            "unemployed": "unemployed",
-            "student": "student",
-        }
-        text_lower = text.lower()
-        found_situation = None
-        for key, val in situation_map.items():
-            if key in text_lower:
-                found_situation = val
-                break
-        if not found_situation:
-            return None
-    else:
-        found_situation = situation_match.group(1).lower()
+    SITUATION_MAP = {
+        "worker": "worker", "business owner": "business_owner",
+        "business": "business_owner", "family": "family", "resident": "family",
+        "disaster": "disaster_victim", "disaster affected": "disaster_victim",
+        "flood": "disaster_victim", "unemployed": "unemployed", "student": "student",
+    }
+    NEED_MAP = {
+        "financial aid": "financial_aid", "financial": "financial_aid",
+        "healthcare": "healthcare", "health": "healthcare", "medical": "healthcare",
+        "worker rights": "worker_rights", "employment": "worker_rights",
+        "legal rights": "legal_aid", "legal aid": "legal_aid", "legal": "legal_aid",
+        "business support": "business_support", "housing": "housing",
+        "education": "education",
+    }
 
-    # ── Need — exact enum values first, then fuzzy mapping ──
-    need_match = re.search(
-        r'need[:\s]+(financial_aid|healthcare|worker_rights|business_support|housing|legal_aid|education)',
+    tl = text.lower()
+    sit_m = re.search(
+        r"situation[:\s]+(worker|business_owner|family|disaster_victim|unemployed|student)",
         text, re.IGNORECASE,
     )
-    if not need_match:
-        # Fuzzy fallback: map human labels to enum values
-        need_map = {
-            "financial aid": "financial_aid",
-            "financial": "financial_aid",
-            "healthcare": "healthcare",
-            "health": "healthcare",
-            "medical": "healthcare",
-            "worker rights": "worker_rights",
-            "employment": "worker_rights",
-            "legal rights": "legal_aid",
-            "legal aid": "legal_aid",
-            "legal": "legal_aid",
-            "business support": "business_support",
-            "housing": "housing",
-            "education": "education",
-        }
-        text_lower = text.lower()
-        found_need = None
-        for key, val in need_map.items():
-            if key in text_lower:
-                found_need = val
-                break
-        if not found_need:
-            return None
-    else:
-        found_need = need_match.group(1).lower()
+    found_sit = sit_m.group(1).lower() if sit_m else next(
+        (v for k, v in SITUATION_MAP.items() if k in tl), None
+    )
+    if not found_sit:
+        return None
+
+    need_m = re.search(
+        r"need[:\s]+(financial_aid|healthcare|worker_rights|business_support|housing|legal_aid|education)",
+        text, re.IGNORECASE,
+    )
+    found_need = need_m.group(1).lower() if need_m else next(
+        (v for k, v in NEED_MAP.items() if k in tl), None
+    )
+    if not found_need:
+        return None
 
     return {
-        "country": country_match.group(1).upper(),
-        "situation": found_situation,
+        "country": country_m.group(1).upper(),
+        "situation": found_sit,
         "need": found_need,
     }
 
 
-# ---------------------------------------------------------------------------
-# Core: Streaming deterministic pipeline
-# ---------------------------------------------------------------------------
+# ── Search query cleaner (improves embedding retrieval quality) ───────────────
+_NOISE = re.compile(
+    r"\b("
+    r"how\s+(?:to|do\s+I|can\s+I|should\s+I)"
+    r"|what\s+(?:is|are|do\s+I\s+need)"
+    r"|where\s+(?:to|do\s+I|can\s+I)"
+    r"|steps?\s+(?:to|for)"
+    r"|cara\s+(?:nak|untuk|memohon|mendaftar|daftar|tuntut|buat|dapatkan)"
+    r"|macam\s*mana\s*(?:nak|nok|untuk)?"
+    r"|bagaimana\s*(?:cara)?"
+    r"|nak\s+(?:mohon|daftar|claim|tuntut|buat)"
+    r"|nok\s+(?:daftar|mohon|buat|dapat)"
+    r"|paano\s*(?:mag|po)?"
+    r"|tolong|please|sila|help\s+me"
+    r"|I\s+(?:want|need)\s+to"
+    r"|saya\s+(?:nak|mau|ingin)"
+    r")\b",
+    re.IGNORECASE,
+)
+_FILLER = re.compile(
+    r"\b(the|a|an|for|to|in|at|on|my|me|I|di|ke|dari|yang|dan|atau|saya|aku|po|ko|ka|ba)\b",
+    re.IGNORECASE,
+)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Agency Mismatch Detection
+# Maps agency identifiers → keywords that should appear in query OR source titles
+# ─────────────────────────────────────────────────────────────────────────────
+
+AGENCY_KEYWORD_MAP: dict[str, list[str]] = {
+    # ── MALAYSIA ─────────────────────────────────────────────────────────────
+    "KWSP/EPF":    ["kwsp", "epf", "employees provident fund", "provident fund",
+                    "i-akaun", "iakaun", "kwsp i-akaun"],
+    "SOCSO/PERKESO": ["perkeso", "socso", "assist portal", "employment injury",
+                      "social security malaysia", "eis ", "jkk", "jkm perkeso"],
+    "LHDN":        ["lhdn", "irb", "inland revenue", "ezhasil", "income tax",
+                    "e-filing", "cukai pendapatan", "lembaga hasil"],
+    "PTPTN":       ["ptptn", "pinjaman pelajaran", "student loan ptptn"],
+    "HRD_CORP":    ["hrd corp", "hrdf", "pembangunan sumber manusia",
+                    "human resource development fund"],
+    "JKM":         ["jkm", "kebajikan masyarakat", "social welfare malaysia",
+                    "jabatan kebajikan"],
+    "BSH/BRIM":    ["brim", "bsh", "bantuan sara hidup", "cost of living aid"],
+    "MARA":        ["mara", "majlis amanah rakyat"],
+    "JPA":         ["jpa", "jabatan perkhidmatan awam", "public service department"],
+    "FOMEMA":      ["fomema", "foreign workers medical"],
+    "MySejahtera": ["mysejahtera", "mysj"],
+    # ── INDONESIA ────────────────────────────────────────────────────────────
+    "BPJS_Kesehatan":       ["bpjs kesehatan", "bpjs health", "jaminan kesehatan",
+                             "jkn", "kartu indonesia sehat"],
+    "BPJS_Ketenagakerjaan": ["bpjs ketenagakerjaan", "bpjs employment",
+                             "jamsostek", "bpjs tk"],
+    "Kemnaker":             ["disnaker", "dinas tenaga kerja", "kemenaker",
+                             "ministry of manpower indonesia"],
+    "Disnakertrans":        ["disnakertrans", "transmigration"],
+    # ── PHILIPPINES ──────────────────────────────────────────────────────────
+    "PhilHealth":  ["philhealth", "philippine health insurance", "nhic"],
+    "SSS":         ["sss", "social security system philippines"],
+    "Pag-IBIG":    ["pag-ibig", "pagibig", "hdmf", "home development mutual fund"],
+    "DOLE":        ["dole", "department of labor philippines"],
+    "DTI":         ["dti", "department of trade philippines", "negosyo center"],
+    "OWWA":        ["owwa", "overseas workers welfare"],
+    # ── THAILAND ─────────────────────────────────────────────────────────────
+    "SSO_Thailand":  ["sso thailand", "social security office thailand",
+                      "ประกันสังคม", "prakan sangkhom"],
+    "NHSO_Thailand": ["nhso", "สปสช", "universal coverage scheme thailand",
+                      "บัตรทอง", "gold card thailand"],
+    "DBD_Thailand":  ["dbd thailand", "department of business development thailand",
+                      "กรมพัฒนาธุรกิจการค้า"],
+}
+
+
+def _detect_agency_mismatch(query: str, result: dict) -> dict | None:
+    """
+    Deterministically detect when the user's query references a specific agency
+    but the retrieved source documents are from a *different* agency.
+
+    Returns a mismatch info dict if a mismatch is detected, None otherwise.
+    A None return means: either no known agency in the query, or sources match.
+    """
+    query_lower = query.lower()
+
+    # Step 1: Which agency is the user asking about?
+    queried_agency: str | None = None
+    for agency, keywords in AGENCY_KEYWORD_MAP.items():
+        if any(kw in query_lower for kw in keywords):
+            queried_agency = agency
+            break
+
+    if not queried_agency:
+        return None  # Query doesn't mention a known agency — can't detect mismatch
+
+    # Step 2: What agencies appear in the returned source document titles?
+    results = result.get("results", [])
+    if not results:
+        return None  # No results — let normal fallback logic handle it
+
+    source_text = " ".join(
+        r.get("source", {}).get("document_title", "").lower()
+        + " " + r.get("source", {}).get("source_agency", "").lower()
+        for r in results
+    )
+
+    # Step 3: Do any of the queried agency's keywords appear in the source titles?
+    queried_keywords = AGENCY_KEYWORD_MAP[queried_agency]
+    if any(kw in source_text for kw in queried_keywords):
+        return None  # Sources match the queried agency — all good
+
+    # Step 4: Which agencies ARE in the sources?
+    found_source_agencies = [
+        agency for agency, keywords in AGENCY_KEYWORD_MAP.items()
+        if any(kw in source_text for kw in keywords)
+    ]
+
+    return {
+        "queried_agency": queried_agency,
+        "source_agencies": found_source_agencies or ["unknown"],
+        "source_titles": [
+            r.get("source", {}).get("document_title", "?") for r in results[:3]
+        ],
+    }
+
+
+def _build_search_observation(result: dict, mismatch: dict | None) -> str:
+    """
+    Build a human-readable scratchpad observation for search_documents results.
+    Much clearer than raw JSON — lets the ReAct LLM make correct next-step decisions.
+    """
+    status = result.get("status", "unknown")
+    results = result.get("results", [])
+
+    if status in ("no_results", "low_confidence", "error") or not results:
+        return (
+            f"[search_documents] status={status}: {result.get('message', 'No results found.')} "
+            f"→ Use fetch_gov_portal to search the web instead."
+        )
+
+    lines = [f"[search_documents] Found {len(results)} chunks:"]
+    for i, r in enumerate(results):
+        src = r.get("source", {})
+        title = src.get("document_title", "Unknown")
+        agency = src.get("source_agency", "")
+        country = src.get("country", "")
+        sim = r.get("similarity", 0)
+        band = "HIGH" if sim >= 0.75 else "MED" if sim >= 0.60 else "LOW"
+        label = f"[{agency} / {country}]" if agency else f"[{country}]"
+        lines.append(f"  [{i}] sim={sim:.3f} ({band}) | {title} {label}")
+
+    if mismatch:
+        queried = mismatch["queried_agency"]
+        sources_str = ", ".join(mismatch["source_agencies"])
+        lines += [
+            "",
+            f"⚠ AGENCY MISMATCH DETECTED:",
+            f"  User asked about: {queried}",
+            f"  Sources returned: {sources_str}",
+            f"  These results are NOT relevant to the user's question.",
+            f"→ REQUIRED NEXT STEP: call fetch_gov_portal to get correct information.",
+        ]
+    else:
+        lines.append("✓ Sources appear relevant to the query.")
+
+    return "\n".join(lines)
+
+
+def _clean_query(query: str) -> str:
+    c = _NOISE.sub("", query)
+    c = re.sub(r"[?!.,;:\"'()]+", " ", c)
+    stripped = re.sub(r"\s+", " ", _FILLER.sub("", c)).strip()
+    return stripped if len(stripped) >= 3 else c.strip() or query.strip()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Tool Wrappers
+# Pre-process params (fill defaults from state), then call _mcp_invoke.
+# Returns (result_dict, new_sources, text_content).
+# ─────────────────────────────────────────────────────────────────────────────
+
+async def _run_search(params: dict, state: AraState) -> tuple[dict, list[dict], str]:
+    query = _clean_query(params.get("query", state["user_message"]))
+    country = params.get("country", state["detected_country"])
+
+    raw = await _mcp_invoke("search_documents", {"query": query, "country": country})
+    result = _safe_json_loads(raw)
+
+    # Retry without country filter on empty results
+    if not _has_good_results(result) and country:
+        logger.info("Search: empty with country=%s — retrying without country filter", country)
+        raw = await _mcp_invoke("search_documents", {"query": query, "country": ""})
+        result = _safe_json_loads(raw)
+
+    return result, _extract_sources_from_search(result), _get_text_from_search(result)
+
+
+async def _run_portal(params: dict, state: AraState) -> tuple[dict, list[dict], str]:
+    query = params.get("query", params.get("url", state["user_message"]))
+    country = params.get("country", state["detected_country"])
+
+    raw = await _mcp_invoke("fetch_gov_portal", {"query": query, "country": country})
+    result = _safe_json_loads(raw)
+    return result, _extract_sources_from_portal(result), result.get("content", "")
+
+
+async def _run_profile_match(params: dict, state: AraState) -> tuple[dict, list[dict], str]:
+    country = params.get("country", state["detected_country"])
+    situation = params.get("situation", "")
+    need = params.get("need", "")
+
+    # Supplement from user message when the agent omits fields
+    if not (situation and need):
+        profile = _extract_profiling_data(state["user_message"])
+        if profile:
+            country = country or profile.get("country", "")
+            situation = situation or profile.get("situation", "")
+            need = need or profile.get("need", "")
+
+    raw = await _mcp_invoke("profile_match", {
+        "country": country, "situation": situation, "need": need,
+    })
+    return _safe_json_loads(raw), [], ""
+
+
+async def _run_simplify(params: dict, state: AraState) -> tuple[dict, list[dict], str]:
+    text = params.get("text") or state.get("last_text_content", "")
+    if not text:
+        return {"status": "error", "message": "No text available to simplify"}, [], ""
+
+    raw = await _mcp_invoke("simplify", {
+        "text": text[:3000],
+        "target_grade_level": 5,
+        "country": state["detected_country"],
+        "language": state["detected_lang"],
+    })
+    result = _safe_json_loads(raw)
+    return result, [], result.get("simplified_text", text)
+
+
+async def _run_summarize(params: dict, state: AraState) -> tuple[dict, list[dict], str]:
+    text = params.get("text") or state.get("last_text_content", "")
+    if not text:
+        return {"status": "error", "message": "No text available to summarize"}, [], ""
+
+    raw = await _mcp_invoke("summarize", {
+        "text": text,
+        "format": "step_cards",
+        "language": state["detected_lang"],
+        "max_steps": 5,
+    })
+    return _safe_json_loads(raw), [], ""
+
+
+async def _run_translate(params: dict, state: AraState) -> tuple[dict, list[dict], str]:
+    text = params.get("text") or state.get("last_text_content", "")
+    raw = await _mcp_invoke("translate", {
+        "text": text[:2000],
+        "source_lang": params.get("source_lang", "en"),
+        "target_lang": params.get("target_lang", state["detected_lang"]),
+    })
+    result = _safe_json_loads(raw)
+    return result, [], result.get("translated_text", "")
+
+
+async def _run_dialect(params: dict, state: AraState) -> tuple[dict, list[dict], str]:
+    text = params.get("text") or state.get("last_text_content", "")
+    raw = await _mcp_invoke("dialect_adapt", {
+        "text": text[:2000],
+        "target_dialect": params.get("target_dialect", state["detected_dialect"]),
+    })
+    result = _safe_json_loads(raw)
+    return result, [], result.get("adapted_text", "")
+
+
+TOOL_RUNNERS: dict[str, Any] = {
+    "search_documents": _run_search,
+    "fetch_gov_portal": _run_portal,
+    "profile_match": _run_profile_match,
+    "simplify": _run_simplify,
+    "summarize": _run_summarize,
+    "translate": _run_translate,
+    "dialect_adapt": _run_dialect,
+}
+
+_VALID_ACTIONS = frozenset(TOOL_RUNNERS.keys()) | {"FINISH"}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ReAct Prompt Builder
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _build_react_prompt(state: AraState) -> str:
+    history_lines = []
+    for turn in (state.get("history") or [])[-4:]:
+        role = turn.get("role", "")
+        content = str(turn.get("content", ""))[:200]
+        history_lines.append(f"{role.capitalize()}: {content}")
+    history_text = "\n".join(history_lines) or "(none)"
+
+    scratchpad = state.get("scratchpad", "").strip() or "(first step — nothing done yet)"
+    remaining = MAX_ITERATIONS - state.get("iterations", 0)
+
+    last_text = state.get("last_text_content", "")
+    chain_hint = (
+        f'\nLast retrieved text (for tool chaining): "{last_text[:200]}'
+        f'{"..." if len(last_text) > 200 else ""}"'
+        if last_text else ""
+    )
+
+    mcp_status = (
+        f"✓ MCP server connected ({len(_mcp_tools)} tools)"
+        if _mcp_tools else "⚠ MCP offline — using direct imports"
+    )
+
+    # Build a clear "already used / still available" split
+    used_tools = state.get("tool_calls_made", [])
+    used_set = set(used_tools)
+    all_tools = list(TOOL_RUNNERS.keys())
+    available_tools = [t for t in all_tools if t not in used_set]
+
+    used_block = (
+        f"ALREADY CALLED (FORBIDDEN — do NOT call again): {', '.join(used_set)}"
+        if used_set else "ALREADY CALLED: (none yet)"
+    )
+    available_block = (
+        f"STILL AVAILABLE: {', '.join(available_tools)}"
+        if available_tools else "STILL AVAILABLE: (none — you MUST use FINISH)"
+    )
+
+    return f"""\
+You are Ara, an AI assistant for AskAra+ helping ASEAN migrant workers and \
+vulnerable populations access government services.
+
+## Available Tools
+{TOOL_DESCRIPTIONS}
+
+## STRICT Response Format
+Respond using EXACTLY this structure. Nothing before "Thought:", nothing after "Action Input:".
+
+Thought: <your step-by-step reasoning>
+Action: <exact tool name from the list above, or FINISH>
+Action Input: <a valid JSON object with tool parameters>
+
+## ⚠ ONE-TIME TOOL RULE — CRITICAL
+Each tool may be called AT MOST ONCE per user message. This is a hard rule.
+{used_block}
+{available_block}
+If you want to call a FORBIDDEN tool again → use FINISH instead.
+If STILL AVAILABLE is empty → use FINISH immediately.
+
+## Decision Rules
+1. Greetings / social / "thank you" → FINISH immediately
+2. Factual questions about a program or right → search_documents (once), then FINISH
+3. "How do I apply / register / claim …" → search_documents → simplify → summarize → FINISH
+4. "What programs can I get / am I eligible for" → profile_match → FINISH
+5. If search_documents returns empty/poor results AND fetch_gov_portal not yet used → fetch_gov_portal
+6. After summarize or profile_match → FINISH immediately, no more tools
+7. Omit "text" in simplify / summarize — it auto-uses the last retrieved content
+8. NEVER invent program names, benefit amounts, or URLs
+
+## Session Context
+Language : {state.get("detected_lang", "en")}
+Country  : {state.get("detected_country", "unknown")}
+Dialect  : {state.get("detected_dialect", "standard")}
+Tool calls remaining: {remaining}
+Backend  : {mcp_status}{chain_hint}
+
+## Conversation History
+{history_text}
+
+## Reasoning Progress
+{scratchpad}
+
+User message: {state["user_message"]}
+
+Respond now with Thought / Action / Action Input:\
+"""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ReAct Response Parser
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _parse_react_response(text: str) -> tuple[str, str, dict]:
+    """
+    Parse LLM output → (thought, action, action_input).
+    Returns ("", "FINISH", {}) on any failure — fail-safe.
+    """
+    thought = ""
+    action = "FINISH"
+    action_input: dict = {}
+
+    m = re.search(r"Thought:\s*(.+?)(?=\nAction:|\Z)", text, re.DOTALL | re.IGNORECASE)
+    if m:
+        thought = m.group(1).strip()
+
+    m = re.search(r"Action:\s*(\S+)", text, re.IGNORECASE)
+    if m:
+        action = m.group(1).strip().rstrip(".,")
+
+    m = re.search(r"Action\s+Input:\s*(\{.*?\})\s*$", text, re.DOTALL | re.IGNORECASE)
+    if m:
+        raw = m.group(1).strip()
+        for candidate in (raw, raw.replace("'", '"')):
+            try:
+                action_input = json.loads(candidate)
+                break
+            except json.JSONDecodeError:
+                pass
+        else:
+            logger.warning("Could not parse Action Input JSON: %s", raw[:120])
+
+    # Normalise action name (case-insensitive fuzzy match)
+    if action not in _VALID_ACTIONS:
+        lower = action.lower()
+        matched = next((a for a in _VALID_ACTIONS if a.lower() == lower), None)
+        if matched:
+            action = matched
+        else:
+            logger.warning("Unrecognised action '%s' — defaulting to FINISH", action)
+            action = "FINISH"
+
+    logger.info("ReAct parsed → action=%s  input=%s", action, str(action_input)[:120])
+    return thought, action, action_input
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LangGraph Nodes
+# ─────────────────────────────────────────────────────────────────────────────
+
+def detect_context_node(state: AraState) -> dict:
+    """
+    Node 1 — Detect language / dialect / country (sync, no LLM, no MCP).
+    Runs directly via the Python import — fast and dependency-free.
+    """
+    message = state["user_message"]
+    country_hint = state.get("country", "")
+    language_hint = state.get("language", "")
+
+    try:
+        lang_data = json.loads(_detect_language(text=message))
+        detected_lang = lang_data.get("primary_lang", "en")
+        detected_dialect = lang_data.get("dialect", "standard")
+        detected_country = lang_data.get("country_hint", "") or country_hint
+    except Exception as exc:
+        logger.warning("Language detection failed: %s", exc)
+        detected_lang = language_hint or "en"
+        detected_dialect = "standard"
+        detected_country = country_hint
+
+    logger.info(
+        "Context → lang=%s  dialect=%s  country=%s  mcp_tools=%d",
+        detected_lang, detected_dialect, detected_country, len(_mcp_tools),
+    )
+    return {
+        "detected_lang": detected_lang,
+        "detected_dialect": detected_dialect,
+        "detected_country": detected_country,
+    }
+
+
+async def react_agent_node(state: AraState) -> dict:
+    """
+    Node 2 — LLM reasons about next action via ReAct prompting (non-streaming).
+    Hard rule: any tool already in tool_calls_made is blocked — FINISH is forced.
+    """
+    used_tools: set[str] = set(state.get("tool_calls_made", []))
+    available_tools = [t for t in TOOL_RUNNERS if t not in used_tools]
+
+    # ── Forced action from mismatch detection (bypasses LLM entirely) ────────
+    forced = state.get("forced_next_action", "")
+    if forced and forced not in used_tools and forced in TOOL_RUNNERS:
+        forced_params = state.get("forced_next_params", {})
+        thought = (
+            f"Knowledge base returned documents from a different agency than what "
+            f"the user asked about. Switching to {forced} to retrieve correct information."
+        )
+        logger.info("react_agent_node: forced action '%s' params=%s", forced, forced_params)
+        return {
+            "last_thought": thought,
+            "next_action": forced,
+            "next_action_input": forced_params,
+            "forced_next_action": "",
+            "forced_next_params": {},
+            "scratchpad": (
+                state.get("scratchpad", "") +
+                f"\nThought: {thought}\nAction: {forced}\n"
+                f"Action Input: {json.dumps(forced_params)}\n"
+            ),
+            "iterations": state.get("iterations", 0) + 1,
+        }
+
+    # Hard stop: no tools left or max iterations
+    if state.get("iterations", 0) >= MAX_ITERATIONS or not available_tools:
+        reason = (
+            f"Max iterations ({MAX_ITERATIONS}) reached."
+            if state.get("iterations", 0) >= MAX_ITERATIONS
+            else "All tools have been used once — finishing."
+        )
+        logger.info("react_agent_node: %s", reason)
+        return {
+            "last_thought": "I have gathered enough information to answer the user.",
+            "next_action": "FINISH",
+            "next_action_input": {},
+            "iterations": state.get("iterations", 0) + 1,
+        }
+
+    try:
+        # Pass SYSTEM_PROMPT so tool rules are visible to the reasoning LLM
+        llm_response = await call_llm(
+            _build_react_prompt(state),
+            system_prompt=SYSTEM_PROMPT,
+            temperature=0.1,
+        )
+    except LLMError as exc:
+        logger.error("LLM error in react_agent_node: %s", exc)
+        return {
+            "last_thought": "LLM temporarily unavailable — finishing with available info.",
+            "next_action": "FINISH",
+            "next_action_input": {},
+            "iterations": state.get("iterations", 0) + 1,
+        }
+
+    thought, action, action_input = _parse_react_response(llm_response)
+
+    # ── Hard guard: block re-use of any already-called tool ──────────────────
+    if action != "FINISH" and action in used_tools:
+        logger.warning(
+            "Agent tried to re-call '%s' (already used) — forcing FINISH. "
+            "Used tools: %s",
+            action, used_tools,
+        )
+        thought = (
+            f"I already called '{action}'. I have enough information — "
+            "I will now give the user the final answer."
+        )
+        action = "FINISH"
+        action_input = {}
+
+    return {
+        "last_thought": thought,
+        "next_action": action,
+        "next_action_input": action_input,
+        "scratchpad": (
+            state.get("scratchpad", "") +
+            f"\nThought: {thought}\nAction: {action}\n"
+            f"Action Input: {json.dumps(action_input)}\n"
+        ),
+        "iterations": state.get("iterations", 0) + 1,
+    }
+
+
+async def tool_executor_node(state: AraState) -> dict:
+    """
+    Node 3 — Execute the chosen tool via MCP (or direct import fallback).
+    Updates: tool_calls_made, sources, structured, last_text_content, source_tier.
+    """
+    tool_name = state["next_action"]
+    params = state.get("next_action_input", {})
+
+    runner = TOOL_RUNNERS.get(tool_name)
+    if not runner:
+        logger.error("No runner for tool: %s", tool_name)
+        obs = json.dumps({"status": "error", "message": f"Unknown tool: {tool_name}"})
+        return {
+            "scratchpad": state.get("scratchpad", "") + f"Observation: {obs}\n",
+            "tool_calls_made": state.get("tool_calls_made", []) + [tool_name],
+        }
+
+    try:
+        result_dict, new_sources, text_content = await runner(params, state)
+    except Exception as exc:
+        logger.error("Tool '%s' raised: %s", tool_name, exc, exc_info=True)
+        result_dict = {"status": "error", "message": str(exc)}
+        new_sources, text_content = [], ""
+
+    obs_str = json.dumps(result_dict)
+
+    # ── Build scratchpad observation ─────────────────────────────────────────
+    # search_documents gets a human-readable summary (LLM can read source titles).
+    # All other tools get raw JSON, with a generous 1 200-char budget.
+    mismatch_info: dict | None = None
+    if tool_name == "search_documents":
+        mismatch_info = _detect_agency_mismatch(state["user_message"], result_dict)
+        obs_line = _build_search_observation(result_dict, mismatch=mismatch_info)
+    else:
+        obs_line = obs_str[:1200] + ("…" if len(obs_str) > 1200 else "")
+
+    update: dict = {
+        "scratchpad": state.get("scratchpad", "") + f"Observation: {obs_line}\n",
+        "tool_calls_made": state.get("tool_calls_made", []) + [tool_name],
+        "sources": state.get("sources", []) + new_sources,
+        # Reset forced fields by default — set below only when needed
+        "forced_next_action": "",
+        "forced_next_params": {},
+    }
+
+    if text_content:
+        update["last_text_content"] = text_content
+
+    if tool_name == "fetch_gov_portal":
+        update["source_tier"] = "web"
+    elif tool_name == "search_documents" and not state.get("source_tier"):
+        update["source_tier"] = "knowledge_base"
+
+    # ── Agency mismatch → force fetch_gov_portal if not yet used ────────────
+    if mismatch_info:
+        already_used = set(state.get("tool_calls_made", []) + [tool_name])
+        if "fetch_gov_portal" not in already_used:
+            queried = mismatch_info["queried_agency"]
+            logger.info(
+                "Agency mismatch: query mentions %s but sources are %s — "
+                "forcing fetch_gov_portal",
+                queried, mismatch_info["source_agencies"],
+            )
+            update["forced_next_action"] = "fetch_gov_portal"
+            update["forced_next_params"] = {
+                "query": f"{queried} {state['user_message']}",
+                "country": state.get("detected_country", ""),
+            }
+
+    structured = _try_parse_structured(result_dict)
+    if structured:
+        update["structured"] = structured
+
+    return update
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Routing
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _route_after_agent(state: AraState) -> str:
+    if state.get("next_action") == "FINISH":
+        return END
+    if state.get("iterations", 0) >= MAX_ITERATIONS:
+        return END
+    return "tool_executor"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Graph (compiled once at import time, reused across all requests)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _build_graph():
+    g = StateGraph(AraState)
+    g.add_node("detect_context", detect_context_node)
+    g.add_node("react_agent", react_agent_node)
+    g.add_node("tool_executor", tool_executor_node)
+
+    g.set_entry_point("detect_context")
+    g.add_edge("detect_context", "react_agent")
+    g.add_conditional_edges(
+        "react_agent",
+        _route_after_agent,
+        {"tool_executor": "tool_executor", END: END},
+    )
+    g.add_edge("tool_executor", "react_agent")
+    return g.compile()
+
+
+_COMPILED_GRAPH = None
+
+
+def _get_graph():
+    global _COMPILED_GRAPH
+    if _COMPILED_GRAPH is None:
+        _COMPILED_GRAPH = _build_graph()
+        logger.info("LangGraph ReAct agent compiled.")
+    return _COMPILED_GRAPH
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Final LLM prompt (assembled after graph, drives the streaming answer)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _build_final_prompt(state: dict) -> str:
+    lang = state.get("detected_lang", "en")
+    user_msg = state.get("user_message", "")
+    structured = state.get("structured")
+    last_text = state.get("last_text_content", "")
+    source_tier = state.get("source_tier", "knowledge_base")
+
+    if structured and structured.get("type") == "step_cards":
+        return (
+            f"Step-by-step cards have been prepared for the user's question. "
+            f"Write ONLY a warm 1–2 sentence introduction in {lang}. "
+            f"Do NOT list or repeat the steps — they are already shown as cards.\n\n"
+            f"User question: {user_msg}"
+        )
+    if structured and structured.get("type") == "recommendations":
+        total = structured.get("total_matches", len(structured.get("items", [])))
+        return (
+            f"Found {total} government program recommendations. "
+            f"Write ONLY a warm 1–2 sentence introduction in {lang}. "
+            f"Do NOT list the programs — they are already shown as cards.\n\n"
+            f"User question: {user_msg}"
+        )
+    if last_text:
+        # ── Build source-awareness context ────────────────────────────────────
+        # Give the answering LLM the retrieved document titles so it can
+        # self-detect a mismatch and refuse to hallucinate an answer.
+        sources = state.get("sources", [])
+        source_context = ""
+        if sources:
+            titles = list(dict.fromkeys(  # deduplicated, insertion-ordered
+                s.get("title", "") for s in sources if s.get("title")
+            ))[:4]
+            if titles:
+                titles_str = "; ".join(titles)
+                source_context = (
+                    f"\n\nSOURCE DOCUMENTS RETRIEVED: {titles_str}\n"
+                    f"⚠ ACCURACY CHECK — Before writing your answer, verify:\n"
+                    f"  • Are the source documents actually about what the user asked: "
+                    f"'{user_msg[:70]}'?\n"
+                    f"  • If the sources are about a DIFFERENT agency or unrelated topic, "
+                    f"do NOT use their content to fabricate an answer.\n"
+                    f"  • In that case, honestly tell the user you could not find specific "
+                    f"information and suggest they contact the relevant agency directly.\n"
+                )
+
+        web_note = (
+            "\n\nIMPORTANT: Add a brief note that this info is from a government "
+            "website and should be verified with the relevant agency."
+            if source_tier == "web" else ""
+        )
+        return (
+            f"Here is the information retrieved to answer the user's question:\n\n"
+            f"{last_text[:2000]}"
+            f"{source_context}\n\n"
+            f"Write a clear, warm, helpful response. Grade 5 reading level. "
+            f"Respond in {lang}.{web_note}\n\nUser question: {user_msg}"
+        )
+    return (
+        f"I searched the knowledge base and government portals but could not find "
+        f"specific information for this question.\n\n"
+        f"Write an empathetic response in {lang}: acknowledge the limitation briefly, "
+        f"suggest contacting the relevant government agency or helpline. "
+        f"Keep it warm and concise.\n\nUser question: {user_msg}"
+    )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Public API — Streaming
+# ─────────────────────────────────────────────────────────────────────────────
 
 async def run_agent_streaming(
     message: str,
@@ -655,352 +1176,94 @@ async def run_agent_streaming(
     history: list[dict] | None = None,
 ) -> AsyncGenerator[dict, None]:
     """
-    Deterministic tool pipeline with streaming response.
+    Run the LangGraph ReAct agent and yield typed WebSocket events.
 
-    Yields dicts:
-        {"type": "token",      "content": "..."}
-        {"type": "tool_start", "content": "..."}
-        {"type": "tool_end",   "content": "..."}
-        {"type": "structured", "content": {...}}
-        {"type": "sources",    "content": [...]}
-        {"type": "done",       "content": "..."}
+    Phase 1 — graph.astream(stream_mode="updates"):
+        Iterates node by node; emits tool_start / tool_end / reasoning events.
+    Phase 2 — call_llm_streaming:
+        Streams the final answer once the graph completes.
     """
-    tool_calls: list[str] = []
-    sources: list[dict] = []
-    structured = None
     full_response = ""
 
+    initial_state: AraState = {
+        "user_message": message,
+        "country": country or "",
+        "language": language or "",
+        "history": history or [],
+        "detected_lang": language or "en",
+        "detected_country": country or "",
+        "detected_dialect": "standard",
+        "scratchpad": "",
+        "iterations": 0,
+        "last_thought": "",
+        "next_action": "",
+        "next_action_input": {},
+        "tool_calls_made": [],
+        "sources": [],
+        "structured": None,
+        "last_text_content": "",
+        "source_tier": "knowledge_base",
+        "forced_next_action": "",
+        "forced_next_params": {},
+    }
+
+    final_state: dict = dict(initial_state)
+    structured_emitted = False
+
     try:
-        # ── TYPE E: Greeting shortcut ──────────────────────────────
-        query_type = _classify_query(message)
-        logger.info("Query classified as TYPE %s: '%s'", query_type, message[:80])
+        graph = _get_graph()
 
-        if query_type == "E":
-            async for token in call_llm_streaming(
-                message,
-                system_prompt=(
-                    "You are Ara, a warm multilingual assistant for ASEAN government services. "
-                    "Respond to the greeting briefly and warmly. Offer to help with government "
-                    "services. Match the user's language. Keep it to 1-2 sentences."
-                ),
-                history=history,
-            ):
-                full_response += token
-                yield {"type": "token", "content": token}
-            yield {"type": "done", "content": full_response}
-            return
+        # ── Phase 1: graph streaming ─────────────────────────────────────────
+        async for chunk in graph.astream(initial_state, stream_mode="updates"):
+            for node_name, state_update in chunk.items():
+                final_state.update(state_update)
 
-        # ── TYPE D: Program Matching ───────────────────────────────
-        if query_type == "D":
-            profiling_data = _extract_profiling_data(message)
+                if node_name == "react_agent":
+                    thought = state_update.get("last_thought", "")
+                    next_action = state_update.get("next_action", "")
 
-            if profiling_data:
-                yield {"type": "tool_start", "content": "profile_match"}
-                tool_calls.append("profile_match")
+                    if thought:
+                        yield {"type": "reasoning", "content": thought}
+                    if next_action and next_action != "FINISH":
+                        yield {"type": "tool_start", "content": next_action}
 
-                result_json = await _profile_match(
-                    country=profiling_data["country"],
-                    situation=profiling_data["situation"],
-                    need=profiling_data["need"],
-                )
-                result = _safe_json_loads(result_json)
-                yield {"type": "tool_end", "content": "profile_match"}
+                elif node_name == "tool_executor":
+                    calls = state_update.get("tool_calls_made", [])
+                    if calls:
+                        yield {"type": "tool_end", "content": calls[-1]}
 
-                s = _try_parse_structured(result)
-                if s:
-                    structured = s
-                    yield {"type": "structured", "content": structured}
+                    new_structured = state_update.get("structured")
+                    if new_structured and not structured_emitted:
+                        structured_emitted = True
+                        yield {"type": "structured", "content": new_structured}
 
-                # Short intro via LLM
-                profile_summary = result.get("profile_summary", "your profile")
-                llm_prompt = (
-                    f"The user asked for program recommendations. Based on {profile_summary}, "
-                    f"I found {result.get('total_matches', 0)} matching programs. "
-                    f"Write a warm 1-2 sentence intro in the user's language. "
-                    f"Do NOT list the programs — the cards display them automatically.\n\n"
-                    f"User message: {message}"
-                )
+        # ── Emit sources ─────────────────────────────────────────────────────
+        all_sources: list[dict] = final_state.get("sources", [])
+        if all_sources:
+            yield {"type": "sources", "content": all_sources}
 
-                async for token in call_llm_streaming(
-                    llm_prompt,
-                    system_prompt=SYSTEM_PROMPT,
-                    history=history,
-                ):
-                    full_response += token
-                    yield {"type": "token", "content": token}
-
-                yield {"type": "done", "content": full_response}
-                return
-            # If no structured profiling data found, fall through to TYPE A
-
-        # ── TYPE C: Document Scan ──────────────────────────────────
-        if query_type == "C":
-            # Text already extracted by /api/scan endpoint
-            # The message contains "Extracted text: ..." from CameraCapture
-            extracted_text = message
-
-            # Step 1: Detect language on the extracted text
-            yield {"type": "tool_start", "content": "detect_language"}
-            tool_calls.append("detect_language")
-            lang_json = _detect_language(text=extracted_text)
-            lang_data = json.loads(lang_json)
-            yield {"type": "tool_end", "content": "detect_language"}
-
-            detected_lang = lang_data.get("primary_lang", "en")
-            detected_country = lang_data.get("country_hint", "") or (country or "")
-
-            # Step 2: Simplify the extracted text
-            yield {"type": "tool_start", "content": "simplify"}
-            tool_calls.append("simplify")
-            simplified_json = await _simplify_text(
-                text=extracted_text,
-                target_grade_level=5,
-                country=detected_country,
-                language=detected_lang,
-            )
-            simplified_data = _safe_json_loads(simplified_json)
-            simplified_text = simplified_data.get("simplified_text", extracted_text)
-            yield {"type": "tool_end", "content": "simplify"}
-
-            # Step 3: Generate explanation via LLM
-            llm_prompt = (
-                f"A user photographed a government document. I extracted and simplified the text.\n\n"
-                f"Simplified text:\n{simplified_text}\n\n"
-                f"Explain what this document says in simple terms. "
-                f"Tell the user what it means for them and what they should do next. "
-                f"Use {detected_lang} language. Keep it simple and warm.\n\n"
-                f"User's original message: {message}"
-            )
-
-            async for token in call_llm_streaming(
-                llm_prompt,
-                system_prompt=SYSTEM_PROMPT,
-                history=history,
-            ):
-                full_response += token
-                yield {"type": "token", "content": token}
-
-            yield {"type": "done", "content": full_response}
-            return
-
-        # ── TYPE A (Informational) & TYPE B (Procedural) ──────────
-        # Both share the same initial pipeline: detect → search → simplify
-        # TYPE B adds: summarize into step_cards
-
-        # Step 1: Detect language
-        yield {"type": "tool_start", "content": "detect_language"}
-        tool_calls.append("detect_language")
-        lang_json = _detect_language(text=message)
-        lang_data = json.loads(lang_json)
-        yield {"type": "tool_end", "content": "detect_language"}
-
-        detected_lang = lang_data.get("primary_lang", "en")
-        detected_dialect = lang_data.get("dialect", "standard")
-        detected_country = lang_data.get("country_hint", "") or (country or "")
-        is_code_mixed = lang_data.get("is_code_mixed", False)
-
-        logger.info(
-            "Language detected: lang=%s, dialect=%s, country=%s, code_mixed=%s",
-            detected_lang, detected_dialect, detected_country, is_code_mixed,
-        )
-
-        # Step 2: Search knowledge base
-        # Clean the query for better embedding match and infer topic
-        search_query = _clean_search_query(message)
-        inferred_topic = _infer_topic(message)
-
-        logger.info(
-            "Search: raw='%s' → cleaned='%s', inferred_topic='%s'",
-            message[:60], search_query[:60], inferred_topic,
-        )
-
-        yield {"type": "tool_start", "content": "search_documents"}
-        tool_calls.append("search_documents")
-        search_json = _search_documents(
-            query=search_query,
-            country=detected_country,
-            topic=inferred_topic,
-        )
-        search_result = _safe_json_loads(search_json)
-        yield {"type": "tool_end", "content": "search_documents"}
-
-        # If topic-filtered search got nothing, retry without topic filter
-        if not _has_good_results(search_result) and inferred_topic:
-            logger.info("No results with topic=%s — retrying without topic filter", inferred_topic)
-            search_json = _search_documents(
-                query=search_query,
-                country=detected_country,
-                topic="",
-            )
-            search_result = _safe_json_loads(search_json)
-
-        sources.extend(_extract_sources_from_search(search_result))
-
-        # Step 2b: Relevance check + fallback
-        info_text = ""
-        source_tier = "knowledge_base"
-
-        has_results = _has_good_results(search_result)
-        is_relevant = has_results and _check_relevance(search_result, search_query, inferred_topic)
-
-        if has_results and is_relevant:
-            info_text = _get_text_from_search(search_result)
-        else:
-            if has_results and not is_relevant:
-                logger.info("Search results failed relevance check — trying gov portal")
-            else:
-                logger.info("Knowledge base had no good results — trying gov portal")
-            yield {"type": "tool_start", "content": "fetch_gov_portal"}
-            tool_calls.append("fetch_gov_portal")
-            portal_json = await _fetch_gov_portal(url=message, country=detected_country)
-            portal_result = _safe_json_loads(portal_json)
-            yield {"type": "tool_end", "content": "fetch_gov_portal"}
-
-            sources.extend(_extract_sources_from_portal(portal_result))
-            info_text = portal_result.get("content", "")
-            source_tier = portal_result.get("source_tier", "web")
-
-        # Step 3: Simplify the retrieved text
-        if info_text:
-            yield {"type": "tool_start", "content": "simplify"}
-            tool_calls.append("simplify")
-            simplified_json = await _simplify_text(
-                text=info_text[:3000],  # Cap input length
-                target_grade_level=5,
-                country=detected_country,
-                language=detected_lang,
-            )
-            simplified_data = _safe_json_loads(simplified_json)
-            simplified_text = simplified_data.get("simplified_text", info_text)
-            yield {"type": "tool_end", "content": "simplify"}
-        else:
-            simplified_text = ""
-
-        # Step 4 (TYPE B only): Summarize into step cards
-        if query_type == "B" and simplified_text:
-            yield {"type": "tool_start", "content": "summarize"}
-            tool_calls.append("summarize")
-            summary_json = await _summarize_text(
-                text=simplified_text,
-                format="step_cards",
-                language=detected_lang,
-                max_steps=5,
-            )
-            yield {"type": "tool_end", "content": "summarize"}
-
-            s = _try_parse_structured(summary_json)
-            if s:
-                structured = s
-                yield {"type": "structured", "content": structured}
-                logger.info("Step cards generated: %d cards", len(s.get("cards", [])))
-
-        # Step 5 (optional): Translate if user language != document language
-        if detected_lang not in ("en", "") and source_tier == "knowledge_base":
-            # Check if we need translation
-            doc_lang = search_result.get("results", [{}])[0].get("source", {}).get("language", "")
-            if doc_lang and doc_lang != detected_lang:
-                yield {"type": "tool_start", "content": "translate"}
-                tool_calls.append("translate")
-                translate_json = await _translate_text(
-                    text=simplified_text[:2000],
-                    source_lang=doc_lang,
-                    target_lang=detected_lang,
-                )
-                translate_data = _safe_json_loads(translate_json)
-                translated = translate_data.get("translated_text", "")
-                if translated:
-                    simplified_text = translated
-                yield {"type": "tool_end", "content": "translate"}
-
-        # Step 6 (optional): Dialect adaptation
-        if detected_dialect != "standard":
-            dialect_key_map = {
-                "kelantan": "kelantan_malay",
-                "javanese": "javanese",
-                "waray": "waray",
-                "kham_mueang": "kham_mueang",
-            }
-            dialect_key = dialect_key_map.get(detected_dialect)
-            if dialect_key:
-                yield {"type": "tool_start", "content": "dialect_adapt"}
-                tool_calls.append("dialect_adapt")
-                dialect_json = await _dialect_adapt(
-                    text=simplified_text[:2000],
-                    target_dialect=dialect_key,
-                )
-                dialect_data = _safe_json_loads(dialect_json)
-                adapted = dialect_data.get("adapted_text", "")
-                if adapted:
-                    simplified_text = adapted
-                yield {"type": "tool_end", "content": "dialect_adapt"}
-
-        # ── Emit sources before LLM response ──
-        if sources:
-            yield {"type": "sources", "content": sources}
-
-        # ── Step FINAL: Generate response via LLM ──────────────────
-        if query_type == "B" and structured:
-            # TYPE B with step cards: only a short intro
-            llm_prompt = (
-                f"I found information and created step-by-step cards for the user.\n\n"
-                f"Simplified info:\n{simplified_text[:1000]}\n\n"
-                f"Write ONLY a warm 1-2 sentence intro acknowledging their question. "
-                f"Do NOT list the steps — the step cards display automatically. "
-                f"Use {detected_lang} language. Match the user's language.\n\n"
-                f"User question: {message}"
-            )
-        elif simplified_text:
-            source_disclaimer = ""
-            if source_tier == "web":
-                source_disclaimer = (
-                    "\n\nIMPORTANT: Add a note that this info is from web search "
-                    "and should be verified with the relevant agency."
-                )
-            llm_prompt = (
-                f"Here is the simplified government information to answer the user's question:\n\n"
-                f"{simplified_text[:2000]}\n\n"
-                f"Write a clear, warm response using this information. "
-                f"Use simple language (Grade 5 level). "
-                f"Use {detected_lang} language. Match the user's language."
-                f"{source_disclaimer}\n\n"
-                f"User question: {message}"
-            )
-        else:
-            # No info found
-            llm_prompt = (
-                f"I searched the knowledge base and government portals but could not find "
-                f"specific information for this question. "
-                f"Write a helpful response acknowledging you couldn't find exact info. "
-                f"Suggest the user contact the relevant government agency directly. "
-                f"Use {detected_lang} language. Match the user's language.\n\n"
-                f"User question: {message}"
-            )
-
+        # ── Phase 2: stream final answer ─────────────────────────────────────
         async for token in call_llm_streaming(
-            llm_prompt,
+            _build_final_prompt(final_state),
             system_prompt=SYSTEM_PROMPT,
             history=history,
         ):
             full_response += token
             yield {"type": "token", "content": token}
 
-        # Post-process: strip hallucinated URLs
-        allowed_urls = _collect_allowed_urls(sources)
-        full_response = _strip_hallucinated_urls(full_response, allowed_urls)
-
+        full_response = _strip_hallucinated_urls(
+            full_response, _collect_allowed_urls(all_sources)
+        )
         yield {"type": "done", "content": full_response}
 
     except Exception as exc:
         logger.error("Agent pipeline error: %s", exc, exc_info=True)
-        yield {
-            "type": "error",
-            "content": "I'm sorry, I encountered an issue. Please try again.",
-        }
+        yield {"type": "error", "content": "I'm sorry, I encountered an issue. Please try again."}
 
 
-# ---------------------------------------------------------------------------
-# Core: Non-streaming agent run
-# ---------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────────────────
+# Public API — Non-streaming
+# ─────────────────────────────────────────────────────────────────────────────
 
 async def run_agent(
     message: str,
@@ -1009,24 +1272,16 @@ async def run_agent(
     language: str | None = None,
     history: list[dict] | None = None,
 ) -> dict:
-    """
-    Non-streaming version. Collects all events from the streaming pipeline.
-
-    Returns dict with: reply, sources, tool_calls, structured
-    """
+    """Non-streaming wrapper. Returns {reply, sources, tool_calls, structured}."""
     tool_calls: list[str] = []
     sources: list[dict] = []
     structured = None
     full_response = ""
 
     async for event in run_agent_streaming(
-        message,
-        country=country,
-        language=language,
-        history=history,
+        message, country=country, language=language, history=history
     ):
         etype = event.get("type", "")
-
         if etype == "token":
             full_response += event.get("content", "")
         elif etype == "tool_start":
@@ -1048,10 +1303,15 @@ async def run_agent(
     }
 
 
-# ---------------------------------------------------------------------------
-# Cleanup — no MCP client to close, but keep the interface
-# ---------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────────────────
+# Lifecycle (called by server.py lifespan)
+# ─────────────────────────────────────────────────────────────────────────────
 
 async def cleanup_agent() -> None:
-    """Cleanup hook (called on app shutdown). No-op in deterministic pipeline."""
-    logger.info("Agent cleanup complete (deterministic pipeline — nothing to close).")
+    """Release the MCP client on app shutdown."""
+    global _mcp_client, _mcp_tools
+    if _mcp_client is not None:
+        _mcp_client = None
+        _mcp_tools = {}
+        logger.info("MCP client released.")
+    logger.info("LangGraph ReAct agent shutdown complete.")

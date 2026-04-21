@@ -45,7 +45,7 @@ from pydantic import BaseModel
 from llm_client import call_llm, call_llm_streaming, close_client, LLMError
 from db import get_collection
 
-from agent import run_agent, run_agent_streaming, cleanup_agent
+from agent import run_agent, run_agent_streaming, cleanup_agent, init_mcp_tools
 
 
 load_dotenv()
@@ -69,21 +69,25 @@ logger = logging.getLogger("askara.server")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("AskAra+ backend starting up...")
-
+ 
     try:
         collection = get_collection()
         count = collection.count()
         logger.info("ChromaDB ready — %d chunks in collection.", count)
     except Exception as exc:
         logger.warning("ChromaDB check failed: %s (will retry on first query)", exc)
-
-    logger.info("Deterministic agent pipeline ready.")
-
+ 
+    # Connect to MCP server (mcp_server.py must be running on port 8001)
+    # Falls back gracefully to direct Python imports if MCP is offline.
+    await init_mcp_tools()
+    logger.info("LangGraph ReAct agent ready (MCP or direct-import mode).")
+ 
     yield
-
+ 
     logger.info("AskAra+ backend shutting down...")
     await cleanup_agent()
     await close_client()
+ 
 
 # ---------------------------------------------------------------------------
 # App

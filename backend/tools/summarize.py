@@ -208,6 +208,21 @@ async def summarize_text(
 
 # ── Validation helpers ────────────────────────────────────────
 
+def _normalize_url(url: str) -> str:
+    """Ensure a URL always has an https:// scheme.
+
+    The LLM frequently omits the scheme (e.g. "www.perkeso.gov.my").
+    Without a scheme, browsers treat the href as a relative path and
+    prepend the current origin → http://localhost:3000/www.perkeso.gov.my.
+    """
+    if not url or not isinstance(url, str):
+        return url
+    url = url.strip()
+    if url.startswith("http://") or url.startswith("https://"):
+        return url
+    return f"https://{url}"
+
+
 def _validate_step_cards(data: dict, max_steps: int) -> dict:
     """Ensure step_cards output matches the frontend schema."""
     if not isinstance(data, dict):
@@ -266,13 +281,17 @@ def _validate_step_cards(data: dict, max_steps: int) -> dict:
                 if action.get("label"):
                     clean_action["label"] = action["label"]
                 if action_type == "link" and action.get("url"):
-                    clean_action["url"] = action["url"]
+                    clean_action["url"] = _normalize_url(action["url"])
+                elif action_type == "share" and action.get("url"):
+                    clean_action["url"] = _normalize_url(action["url"])
                 elif action_type == "call" and action.get("phone"):
                     clean_action["phone"] = action["phone"]
                 elif action_type == "navigate":
                     if action.get("lat") and action.get("lng"):
                         clean_action["lat"] = action["lat"]
                         clean_action["lng"] = action["lng"]
+                    elif action.get("url"):
+                        clean_action["url"] = _normalize_url(action["url"])
                 clean_card["action"] = clean_action
 
         validated_cards.append(clean_card)

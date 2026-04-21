@@ -27,7 +27,13 @@ import argparse
 from pathlib import Path
 
 # Add backend to path so we can import db.py
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "backend"))
+backend_path = Path(__file__).resolve().parents[2] / "backend"
+sys.path.insert(0, str(backend_path))
+
+# Load .env BEFORE importing db (critical!)
+from dotenv import load_dotenv
+load_dotenv(backend_path / "../.env")
+
 from db import get_collection, add_chunks  # noqa: E402
 
 # ---------------------------------------------------------------------------
