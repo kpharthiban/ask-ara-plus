@@ -24,11 +24,13 @@ RUN pip install --no-cache-dir \
     "transformers==4.40.0" \
     "sentence-transformers==3.0.1"
 
-# 4. Install the rest of your requirements
+# Install uv
+RUN pip install --no-cache-dir uv
+
+# Use uv to install the rest of your requirements
 COPY backend/requirements.txt ./
-# Filter out the libraries we just manually pinned to avoid overwriting them
 RUN grep -vE '^(torch|numpy|transformers|sentence-transformers)' requirements.txt > reqs_no_ml.txt && \
-    pip install --no-cache-dir -r reqs_no_ml.txt
+    uv pip install --system --no-cache -r reqs_no_ml.txt
 
 # 5. Hardware Verification (Should show OK)
 RUN python -c "import numpy; import torch; print(f'PI CHECK: NumPy {numpy.__version__} & Torch {torch.__version__} are LIVE!')"
