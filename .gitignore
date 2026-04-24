@@ -6,7 +6,6 @@ backend/.venv/
 # Environment secrets
 .env
 .env.local
-.env.example
 
 # ChromaDB storage (rebuilt from data/documents)
 data/chromadb/
