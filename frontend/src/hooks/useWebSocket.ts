@@ -50,15 +50,25 @@ import type {
   StructuredContent,
 } from "@/lib/types";
 
+// // ---------------------------------------------------------------------------
+// Config
+// ---------------------------------------------------------------------------
+// const BACKEND_URL =
+//   process.env.NEXT_PUBLIC_BACKEND_URL || "https://api-ara.fineeagle.cc";
+// const WS_URL = `${BACKEND_URL.replace(/^https/, "ws")}/ws/chat`;
+
 // ---------------------------------------------------------------------------
 // Config
 // ---------------------------------------------------------------------------
-const BACKEND_URL =
-  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
-const WS_URL = `${BACKEND_URL.replace(/^http/, "ws")}/ws/chat`;
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://api-ara.fineeagle.cc";
 
-const MAX_RECONNECT_ATTEMPTS = 5;
-const BASE_RECONNECT_DELAY_MS = 1000;
+// This logic checks if you're on HTTPS and uses WSS accordingly
+const WS_PROTOCOL = BACKEND_URL.startsWith("https") ? "wss" : "ws";
+
+// Replace http/https with the correct ws/wss protocol
+const WS_URL = `${BACKEND_URL.replace(/^https?/, WS_PROTOCOL)}/ws/chat`;
+
+console.log("Connecting to WebSocket at:", WS_URL); // Good for debugging!
 
 /**
  * Delay before the very first connect attempt (ms).
