@@ -1,0 +1,80 @@
+CARUMAN
+
+JADUAL / TABLE
+Bil | Bank | Perkhidmatan
+1 | Maybank Berhad | Maybank2e.net
+2 | CIMB Bank Berhad | BizChannel
+3 | RHB Bank Berhad | RHB Reflex
+4 | Public Bank Berhad | PBeBank.com
+5 | Citibank Berhad | CitiConnect
+6 | Hong Leong Bank Berhad | ConnectFirst/Connect Biz
+7 | AmBank Malaysia Berhad | E-Ambiz
+8 | Alliance Bank Malaysia Berhad | BizSmart
+9 | Affin Bank | affinonline
+10 | HSBC Bank (M) Berhad | HSBCnet
+11 | Bank Islam Malaysia Berhad | e-Banker
+12 | Agro Bank | AGRONet
+13 | UOB Bank | UOB Business Internet Banking
+14 | Bank Muamalat Malaysia Berhad | Corporate Internet Banking (i-Biz)
+15 | Standard Chartered Malaysia | Straight2Bank
+16 | OCBC Bank | OCBC Velocity
+17 | Bank Rakyat | iRakyat
+18 | MBSB Bank | Mjourney
+19 | JP Morgan | JP Morgan Access
+
+Caruman
+Pengenalan
+Pembayaran Caruman
+Kadar Caruman
+Kalkulator Caruman
+Portal ASSIST
+Mulai 1 Januari 2018, PERKESO telah memperkenalkan Portal ASSIST PERKESO bagi memudahkan majikan menguruskan pendaftaran majikan dan pekerja, rekod caruman dan pembayaran caruman.
+Bagi menggunakan Portal ASSIST PERKESO ini, majikan perlulah mendaftar untuk mendapatkan ID Portal ASSIST PERKESO terlebih dahulu dengan melengkapkan Borang ID Portal ASSIST PERKESO yang boleh diperolehi menerusi laman sesawang PERKESO dan menghantarkannya ke pejabat PERKESO berdekatan.
+Portal ASSIST PERKESO boleh dilawati dengan melayari www.perkeso.gov.my login Portal ASSIST.
+Financial Process Exchange (FPX) - Majikan perlu mempunyai akaun perbankan internet dengan mana-mana bank yang menyediakan perkhidmatan FPX.
+Direct Debit Authorisation (DDA) – Majikan perlu membuat permohonan E-mandate melalui Portal Assist.
+Perbankan Internet
+
+Majikan perlu berdaftar dan mempunyai akaun di bank-bank yang telah dilantik. Penerangan lanjut boleh diperolehi dengan menghubungi bank-bank berikut:
+
+Bil	Bank	Perkhidmatan
+1	Maybank Berhad	Maybank2e.net
+2	CIMB Bank Berhad	BizChannel
+3	RHB Bank Berhad	RHB Reflex
+4	Public Bank Berhad	PBeBank.com
+5	Citibank Berhad	CitiConnect
+6	Hong Leong Bank Berhad	ConnectFirst/Connect Biz
+7	AmBank Malaysia Berhad	E-Ambiz
+8	Alliance Bank Malaysia Berhad	BizSmart
+9	Affin Bank	affinonline
+10	HSBC Bank (M) Berhad	HSBCnet
+11	Bank Islam Malaysia Berhad	e-Banker
+12	Agro Bank	AGRONet
+13	UOB Bank	UOB Business Internet Banking
+14	Bank Muamalat Malaysia Berhad	Corporate Internet Banking (i-Biz)
+15	Standard Chartered Malaysia	Straight2Bank
+16	OCBC Bank	OCBC Velocity
+17	Bank Rakyat	iRakyat
+18	MBSB Bank	Mjourney
+19	JP Morgan	JP Morgan Access
+
+Kaunter Bank
+Kaunter Bank (menggunakan rujukan ACR dengan data caruman dikemukakan menerusi Portal ASSIST PERKESO).
+Bank yang dilantik sebagai ejen pemungut adalah seperti berikut:
+i.    Maybank Berhad
+ii.   Public Bank Berhad (mulai 1 Mac 2018)
+
+Aplikasi PRIHATIN
+Majikan boleh memuat turun aplikasi mudah alih PRIHATIN melalui Google Play Store atau App Store.
+Maklumat lanjut, sila klik https://www.perkeso.gov.my/prihatinapp.html
+
+Tempoh Pembayaran Caruman
+
+Pembayaran caruman hendaklah dibuat selewat-lewatnya pada 15 hari bulan bagi caruman bulan sebelumnya (contoh; caruman bulan Julai 2017 hendaklah dibayar selewat-lewatnya pada 15 Ogos 2017).
+
+Faedah Caruman Lewat Bayar
+
+Faedah caruman lewat bayar akan dikenakan pada kadar 6% setahun bagi tiap-tiap satu hari caruman yang tidak dibayar dalam tempoh yang ditetapkan.
+
+Muat Turun Format Textfile
+Format Textfile PERKESO & SIP

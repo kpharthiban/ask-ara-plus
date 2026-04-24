@@ -30,18 +30,28 @@ SIMILARITY_THRESHOLD = 0.40
 DEFAULT_N_RESULTS = 5
 
 
-def search_documents(query: str, country: str = "", topic: str = "") -> str:
+def search_documents(query: str, country: str = "MY", topic: str = "") -> str:
     """
-    Search the knowledge base for relevant government documents.
+    Search the Malaysian government knowledge base for relevant documents.
+
+    AskAra+ is Malaysia-focused. All documents are from Malaysian government
+    agencies. The country filter defaults to "MY" and should not be changed
+    unless specifically searching ASEAN-wide documents.
 
     Args:
-        query: User's search query (any language — embeddings are multilingual)
-        country: ISO filter — "MY", "ID", "PH", "TH", "ASEAN", or "" for all
-        topic: Topic filter — e.g. "social_security", "migrant_rights", or "" for all
+        query:   User's search query (any language — embeddings are multilingual).
+        country: ISO filter — "MY" (default) or "ASEAN". Do not use ID/PH/TH.
+        topic:   Topic filter — e.g. "immigration", "worker_rights",
+                 "social_security", "health", "disaster_relief",
+                 "livelihood", "emergency", or "" for all topics.
 
     Returns:
         JSON string with search results or a no-results message.
     """
+    # Safety net: if caller somehow passes empty string, default to MY
+    if not country or not country.strip():
+        country = "MY"
+
     try:
         collection = get_collection()
 

@@ -27,6 +27,7 @@ logger = logging.getLogger("askara.profiler")
 # ── Profile categories ────────────────────────────────────────
 SITUATIONS = [
     "worker",           # Employed / migrant worker
+    "immigrant",        # Migrant / visa holder in Malaysia
     "business_owner",   # Small business / entrepreneur
     "family",           # Family / dependents
     "disaster_victim",  # Natural disaster affected
@@ -35,6 +36,7 @@ SITUATIONS = [
 ]
 
 NEEDS = [
+    "immigration",      # Work permit, visa, pass renewal, detention rights
     "financial_aid",    # Cash assistance, subsidies
     "healthcare",       # Health insurance, medical help
     "worker_rights",    # Employment law, compensation
@@ -48,69 +50,84 @@ NEEDS = [
 # Maps (situation, need) pairs to ChromaDB topic filters.
 # Falls back to the need alone if no specific mapping exists.
 TOPIC_MAP: dict[tuple[str, str], str] = {
-    ("worker", "financial_aid"): "worker_rights",
-    ("worker", "healthcare"): "health",
-    ("worker", "worker_rights"): "worker_rights",
-    ("worker", "legal_aid"): "worker_rights",
-    ("business_owner", "financial_aid"): "business_support",
-    ("business_owner", "business_support"): "business_support",
-    ("family", "financial_aid"): "social_aid",
-    ("family", "healthcare"): "health",
-    ("family", "housing"): "social_aid",
-    ("disaster_victim", "financial_aid"): "flood_relief",
-    ("disaster_victim", "housing"): "flood_relief",
-    ("disaster_victim", "healthcare"): "flood_relief",
-    ("unemployed", "financial_aid"): "social_aid",
-    ("unemployed", "education"): "education",
+    # Worker
+    ("worker", "financial_aid"):    "worker_rights",
+    ("worker", "healthcare"):       "health",
+    ("worker", "worker_rights"):    "worker_rights",
+    ("worker", "legal_aid"):        "worker_rights",
+    ("worker", "immigration"):      "immigration",
+    # Immigrant / Migrant
+    ("immigrant", "immigration"):   "immigration",
+    ("immigrant", "worker_rights"): "immigration",
+    ("immigrant", "legal_aid"):     "immigration",
+    ("immigrant", "healthcare"):    "health",
+    ("immigrant", "financial_aid"): "social_security",
+    # Business owner
+    ("business_owner", "financial_aid"):   "livelihood",
+    ("business_owner", "business_support"): "livelihood",
+    # Family
+    ("family", "financial_aid"): "social_security",
+    ("family", "healthcare"):    "health",
+    ("family", "housing"):       "social_security",
+    # Disaster victim
+    ("disaster_victim", "financial_aid"): "disaster_relief",
+    ("disaster_victim", "housing"):       "disaster_relief",
+    ("disaster_victim", "healthcare"):    "disaster_relief",
+    # Unemployed
+    ("unemployed", "financial_aid"): "social_security",
+    ("unemployed", "education"):     "education",
+    # Student
     ("student", "financial_aid"): "education",
-    ("student", "education"): "education",
+    ("student", "education"):     "education",
 }
 
 # ── Search query templates by situation ───────────────────────
 QUERY_TEMPLATES: dict[str, str] = {
-    "worker": "{need_phrase} for workers employees",
-    "business_owner": "{need_phrase} for small business entrepreneurs",
-    "family": "{need_phrase} for families dependents",
-    "disaster_victim": "{need_phrase} disaster relief flood aid",
-    "unemployed": "{need_phrase} unemployment job seeker benefits",
-    "student": "{need_phrase} student scholarship training",
+    "worker":        "{need_phrase} for workers employees Malaysia",
+    "immigrant":     "{need_phrase} foreign worker migrant Malaysia permit visa",
+    "business_owner": "{need_phrase} for small business entrepreneurs Malaysia",
+    "family":        "{need_phrase} for families dependents Malaysia",
+    "disaster_victim": "{need_phrase} disaster relief flood aid Malaysia",
+    "unemployed":    "{need_phrase} unemployment job seeker benefits Malaysia",
+    "student":       "{need_phrase} student scholarship training Malaysia",
 }
 
 NEED_PHRASES: dict[str, str] = {
-    "financial_aid": "financial assistance cash aid subsidy",
-    "healthcare": "health insurance medical coverage",
-    "worker_rights": "worker rights employment protection compensation",
-    "business_support": "business grant loan support program",
-    "housing": "housing shelter accommodation assistance",
-    "legal_aid": "legal aid rights protection",
-    "education": "education training scholarship program",
+    "immigration":      "work permit visa renewal pass PLKS Jabatan Imigresen",
+    "financial_aid":    "financial assistance cash aid subsidy",
+    "healthcare":       "health insurance medical coverage FOMEMA",
+    "worker_rights":    "worker rights employment protection compensation SOCSO",
+    "business_support": "business grant loan support SME program",
+    "housing":          "housing shelter accommodation assistance",
+    "legal_aid":        "legal aid rights protection Bantuan Guaman",
+    "education":        "education training scholarship program",
 }
 
-COUNTRY_NAMES: dict[str, str] = {
-    "MY": "Malaysia",
-    "ID": "Indonesia",
-    "PH": "Philippines",
-    "TH": "Thailand",
-}
+# AskAra+ is Malaysia-only. Country is always MY.
+DEFAULT_COUNTRY = "MY"
+COUNTRY_NAME    = "Malaysia"
 
 # Icons for recommendation cards (by need category)
 NEED_ICONS: dict[str, str] = {
-    "financial_aid": "💰",
-    "healthcare": "🏥",
-    "worker_rights": "⚖️",
+    "immigration":      "🛂",
+    "financial_aid":    "💰",
+    "healthcare":       "🏥",
+    "worker_rights":    "⚖️",
     "business_support": "🏢",
-    "housing": "🏠",
-    "legal_aid": "📜",
-    "education": "🎓",
+    "housing":          "🏠",
+    "legal_aid":        "📜",
+    "education":        "🎓",
 }
 
 # ── LLM ranking prompt ───────────────────────────────────────
 RANKING_SYSTEM_PROMPT = """\
-You are AskAra+, a government services advisor for Southeast Asia.
+You are Ara, the AI assistant inside AskAra+.
+AskAra+ helps migrant workers, foreign employees, and residents in Malaysia
+understand government programs and public services.
 
-Given a user profile and a set of document chunks from the knowledge base,
-identify the most relevant government programs and rank them by how well
-they match the user's situation and needs.
+Given a user profile and a set of document chunks from the Malaysian
+government knowledge base, identify the most relevant programs and rank
+them by how well they match the user's situation and needs.
 
 Rules:
 1. Only include programs that genuinely match the user's profile.
@@ -124,15 +141,15 @@ Rules:
 
 RANKING_PROMPT_TEMPLATE = """\
 User Profile:
-- Country: {country_name} ({country})
+- Country: Malaysia (MY)
 - Situation: {situation}
 - Need: {need}
 
-Here are the document chunks from the knowledge base:
+Here are the document chunks from the Malaysian government knowledge base:
 
 {chunks_text}
 
-Based on this user's profile, identify the most relevant government programs.
+Based on this user's profile, identify the most relevant Malaysian government programs.
 Return JSON in this exact format:
 {{
     "matches": [
@@ -151,36 +168,36 @@ Output ONLY valid JSON.\
 
 
 async def profile_match(
-    country: str,
     situation: str,
     need: str,
+    country: str = "MY",   # kept for backward compat with agent calls; always MY
 ) -> str:
-    """Match a user profile against all documents in the knowledge base
-    and return relevant government programs ranked by relevance.
+    """Match a user profile against Malaysian government documents
+    and return relevant programs ranked by relevance.
 
     This powers the Proactive Eligibility Agent. Instead of waiting for
     the user to ask the right question, proactively recommends programs
     they may be eligible for.
 
     Args:
-        country: Country code ("MY", "ID", "PH", "TH").
-        situation: User's situation — one of: "worker", "business_owner",
-                   "family", "disaster_victim", "unemployed", "student".
-        need: Primary need — one of: "financial_aid", "healthcare",
-              "worker_rights", "business_support", "housing", "legal_aid",
-              "education".
+        situation: User's situation — one of: "worker", "immigrant",
+                   "business_owner", "family", "disaster_victim",
+                   "unemployed", "student".
+        need: Primary need — one of: "immigration", "financial_aid",
+              "healthcare", "worker_rights", "business_support",
+              "housing", "legal_aid", "education".
+        country: Ignored. Always "MY". Kept for backward compatibility.
 
     Returns:
         JSON string with type="recommendations", matches array, and profile_summary.
     """
     # ── Normalize inputs ──────────────────────────────────────
-    country = country.strip().upper()
+    country  = "MY"           # always Malaysia regardless of what was passed
     situation = situation.strip().lower()
-    need = need.strip().lower()
-    country_name = COUNTRY_NAMES.get(country, country)
+    need      = need.strip().lower()
 
     profile_summary = (
-        f"{situation.replace('_', ' ').title()} in {country_name} "
+        f"{situation.replace('_', ' ').title()} in {COUNTRY_NAME} "
         f"seeking {need.replace('_', ' ')}"
     )
 
@@ -255,8 +272,6 @@ async def profile_match(
     from llm_client import call_llm, LLMError
 
     ranking_prompt = RANKING_PROMPT_TEMPLATE.format(
-        country_name=country_name,
-        country=country,
         situation=situation.replace("_", " "),
         need=need.replace("_", " "),
         chunks_text=chunks_text,

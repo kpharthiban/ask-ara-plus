@@ -321,6 +321,13 @@ def _get_text_from_search(result: dict) -> str:
     return "\n\n".join(r.get("text", "") for r in result.get("results", []) if r.get("text"))
 
 
+def _normalise_url(raw) -> str:
+    """Ensure URL is always a plain string regardless of how it was stored in ChromaDB."""
+    if isinstance(raw, list):
+        return raw[0] if raw else ""
+    return str(raw) if raw else ""
+
+
 def _extract_sources_from_search(result: dict) -> list[dict]:
     sources = []
     for r in result.get("results", []):
@@ -328,7 +335,7 @@ def _extract_sources_from_search(result: dict) -> list[dict]:
         if src:
             entry = {
                 "title": src.get("document_title", ""),
-                "url": src.get("document_url", ""),
+                "url": _normalise_url(src.get("document_url", "")),
                 "source_agency": src.get("source_agency", ""),
                 "country": src.get("country", ""),
                 "relevance": r.get("similarity", 0),
@@ -343,7 +350,7 @@ def _extract_sources_from_portal(result: dict) -> list[dict]:
     for r in result.get("results", []):
         entry = {
             "title": r.get("title", ""),
-            "url": r.get("url", ""),
+            "url": _normalise_url(r.get("url", "")),
             "source_agency": "",
             "country": result.get("country", ""),
         }
@@ -356,7 +363,14 @@ URL_PATTERN = re.compile(r'https?://[^\s)\]>"\']+')
 
 
 def _collect_allowed_urls(sources: list[dict]) -> set[str]:
-    return {s.get("url", "") for s in sources if s.get("url")}
+    """Collect all allowed URLs, safely normalising list-typed values."""
+    urls: set[str] = set()
+    for s in sources:
+        raw = s.get("url", "")
+        normalised = _normalise_url(raw)
+        if normalised:
+            urls.add(normalised)
+    return urls
 
 
 def _strip_hallucinated_urls(text: str, allowed_urls: set[str]) -> str:

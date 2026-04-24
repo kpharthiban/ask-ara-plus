@@ -1,0 +1,90 @@
+============================================================
+MY_JKM_main_article_pendaftaran-orang-kurang-upaya-oku
+============================================================
+
+PENDAFTARAN ORANG KURANG UPAYA (OKU)
+
+JADUAL
+Bil | Kategori | Tahap pendengaran | Keterangan
+i. | Normal | 20 dBHL dan ke bawah | Boleh mendengar semua bunyi pertuturan
+ii. | Ringan | 21-40 dBHL | Boleh mendengar bunyi perlahan. 			  			Boleh mendengar bunyi pertuturan dalam suasana senyap.
+iii. | Sederhana | 41-70 dBHL | Sukar mendengar bunyi pertuturan dalam suasana senyap
+iv. | Teruk | 71-90 dBHL | Tidak dapat mendengar walaupun dalam suasana senyap. 			  			Hanya mendengar bunyi kuat 			  			Mempunyai masalah untuk berkomunikasi dengan orang lain
+v. | Sangat teruk | 91 dBHL dan ke atas | Tidak dapat mendengar walaupun bunyi kuat. 			  			Mempunyai masalah untuk berkomunikasi dengan orang lain
+
+JADUAL
+Bil | Sub- Kategori | Keterangan
+i. | Bilateral hearing loss | Kurang upaya Pendengaran diambil kira sekiranya: 			a) Tahap pendengaran ?40dBHL (dewasa) di telinga yang lebih baik berdasarkan purata 4 frequensi: (500Hz, 1KHz, 2KHz, 4KHz) 			b) Tahap pendengaran ? 30dBHL (kanak-kanak) di telinga yang lebih baik berdasarkan  purata  4 frequensi: 500Hz, 1KHz, 2KHz, 4KHz)
+ii. | Single sided deafness (SSD) / Profound unilateral hearing loss | Tahap pendengaran sangat teruk melebihi ? 91dBHL di sebelah telinga berdasarkan purata 4 frequensi: (500Hz, 1KHz, 2KHz, 4KHz)
+iii. | Kecacatan telinga kekal / sindrom berkaitan telinga /sindrom berkaitan pendengaran 			contoh: microtia, atresia, anotia, Treacher Collins, Goldenhar syndrome etc. | Disahkan oleh Pakar Otorinolaringologi sahaja
+iv. | Lain-lain
+
+JADUAL
+Bil | Sub Kategori | Keterangan
+i. | Terhad di kedua-dua belah mata | penglihatan lebih teruk daripada 6/18 tetapi sama dengan atau lebih baik daripada 3/60 walaupun dengan menggunakan alat bantu penglihatan atau medan penglihatan kurang dari 20 darjah dari fiksasi
+ii. | Buta di kedua-dua belah mata | penglihatan kurang daripada 3/60 atau medan penglihatan kurang dari 10 darjah dari fiksasi di kedua-dua belah mata
+iii. | Buta di sebelah mata | penglihatan kurang daripada 3/60 atau medan penglihatan kurang dari 10 darjah dari fiksasi di sebelah mata
+iv. | Lain-lain gangguan penglihatan kekal 			Contoh : albanism | Disahkan oleh Pakar Oftalmologi sahaja
+
+JADUAL
+Bil | Sub Kategori | Keterangan
+i. | Kecelaruan Pertuturan dan Bahasa/ Kecelaruan komunikasi kompleks 			(Complex Communication Disorders) 			  			Contoh : 			-Kanak kanak : pediatric speech and language disorders 			  			-Dewasa : Aphasia | Berlaku apabila individu sukar untuk menghantar, menerima, memproses dan memahami konsep sesuatu sistem simbol secara lisan, bukan lisan atau maklumat grafik. 			  			  			(Termasuk berkaitan masalah Kelewatan Perkembangan (GDD), pendengaran, masalah berkaitan sindrom, Autisme, ADHD, Stroke , Kecederaan Otak  dan lain-lain berkaitan).
+ii. | Kecelaruan motor pertuturan (Motor Speech Disorder) 			  			Contoh : 			Apraxia, Dysarthria | Kelemahan dan ketidakfungsian struktur dan otot yang menghasilkan bunyi pertuturan menyebabkan kadar, kelancaran dan kejelasan pertuturan terganggu.
+iii. | Kecelaruan Suara (Voice Disorders) 			  			Contoh : 			Dysphonia/ Aphonia | Kualiti, kelangsingan dan kekuatan suara seseorang individu berbeza dari individu-individu lain yang mempunyai usia,jantina,budaya dan kedudukan geografi yang sama dengan individu tersebut.
+iv. | Kecelaruan kelancaran Pertuturan/Kegagapan (Fluency disorders) 			  			Contoh : 			Stuttering 			Cluttering | Gangguan pada aliran pertuturan yang dicirikan oleh pengulangan, pemanjangan, sekatan dan hentian bunyi, perkataan dan ayat termasuk Spasmodic dysphonias dan Laryngeal tremor
+v. | Kecelaruan Resonan (Resonance Disorder) 			  			Contoh :  Hypernasality Hyponasality | Masalah kesengauan pertuturan disebabkan oleh gangguan pada mekanisma pengaliran udara berpunca dari keabnormalan struktur pertuturan saperti sumbing lelangit (Cleft Palate), sekatan, masalah neurologi kegagalan fungsi velofaringeal dan Oromandibular dystonia
+
+JADUAL
+Bil | Sub Kategori | Keterangan
+i. | Limb Defect 			(Acquired / Congenital) | Keadaan di mana berlaku  kehilangan separa atau sepenuhnya mana-mana bahagian anggota badan termasuk kehilangan:  			 				Tangan 				Kaki 			  			 				Jari tangan / jari kaki 			  			-    kehilangan mana-mana ibu jari atau kehilangan keseluruhan mana-mana dua (2) jari  			 				kehilangan mana-mana jari yang melibatkan tulang metacarpal/metatarsal. 			  			   			 				 					 						 						 					 					 						Tulang metacarpal 						Tulang metatarsal |  |  | Tulang metacarpal | Tulang metatarsal
+Tulang metacarpal | Tulang metatarsal
+ii. | Spinal Cord Injury | Kecederaan saraf tunjang akibat trauma atau bukan trauma yang menjejaskan fungsi otot, deria serta autonomik di bahagian bawah aras kecederaan.
+iii. | Strok | Keadaan di mana berlaku kekurangan atau kehilangan fungsi secara tiba-tiba melibatkan pertuturan, otot, deria, kognitif atau lain-lain  sebahagian tubuh badan akibat kekurangan oksigen atau pendarahan di dalam otak.
+iv. | Kerdil 			(cth :Achon-droplasia) | Keadaan di mana ketinggian bagi seseorang adalah kurang daripada 142cm bagi lelaki dan kurang daripada 138cm bagi 			wanita.
+v. | Traumatic Brain Injury | Keadaan di mana berlaku kekurangan atau kehilangan fungsi secara tiba-tiba melibatkan pertuturan, otot, deria, kognitif atau lain-lain melibatkan sebahagian tubuh badan akibat kecederaan otak.
+vi. | Cerebral Palsy | Keadaan kekal di mana berlaku masalah  pergerakan dan postur yang menghadkan aktiviti akibat  gangguan bukan progresif di bahagian otak .  Terbahagi kepada tiga (3) jenis seperti berikut: 			-Hemiplegia 			-Diplegia 			-Quadriplegia 			- Lain-lain
+vii. | Lain-lain | Contoh Duchenne Muscular Dystrophy dan penyakit kronik yang menyebabkan kurang upaya fizikal.
+
+JADUAL
+Tulang metacarpal | Tulang metatarsal
+
+JADUAL
+Bil | Sub Kategori | Keterangan
+i. | Global Developmental Delay (GDD) 			Terbahagi kepada tiga (3) tahap seperti berikut:  			 				Ringan 				Sederhana 				Teruk | Keadaan di mana berlaku perkembangan lewat sekurang-kurangnya dua (2) standard deviation dalam sekurang-kurangnya dua (2) domain samada gross motor/fine motor, speech/language, cognition, social/personal atau activities of daily living bagi pemohon berumur kurang dari lima (5) tahun.
+ii. | Sindrom Down Terbahagi kepada tiga (3) tahap seperti berikut:  			 				Ringan 				Sederhana 				Teruk | Berpunca dari kecelaruan kromosom yang terlebih iaitu pada kromosom 21.
+iii. | Attention Defisit Hyperactivity Disorder (ADHD) 			Terbahagi kepada tiga (3) tahap seperti berikut:  			 				Ringan 				Sederhana 				Teruk | Kesulitan sepanjang hayat yang melibatkan tahap tumpuan serta kawalan impuls.
+iv. | Autisme                  (Autism Spectrum Disorder) 			Terbahagi kepada tiga (3) tahap seperti berikut:  			 				Ringan 				Sederhana 				Teruk | Autisme merupakan gangguan neurologi yang memberikan impak negatif kepada kanak-kanak dari segi kemahiran interaksi sosial dan imaginasi.
+v. | Intelektual 			Terbahagi kepada tiga (3) tahap seperti berikut:  			 				Ringan 				Sederhana 				Teruk | Kurang Upaya Intelektual merupakan kekurangan dari segi fungsi intelek (terencat akal/mental retardation) bagi kanak-kanak berumur lima (5) tahun ke atas.
+vi. | Specific Learning Disability (Specific  LD) | Dyslexia : Perbezaan cara otak berfikir dalam menghubungkan simbol visual dan bunyi seterusnya mengalami kesukaran membaca, menulis, memahami, mengeja dan mengira. 			Dyscalculia: Keadaan yang mempengaruh keupayaan pemohon meguasai/memperoleh kemahiran arimetik. 			Dysgraphia: Keadaan yang mempengaruh keupayaan skil motor halus pemohon seterusnya mendatangkan kesulitan membentuk huruf, menulis dan lain-lain.
+
+JADUAL
+Bil | Sub Kategori | Keterangan
+i. | Organic Mental Disorder  yang serius dan kronik | Dementia in Alzheimer’s disease 				Vascular dementia 				Other mental disorders due to brain damage and dysfunction and to physical disease
+ii. | Schizophrenia, Schizotypal and Delusional Disorders | Schizoaffective Disorders; 				Persistent Delusional Disorder; and 				Other non organic psychotic disorders
+iii. | Mood Disorder | Bipolar affective disorder; 				Recurrent depressive disorder; 				Persistent mood disorders; and 				Other mood disorders.
+iv. | Severe Anxiety Disorder | Phobic Anxiety disorders (Fobia), 				Panic disorder;  				Generalized anxiety disorder; 				Mixed anxiety and depressive disorder; dan 				Obsessive Compulsive Disorder (OCD)
+
+Pendaftaran Orang Kurang Upaya (OKU)
+Utama Pendaftaran Orang Kurang Upaya (OKU)
+Pengenalan
+Kategori OKU
+Statistik Pendaftaran OKU
+Dokumen Pengenalan Sementara Orang Kurang Upaya (OKU)
+Rayuan
+Prosedur Permohonan
+Syarat Permohonan
+Dokumen yang diperlukan
+Borang Permohonan
+SILA KLIK DI SINI UNTUK MENCETAK
+BORANG PERMOHONAN PENDAFTARAN OKU PINDAAN 2019
+
+Borang Permohonan Pendaftaran OKU juga boleh diisi secara dalam talian dan dicetak melalui pautan:
+
+Maklumat lanjut berkenaan pendaftaran OKU dan keistimewaan OKU berdaftar boleh diperolehi daripada
+Risalah Pendaftaran OKU dan Kesitimewaan kepada OKU berdaftar
+
+Tarikh Kemaskini :10/01/2022
+
+Senarai Kemudahan dan Keistimewaan OKU
+Garis Panduan Pendaftaran OKU
+SMOKU

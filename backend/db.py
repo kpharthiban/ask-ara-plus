@@ -59,8 +59,9 @@ def get_collection() -> chromadb.Collection:
     """Return (or create) the `gov_documents` collection.
 
     The collection uses cosine similarity (ChromaDB default) with the
-    multilingual MiniLM embedding model so that queries in one ASEAN
-    language can retrieve documents written in another.
+    multilingual MiniLM embedding model so that queries in any language
+    (Malay, Indonesian, Filipino, Thai, English) can retrieve Malaysian
+    government documents.
     """
     global _collection
     if _collection is None:
@@ -85,14 +86,20 @@ def get_collection() -> chromadb.Collection:
 def search(
     query: str,
     n_results: int = 5,
-    country: str = "",
+    country: str = "MY",
     topic: str = "",
 ) -> dict:
-    """Search the collection with optional metadata filters.
+    """Search the Malaysian government documents collection.
+
+    Always defaults to country="MY". Pass "ASEAN" only when searching
+    ASEAN-wide treaty documents. Do not pass ID, PH, or TH.
 
     Returns the raw ChromaDB query result dict with keys:
         ids, documents, metadatas, distances
     """
+    # Safety net — never search without a country filter
+    if not country or not country.strip():
+        country = "MY"
     collection = get_collection()
 
     where_filters: dict | None = None
@@ -140,62 +147,53 @@ def add_chunks(
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     print("=" * 60)
-    print("AskAra+ — ChromaDB Self-Test")
+    print("AskAra+ — ChromaDB Self-Test (Malaysia-only KB)")
     print("=" * 60)
 
     col = get_collection()
 
-    # Add 3 dummy docs
-    dummy_ids = ["test_my_001", "test_id_001", "test_ph_001"]
+    # Add 3 Malaysian dummy docs (one per core topic)
+    dummy_ids = ["test_my_001", "test_my_002", "test_asean_001"]
     dummy_docs = [
         "Pekerja yang mencarum SOCSO layak menuntut faedah hilang upaya kekal. "
         "Caruman bulanan dikongsi antara majikan dan pekerja.",
-        "Pekerja migran Indonesia berhak mendapat perlindungan sesuai UU No. 18/2017. "
-        "BPJS Ketenagakerjaan melindungi pekerja dari kecelakaan kerja.",
-        "Overseas Filipino Workers are entitled to OWWA benefits including insurance, "
-        "repatriation assistance, and livelihood programs through DTI.",
+        "Pekerja asing yang bekerja di Malaysia perlu memiliki Pas Lawatan Kerja "
+        "Sementara (PLKS) yang sah. Permohonan dibuat melalui Jabatan Imigresen.",
+        "ASEAN member states shall promote fair and humane treatment of migrant "
+        "workers and protect their rights in accordance with national laws.",
     ]
     dummy_meta = [
         {
             "country": "MY",
-            "topic": "worker_rights",
+            "topic": "social_security",
             "language": "ms",
             "source_agency": "PERKESO",
             "document_title": "Panduan Pendaftaran SOCSO",
             "section_heading": "Skim Bencana Pekerjaan",
         },
         {
-            "country": "ID",
-            "topic": "migrant_rights",
-            "language": "id",
-            "source_agency": "BP2MI",
-            "document_title": "UU No. 18/2017 Perlindungan PMI",
-            "section_heading": "Hak Pekerja Migran",
+            "country": "MY",
+            "topic": "immigration",
+            "language": "ms",
+            "source_agency": "Jabatan Imigresen Malaysia",
+            "document_title": "Panduan PLKS — Pas Lawatan Kerja Sementara",
+            "section_heading": "Permohonan dan Pembaharuan",
         },
         {
-            "country": "PH",
+            "country": "ASEAN",
             "topic": "worker_rights",
             "language": "en",
-            "source_agency": "OWWA",
-            "document_title": "OWWA Benefits Guide",
-            "section_heading": "Eligibility and Programs",
+            "source_agency": "ASEAN Secretariat",
+            "document_title": "ASEAN Consensus on Migrant Workers",
+            "section_heading": "Fundamental Principles",
         },
     ]
 
     add_chunks(dummy_ids, dummy_docs, dummy_meta)
 
-    # Test queries
-    print("\n--- Query: 'SOCSO registration' ---")
+    # Test queries — all MY-scoped
+    print("\n--- Query: 'SOCSO registration' (country=MY) ---")
     res = search("SOCSO registration", n_results=3)
-    for i, (doc, meta, dist) in enumerate(
-        zip(res["documents"][0], res["metadatas"][0], res["distances"][0])
-    ):
-        sim = 1 - dist  # cosine distance → similarity
-        print(f"  [{i+1}] sim={sim:.3f} | {meta['country']} | {meta['document_title']}")
-        print(f"       {doc[:80]}...")
-
-    print("\n--- Query: 'hak pekerja migran' (cross-lingual test) ---")
-    res = search("hak pekerja migran", n_results=3)
     for i, (doc, meta, dist) in enumerate(
         zip(res["documents"][0], res["metadatas"][0], res["distances"][0])
     ):
@@ -203,8 +201,17 @@ if __name__ == "__main__":
         print(f"  [{i+1}] sim={sim:.3f} | {meta['country']} | {meta['document_title']}")
         print(f"       {doc[:80]}...")
 
-    print("\n--- Query: 'OFW benefits' (filtered: country=PH) ---")
-    res = search("OFW benefits", n_results=3, country="PH")
+    print("\n--- Query: 'work permit renewal' (cross-lingual, MY) ---")
+    res = search("work permit renewal migrant", n_results=3)
+    for i, (doc, meta, dist) in enumerate(
+        zip(res["documents"][0], res["metadatas"][0], res["distances"][0])
+    ):
+        sim = 1 - dist
+        print(f"  [{i+1}] sim={sim:.3f} | {meta['country']} | {meta['document_title']}")
+        print(f"       {doc[:80]}...")
+
+    print("\n--- Query: 'hak pekerja asing' (topic=immigration) ---")
+    res = search("hak pekerja asing permit kerja", n_results=3, topic="immigration")
     for i, (doc, meta, dist) in enumerate(
         zip(res["documents"][0], res["metadatas"][0], res["distances"][0])
     ):

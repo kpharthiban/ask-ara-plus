@@ -50,11 +50,11 @@ logger = logging.getLogger(__name__)
 mcp = FastMCP(
     "AskAra+",
     instructions=(
-        "AskAra+ is a multilingual ASEAN government services assistant. "
-        "Use these tools to help citizens understand government benefits, "
-        "worker rights, health services, and disaster relief across Malaysia, "
-        "Indonesia, Philippines, and Thailand. Always detect the user's "
-        "language first, then search, simplify, and translate as needed."
+        "AskAra+ is a multilingual assistant for migrant workers and residents "
+        "in Malaysia. All knowledge base searches target Malaysian government "
+        "documents. Users may speak Malay, Indonesian, Filipino, Thai, English, "
+        "or regional dialects — always detect language first, search Malaysian "
+        "docs, then simplify and translate into the user's language."
     ),
 )
 
@@ -65,22 +65,26 @@ mcp = FastMCP(
 
 
 @mcp.tool()
-def search_documents(query: str, country: str = "") -> str:
-    """Search the AskAra+ knowledge base for relevant government documents.
+def search_documents(query: str, country: str = "MY", topic: str = "") -> str:
+    """Search the Malaysian government knowledge base for relevant documents.
 
-    Use this when a user asks about government services, policies, benefits,
-    worker rights, health services, or disaster relief. Supports queries in
-    any ASEAN language — cross-lingual retrieval is built in.
+    Use this for ANY question about Malaysian government services, programs,
+    worker rights, immigration, health, or disaster relief. The knowledge base
+    is Malaysia-only. Supports queries in any language — respond in the user's
+    language after retrieving and simplifying.
 
     Args:
-        query: The user's question or search terms (any language).
-        country: Filter by country — "MY", "ID", "PH", "TH", or "ASEAN". Empty = all.
+        query:   The user's question or search terms (any language).
+        country: Always "MY". Pass "ASEAN" only for ASEAN-wide treaty questions.
+        topic:   Optional topic filter — "immigration", "worker_rights",
+                 "social_security", "health", "disaster_relief",
+                 "livelihood", "emergency". Leave "" to search all topics.
 
     Returns:
         JSON with ranked document chunks, source citations, and similarity scores.
     """
-    logger.info(f"search_documents called: query='{query}', country='{country}'")
-    return _search_documents(query=query, country=country, topic="")
+    logger.info(f"search_documents called: query='{query}', country='{country}', topic='{topic}'")
+    return _search_documents(query=query, country=country, topic=topic)
 
 
 @mcp.tool()
@@ -215,24 +219,26 @@ async def dialect_adapt(text: str, target_dialect: str) -> str:
 
 
 @mcp.tool()
-async def profile_match(country: str, situation: str, need: str) -> str:
-    """Match user profile to eligible government programs (Proactive Agent).
+async def profile_match(situation: str, need: str, country: str = "MY") -> str:
+    """Match user profile to eligible Malaysian government programs.
 
-    Powers Mode 2 of the agent. Instead of waiting for the user to ask
-    the right question, proactively recommends programs they qualify for.
+    Powers Mode 2 of the agent. Proactively recommends Malaysian government
+    programs the user may qualify for based on their situation and need.
+    Country is always Malaysia — this parameter is kept for compatibility only.
 
     Args:
-        country: "MY", "ID", "PH", "TH".
-        situation: "worker", "business_owner", "family", "disaster_victim",
-                   "unemployed", "student".
-        need: "financial_aid", "healthcare", "worker_rights",
-              "business_support", "housing", "legal_aid", "education".
+        situation: One of: "worker", "immigrant", "business_owner", "family",
+                   "disaster_victim", "unemployed", "student".
+        need:      One of: "immigration", "financial_aid", "healthcare",
+                   "worker_rights", "business_support", "housing",
+                   "legal_aid", "education".
+        country:   Always "MY". Ignored if passed as something else.
 
     Returns:
         JSON with type="recommendations", matches array (program_name,
         description, who_qualifies, relevance_score), and profile_summary.
     """
-    return await _profile_match(country=country, situation=situation, need=need)
+    return await _profile_match(situation=situation, need=need, country=country)
 
 
 @mcp.tool()
@@ -258,17 +264,18 @@ def text_to_speech(text: str, language: str = "en") -> str:
 
 
 @mcp.tool()
-async def fetch_gov_portal(query: str, country: str = "") -> str:
-    """Search government websites for fresh information using DuckDuckGo.
+async def fetch_gov_portal(query: str, country: str = "MY") -> str:
+    """Search Malaysian government websites for fresh information (DuckDuckGo).
 
     Use this when search_documents returned no results or irrelevant results.
-    Pass a descriptive search query (NOT a URL).
+    Scopes the web search to Malaysian government domains (.gov.my).
+    Pass a descriptive search query — NOT a URL.
 
     Args:
-        query: Descriptive search query about the government service or program.
-               Example: "bantuan banjir pendaftaran Malaysia"
-               Example: "SOCSO claim process worker benefits"
-        country: Country code — "MY", "ID", "PH", "TH". Scopes search to gov domains.
+        query:   Descriptive search query in any language.
+                 Example: "cara renew permit kerja asing Malaysia"
+                 Example: "SOCSO claim process foreign worker"
+        country: Always "MY". Scopes DuckDuckGo to .gov.my domains.
 
     Returns:
         JSON with results array (title, url, snippet), combined content, and source_tier.

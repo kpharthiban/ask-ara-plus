@@ -1,0 +1,130 @@
+============================================================
+MY_JTKSM_perkhidmatan_penggajian-pekerja-asing-0
+============================================================
+
+PENGGAJIAN PEKERJA ASING
+
+Penggajian Pekerja Bukan Warganegara
+
+Seksyen 60 (K) Akta Kerja 1955 [Akta 265] yang berkuatkuasa mulai 1 Januari 2023 memperuntukkan kewajiban majikan untuk mendapatkan kelulusan Awal (prior approval) sebelum ingin menggajikan pekerja asing. Pekerja asing dalam konteks ini merujuk kepada semua pekerja bukan warganegara mengikut definisi Seksyen 2 Akta 265.
+
+Pemakaian Seksyen 60K adalah seperti berikut:
+
+Terpakai kepada pengambilan pekerja bukan warganegara  baharu;
+Tidak terpakai untuk pembaharuan Pas Penggajian / Pas Lawatan Kerja Sementara (PLKS) atau lain-lain pas;
+Diwajibkan kepada semua majikan tanpa adanya pengecualian walaupun bagi jawatan yang diberi pengecualian pengiklanan oleh PERKESO; dan
+Kelulusan ini diberikan kepada majikan.
+Penerangan mengenai permohonan Kelulusan Awal Menggajikan Pekerja Asing di bawah Seksyen 60K Akta Kerja 1955 bagi semua jenis/kategori pekerja bukan warganegara adalah seperti berikut:
+
+Kategori 1: Pekerja Asing / Pas Lawatan Kerja Sementara (PLKS)
+
+Mekanisme Pengambilan: Kuota Baharu/Biasa
+
+Kaedah Permohonan: Modul FWeApproval, FWCMS
+
+Sektor/Sub sektor:
+
+Tukang Emas, Tekstil [dibuka sehingga kuota penuh]
+Spa, Pusat Kesejahteraan dan Urutan (PKU), Hotel, Pulau Peranginan, Kedi (Golf), Taman Tema Rekreasi dan Taman Tema Air [dibuka sehingga 31 Disember 2025]
+
+Kategori 2: Pekerja Asing / Pas Lawatan Kerja Sementara (PLKS)
+
+Mekanisme Pengambilan: Case by Case / Khas
+
+Kaedah Permohonan: Sistem ePPAx [Modul Permohonan Baharu Pekerja Bukan Warganegara > Permohonan Khas] **Paparan Permohonan Khas hanya akan muncul selepas proses jemputan dilaksanakan oleh pihak JTKSM berdasarkan senarai nama majikan yang telah melepasi tapisan awal di One Stop Centre (OSC), Kementerian Dalam Negeri (KDN).
+
+Sektor/Sub sektor: Semua sektor/sub sektor yang dibenarkan di bawah mekanisme case by case sebagaimana Notis Makluman di OSC, KDN.
+
+[permohonan dibuka sehingga 31 Disember 2025]
+
+Kategori 3: Pekerja Asing / Pas Lawatan Kerja Sementara (PLKS)
+
+Mekanisme Pengambilan: Pertukaran Majikan
+
+Kaedah Permohonan: Sistem ePPAx [Modul Permohonan Baharu Pekerja Bukan Warganegara > Permohonan Pertukaran Majikan]
+
+Sektor/Sub sektor: Semua sektor/sub sektor yang dibenarkan di bawah dasar penggajian pekerja asing. Permohonan Pertukaran Majikan bagi sektor berlainan (cross sector) dibenarkan.
+
+**Bagi majikan sektor pembinaan kontraktor G4 hingga G7, perlu isytihar projek di CIMS CIDB dan kemudian melengkapkan maklumat projek di modul Foreign Workers > Redeployment.
+
+Kategori 4: Pas Penggajian (Employment Pass)
+
+Kaedah Permohonan: XPats Gateway
+
+Sektor/Sub sektor: Semua sektor/sub sektor yang dibenarkan di bawah dasar penggajian pegawai dagang.
+
+**Permohonan dan kelulusan menerusi Xpats Gateway boleh digunakan bagi permohonan Ekspatriat dan Professional Visit Pass (PVP).
+
+Kategori 5: Pekerja Domestik Asing
+
+Kaedah Permohonan: Sistem ePPAx [Modul Permohonan Baharu Pekerja Bukan Warganegara > Permohonan Pekerja Domestik Asing]
+
+**Permohonan PDA daripada negara sumber Indonesia WAJIB menggunakan perkhidmatan Agensi Pekerjaan Swasta (APS) Lesen B atau Lesen C, manakala permohonan bagi PDA daripada negara sumber lain boleh dibuat oleh APS/majikan sendiri.
+
+Kategori 6: Nelayan Asing / Pengawal Keselamatan Asing / Kru Kapal / Pemegang Pas Residen / Pemegang Pas Residen Talent / Pemegang Pas Pelajar / Pas Ikhtisas
+
+Kaedah Permohonan: Sistem ePPAx [Modul Permohonan Baharu Pekerja Bukan Warganegara > Permohonan Lain-Lain Pas 1]
+
+Kategori 7: PLKS Warganegara Thailand / Tukang Masak Tomyam
+
+Kaedah Permohonan: Sistem ePPAx [Modul Permohonan Baharu Pekerja Bukan Warganegara > Permohonan Lain-Lain Pas 2]
+
+Bermula Disember 2024, pelaporan penggajian dan penamatan pekerja asing atau pekerja bukan warganegara hendaklah dibuat menerusi Sistem ePPAx [Profil > Kemaskini Profil Pekerja > Pelaporan Pekerja Asing/Penamatan Pekerja Asing]. Kaedah atas talian ini menggantikan penggunaan Borang PA 1/13 dan Borang PA 2/13.
+
+Bagi permohonan Pekerja Asing Rumah Perlindungan, majikan hendaklah mengemukakan permohonan melalui Pejabat Strategik Nasional (NSO), Majlis Antipemerdagangan Orang dan Antipenyeludupan Migran (MAPO).
+
+Bagi permohonan yang dikemukakan menerusi Sistem ePPAx, dokumen kelulusan boleh dijana terus menerusi sistem di skrin semak status permohonan. Bagi permohonan yang dibuat menerusi FWCMS dan Xpats Gateway, dokumen boleh dimuat turun daripada sistem tersebut.
+
+Pada masa ini, JTKSM hanya memberi pengesahan (attestation) Demand Letter bagi pengambilan pekerja asing warganegara Nepal berdasarkan Memorandum of Understanding (MoU) yang berkuatkuasa.
+
+Sebarang pertanyaan lanjut boleh diajukan kepada modul Meja Bantu Sistem ePPAx atau email bpajtksm@mohr.gov.my.
+
+APA YANG ANDA PERLUKAN
+
+Akta & Panduan
+
+Borang & Senarai Semak
+
+Soalan
+Lazim
+
+
+============================================================
+MY_JTKSM_perkhidmatan_penggajian-pekerja-asing_akta-panduan
+============================================================
+
+AKTA & PANDUAN
+
+Senarai Semak Untuk Pengesahan (Attestation) Demand Letter Bagi Permohonan Pekerja Asing Warganegara Nepal
+Muat Turun
+Senarai Semak Dokumen Permohonan Surat Sokongan Pertukaran Majikan Bagi Penggajian Pekerja Asing JTKSM
+Muat Turun
+Akta Kerja 1955 (Akta 265)
+Muat Turun
+Akta Standard Minimum Perumahan, Penginapan dan Kemudahan Pekerja 1990 [Akta 446]
+Muat Turun
+Akta Majlis Perundingan Gaji Negara 2011 (Akta 732)
+Muat Turun
+Akta Antipemerdagangan Orang Dan Antipenyeludupan Migran 2007 (Akta 670)
+Muat Turun
+Akta Umur Persaraan Minimum 2012 (Akta 753)
+Muat Turun
+
+
+============================================================
+MY_JTKSM_perkhidmatan_penggajian-pekerja-asing_soalan-lazim-penggajian-pekerja-asing
+============================================================
+
+SOALAN LAZIM PENGGAJIAN PEKERJA ASING
+
+1. 1. APAKAH DEFINISI PEKERJA ASING DIBAWAH AKTA KERJA 1955?
+Pekerja asing ertinya pekerja yang bukan warganegara.
+
+2. ADAKAH DALAM TEMPOH SHUTDOWN, PEKERJA YANG BERGAJI BULANAN LAYAK MENDAPAT ...
+Pekerja asing ertinya pekerja yang bukan warganegara.
+
+3. APAKAH KATEGORI PEKERJA YANG BOLEH DIRENTIKERJA SENTARA ATAU LAY-OFF?
+Pekerja asing ertinya pekerja yang bukan warganegara.
+
+4. MAJIKAN TELAH MEMBUAT KEPUTUSAN UNTUK MENUTUP OPERASI PERNIAGAAN SELAMA SA...
+Pekerja asing ertinya pekerja yang bukan warganegara.

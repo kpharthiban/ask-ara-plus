@@ -1592,9 +1592,6 @@ KY Jelly
 
 Glycerin/ NaCl Enema (Ravin )
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 SUPPORTIVE AND PALLIATIVE CARE INDICATORS TOOL (SPICT)
 Appendix I
 The SPICT is a guide to identifying people at risk of deteriorating and dying. Assessment of unmet supportive and palliative care needs may be appropriate. 
@@ -2547,9 +2544,6 @@ Minimal assistance may still be required in “tight corners” or to negotiate 
 5. 
 To propel wheelchair independently, the patient must be able to go around corners, turn around, manoeuvre the chair to a table, bed, toilet, etc. The patient must be able to push a chair at least 50 metres and negotiate a kerb. 
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 STAIR CLIMBING 
 
 The patient is unable to climb stairs. 
@@ -2620,9 +2614,6 @@ INDEX ITEM
 SCORE 
 DESCRIPTION 
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 Supervision is required for safety in adjusting the water temperature, or in the transfer. 
 
 The patient may use a bathtub, a shower, or take a complete sponge bath. The patient must be able to do all the steps of whichever method is employed without another person being present. 
@@ -2672,9 +2663,6 @@ The patient can feed self from a tray or table when someone puts the food within
 INDEX ITEM 
 SCORE 
 DESCRIPTION 
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
 
 BAHAGIAN 1 
 Sila baca setiap kenyataan dan tuliskan skor mengikut skala yang mengambarkan keadaan anda 
@@ -2838,9 +2826,6 @@ BORANG SARINGAN DASS
 (DEPRESSION, ANXIETY AND STRESS SCREENING)
 LAMPIRAN VI
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 Langkah 2 : Masukkan skala markah jawapan ke dalam ruangan kosong di Bahagian 2, 
  
  mengikut soalan (S) bagi setiap kategori (Stres, Anxiety dan Kemurungan).
@@ -2939,9 +2924,6 @@ SANGAT TERUK
 11 + 
 18 + 
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 BAHAGIAN 3
 KEPUTUSAN UJIAN DASS
 Isikan tahap kesihatan mental ( normal, ringan, sederhana, teruk, atau sangat teruk) ke dalam jadual.
@@ -2970,9 +2952,6 @@ KEBIMBANGAN (ANXIETY)
  
 KEMURUNGAN (DEPRESSION) 
  
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
 
 NO. PENDAFTARAN
 MY KID NO./ NO. K/P:
@@ -3010,9 +2989,6 @@ RAWATAN
  
  
  
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
 
 REKOD TAHAP KESIHATAN SEMASA PERAWATAN DI RUMAH (Simpanan Penjaga)
 Tarikh 
@@ -3090,9 +3066,6 @@ Temujanji
  
  
  
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
 
 LAMPIRAN VIIl
 PPD 004(b)/2014 
@@ -3271,9 +3244,6 @@ Jenis Pengangkutan : Sendiri Awam
  
  
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 2. SEJARAH PERUBATAN
 2.1. UBAT-UBATAN SEMASA :
 2.2. SEJARAH ALAHAN KEPADA UBAT-UBAT :
@@ -3310,9 +3280,6 @@ Edisi 2020
 Bil.
 Diagnosa
  Tahun Diagnosa
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
 
 3.1. Penilaian Fisikal 
  
@@ -3420,9 +3387,6 @@ Jika ada, nyatakan ...............................
 .............................................................. 
  
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 Penilaian Sosial & 
 Psikologikal 
  
@@ -3509,9 +3473,6 @@ Nama & Cop Paramedik yang membuat penilaian :
 Tandatangan :
 Tarikh : 
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 4. SENARAI MASALAH DAN RANCANGAN PENGENDALIAN PELANGGAN (NURSING CARE PLAN)
 Nama Pelanggan :...............................................................................
 No K/P :.............................................................................
@@ -3550,9 +3511,6 @@ Tanda tangan
  
  
  
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
 
 5. RANCANGAN PENGENDALIAN PELANGGAN (PELAKSANAAN)
 Nama Pelanggan :...............................................................................
@@ -3617,9 +3575,6 @@ Pain Score 010:
  
  
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 6. PELAN DISCAJ
  
 Tarikh discaj dari PPD : 
@@ -3668,9 +3623,6 @@ Nama & Cop Paramedik : Tandatangan :
  
  
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 PANDUAN PENCEGAHAN DAN KAWALAN INFEKSI COVID-19
 UNTUK ANGGOTA KESIHATAN SEMASA PERAWATAN DI RUMAH
 (Tatacara ini adalah tambahan kepada prosedur perawatan di rumah sedia ada seperti lawatan antenatal, postnatal, domisiliari, paliatif)
@@ -3709,9 +3661,6 @@ Selepas menyentuh pesakit (After touching a patient)
 Selepas menyentuh persekitaran pesakit (After touching a patient surroundings)
  
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 • Membersihkan semua peralatan yang telah digunakan dengan menggunakan alcohol 
  swab (70%)
 • Mengendalikan sisa klinikal mengikut amalan standard precaution
@@ -3722,9 +3671,6 @@ Edisi 2020
 • Lakukan dekontaminasi beg lawatan dan peralatan
 Selepas lawatan;
 4.
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
 
 BORANG PENILAIAN RISIKO JANGKITAN COVID-19
 Nama :
@@ -3802,38 +3748,8 @@ LAMPIRAN X
 Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
 Edisi 2020
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 SURAT AKTA FI
 LAMPIRAN XI
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
 Edisi 2020
 
@@ -3842,17 +3758,11 @@ Lampiran XII
 Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
 Edisi 2020
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 CARTA ALIR INTERVENSI TERAPI PEMAKANAN PERUBATAN (MNT) 
 SOKONGAN PEMAKANAN
 LAMPIRAN XIII (a)
 
 LAMPIRAN XIII (b)
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
 Edisi 2020
 
@@ -3887,9 +3797,6 @@ TARIKH MULA LATIHAN
  
  
  
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
 
 TANGGUNGJAWAB ANGGOTA : 
 Anda Harus 
@@ -3991,9 +3898,6 @@ TT
  
  
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 1. 
 JAGAAN TRACHEOSTOMY WOUND 
  
@@ -4049,48 +3953,6 @@ Nama
  
 No. K/P 
 Penyelia 
-
-Nama 
-TT 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 
 BAB 6
 RUJUKAN
@@ -4476,9 +4338,6 @@ PKD Kota Setar
 Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
 Edisi 2020
 
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
-
 45. 
 Dr. Suhaida Binti Mohd Sidek 
 Ketua Penolong Pengarah Kanan 
@@ -4522,9 +4381,6 @@ Sabah, Likas
  
  
  
-
-Garis Panduan Perkhidmatan Perawatan Domisiliari Di Kesihatan Primer
-Edisi 2020
 
 1. 
 Dr. Salimah Bt. Hj. Othman 

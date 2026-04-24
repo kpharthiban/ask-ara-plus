@@ -1,0 +1,100 @@
+SISTEM MAKLUMAT PERKHIDMATAN KOMUNITI (E-KOMUNITI)
+
+Sistem Maklumat Perkhidmatan Komuniti (e-Komuniti)
+Utama Sistem Maklumat Perkhidmatan Komuniti (e-Komuniti)
+
+Sistem e-Komuniti merupakan satu platform secara dalam talian yang bertujuan untuk menggalakkan pewujudan masyarakat penyayang dan merealisasikan “Kebajikan Tanggungjawab Bersama” dalam kalangan masyarakat.
+
+Pelaksanaannya adalah melalui kolaborasi strategik di antara Jabatan Kebajikan Masyarakat (JKM) dengan sektor kerajaan, sektor korporat, syarikat swasta, pertubuhan bukan kerajaan (NGO), sukarelawan dan individu berdasarkan kepada Tanggungjawab Sosial Korporat (Corporate Social Responsibility – CSR), “Komuniti untuk Komuniti” dan nilai “Berkat Berjasa”.
+
+Tujuan sistem ini adalah untuk:
+
+Menggalakkan supaya Pertubuhan Sukarela Kebajikan (PSK) berdaftar dengan JKM;
+Mewujudkan mekanisme permintaan dan pembekalan (demand and supply) yang sistematik dan terkini serta secara global dan dalam talian;
+Menyediakan satu kaedah alternatif untuk mendapatkan sumbangan oleh PSK yang berdaftar selain daripada menggunakan kaedah yang sedia ada;
+Memudahkan sektor kerajaan, sektor korporat, syarikat swasta, pertubuhan bukan kerajaan dan individu untuk menyalurkan sumbangan kepada PSK yang berdaftar berdasarkan keperluan yang dikehendaki;
+Menyediakan satu platform pengurusan permohonan Bantuan Kewangan Kerajaan kepada Pertubuhan Sukarela Kebajikan yang lebih sistematik, teratur dan cekap; dan
+Menyediakan satu platform pengurusan sukarelawan JKM yang lebih sistematik, teratur dan cekap.
+
+Sistem e-Komuniti merangkumi lima (5) komponen utama:
+
+Profil Pertubuhan Sukarela Kebajikan;
+Keperluan Pertubuhan Sukarela Kebajikan;
+Sumbangan Keperluan kepada Pertubuhan Sukarela Kebajikan, kumpulan sasar Jabatan dan golongan yang memerlukan;
+Pengurusan permohonan Bantuan Kewangan Kerajaan kepada Pertubuhan Sukarela Kebajikan; dan
+Pengurusan Sukarelawan.
+
+1. PROFIL PERTUBUHAN SUKARELA KEBAJIKAN (PSK)
+
+Sistem e-Komuniti membolehkan mana-mana PSK untuk mendaftar sebagai pengguna bagi mendapatkan ID Pengguna dan Kata Laluan untuk akses masuk ke dalam sistem. Tujuan pendaftaran ini adalah untuk membolehkan PSK membuat permohonan perkhidmatan Jabatan khususnya di bawah Bahagian Komuniti secara dalam talian. Antara perkhidmatan yang ditawarkan adalah permohonan sumbangan atau pun perkhidmatan. Permohonan Bantuan Kewangan Kerajaan kepada PSK juga boleh dimohon secara dalam talian melalui sistem ini.
+
+PSK boleh mendaftarkan Profil secara dalam talian menerusi Sistem e-Komuniti. Berikut adalah proses bagi pendaftaran profil oleh PSK, seterusnya kelulusan/pengesahan pendaftaran oleh JKM:
+
+PSK mendaftar sebagai pengguna
+Log masuk ke dalam sistem
+Kemaskini dan lengkapkan profil PSK
+Hantar Permohonan
+Semakan dan Pengesahan oleh JKM
+
+2. KEPERLUAN PERTUBUHAN SUKARELA KEBAJIKAN (PSK)
+
+Modul Keperluan menyediakan satu platform mengenai maklumat keperluan PSK dan membolehkan sektor kerajaan, sektor korporat, syarikat swasta, NGO dan individu yang berhasrat melakukan Tanggungjawab Sosial Korporat atau memberi sumbangan untuk membantu golongan yang berkeperluan, mengetahui keperluan sebenar yang disenaraikan oleh PSK untuk membuat sumbangan yang bersesuaian dan menepati keperluan PSK melalui kaedah suai padan (matching). Ia juga memastikan sumbangan diberikan kepada PSK yang berkelayakan dan berdaftar di bawah Jabatan Pendaftaran Pertubuhan Malaysia (ROS) dan/atau Akta Pusat Jagaan 1993.
+
+PSK yang telah berdaftar dan diluluskan/disahkan pendaftaran oleh JKM boleh log masuk ke dalam sistem dan menambah ”Keperluan” (sekiranya perlu). PSK boleh memohon keperluan seperti makanan, pakaian, tunai, peralatan, latihan kemahiran dan perkhidmatan serta lain-lain keperluan yang bersesuaian. Keperluan yang dimohon akan disemak dan disahkan oleh JKM dan kemudiannya akan dipaparkan kepada orang awam di paparan Halaman Utama Sistem e-Komuniti.
+
+Berikut adalah proses bagi memasukkan maklumat keperluan PSK dalam Sistem:
+
+PSK Log masuk ke dalam sistem
+PSK Tambah dan Hantar Keperluan
+Semakan dan Pengesahan Keperluan oleh JKM
+Paparan Keperluan yang telah disahkan pada Senarai Keperluan di Halaman Utama Sistem e-Komuniti
+Mana-mana pihak yang ingin memberi sumbangan kepada PSK boleh melayari Sistem e-Komuniti melalui pautan: https://komuniti.jkm.gov.my/
+
+3. SUMBANGAN KEPERLUAN KEPADA PERTUBUHAN SUKARELA KEBAJIKAN
+Orang awam boleh melayari Sistem e-Komuniti yang memaparkan Senarai Keperluan yang telah dimasukkan oleh PSK. Berikut adalah langkah-langkah bagi sumbangan keperluan daripada orang awam kepada PSK:
+Layari Sistem e-Komuniti
+Rujuk Senarai Keperluan pada Halaman Utama Sistem
+Klik butang Sumbangan untuk menambah maklumat sumbangan
+Lengkapkan Borang Maklumat Sumbangan dan Simpan
+*Nota:
+Sumbangan keperluan adalah berlaku di luar sistem. Penyumbang hanya perlu merekodkan maklumat sumbangan yang telah/akan diberi kepada PSK.
+Semua urusan penyaluran sumbangan hendaklah diuruskan oleh penyumbang bersama PSK dengan mematuhi undang-undang semasa yang berkuatkuasa.
+
+4.PENGURUSAN PERMOHONAN BANTUAN KEWANGAN KERAJAAN KEPADA PERTUBUHAN SUKARELA KEBAJIKAN
+
+PSK yang telah berdaftar dan telah diluluskan/disahkan pendaftaran oleh JKM boleh membuat Permohonan Bantuan Kewangan Kerajaan Kepada Pertubuhan Sukarela Kebajikan secara dalam talian menerusi Sistem e-Komuniti.
+Berikut adalah proses bagi Permohonan Bantuan Kewangan Kerajaan kepada Pertubuhan Sukarela Kebajikan:
+
+PSK Log Masuk ke dalam sistem
+Lengkapkan Profil PSK
+Lengkapkan Borang Permohonan & Hantar Borang Permohonan
+JKM menyemak dan proses permohonan
+PSK boleh membuat semakan status permohonan dari semasa ke semasa
+
+5.PENGURUSAN SUKARELAWAN
+
+Modul Pengurusan Sukarelawan membolehkan maklumat sukarelawan JKM diuruskan di dalam Sistem, ia merangkumi beberapa bahagian berikut:
+
+Pendaftaran Sukarelawan secara dalam talian
+Semakan dan pengesahan permohonan sukarelawan
+Penjanaan nombor sukarelawan
+Cetakan Kad Sukarelawan
+Pendaftaran Sukarelawan KBDR
+Pendaftaran Klien bagi Sukarelawan KBDR
+Orang awam yang berminat menjadi Sukarelawan JKM boleh memohon secara dalam talian menerusi Sistem e-Komuniti. Melalui sistem ini orang awam akan mendapatkan ID Penguna dan kata laluan untuk aksess masuk ke dalam sistem, seterusnya membuat permohonan menjadi sukarelawan JKM.
+
+Antara khidmat kesukarelaan yang diberikan oleh sukarelawan JKM adalah seperti berikut:
+
+Program Pembangunan dan Pemerkasaan Komuniti
+Program Khidmat Bantu Di Rumah
+Program Khidmat Bantu Di Institusi Kebajikan
+Program Pengurusan Bencana
+Berikut adalah proses bagi Permohonan Pendaftaran sukarelawan JKM, seterusnya kelulusan/pengesahan pendaftaran oleh JKM:
+
+Layari Sistem e-Komuniti
+Rujuk Menu Sukarelawan
+Lengkapkan Borang Daftar Sukarelawan dan Hantar Borang
+JKM (Pegawai di Pejabat Kebajikan Masyarakat Daerah) menyemak dan mengesahkan permohonan
+Sukarelawan boleh menyemak status permohonan secara dalam talian
+
+Sila layari portal Perkhidmatan e-komuniti https://komuniti.jkm.gov.my/ untuk mendapatkan maklumat lanjut.

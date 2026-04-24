@@ -156,10 +156,6 @@ RM1,500
 Bilangan hari bekerja dalam seminggu 
 RM7.21 
 
-RM57.69 
-RM69.23 
-RM86.54 
-
 RM69.23 
 Selain kawasan 
 Majlis Bandaraya atau 
@@ -291,10 +287,6 @@ RM1,500
 Number of working days in a week 
 RM7.21 
 
-RM57.69 
-RM69.23 
-RM86.54 
-
 Minimum wages rates and rate of wages paid to employee based only on piece rate, tonnage, etc. with effect from 1 January 2023 
 5. 
 (1) 
@@ -326,8 +318,6 @@ RM1,200
 Number of working days in a week 
 RM5.77 
 
-RM46.15 
-
 RM55.38 
 
 RM69.23 
@@ -339,21 +329,11 @@ RM1,500
 Number of working days in a week 
 RM7.21 
 
-RM57.69 
-RM69.23 
-RM86.54 
-
 Other than 
 City Council or Municipal 
 Council area 
  
 RM1,100 
-
-RM42.31 
- 
-RM5.29 
-
-RM50.77 
 
 RM63.47 
  

@@ -4,19 +4,24 @@ fetch_gov_portal — Hardened government portal search with golden URL map.
 Owner: Pharthiban
 Depends on: duckduckgo-search (pip install duckduckgo-search), httpx
 
-Three-layer approach (in priority order):
+Four-layer approach (in priority order):
   1. GOLDEN URLs — curated, verified landing pages per entity + intent.
      DuckDuckGo is NOT called at all when a golden URL exists. Zero hallucination risk.
+     Returns up to 3 related golden entries (intent + general + contact) for rich context.
   2. Filtered DuckDuckGo — when no golden URL matches, DuckDuckGo runs but results
-     are scored and red-flag pages (complaints, login, feedback portals) are removed.
-  3. Liveness check — every URL returned (golden or DDG) is HEAD-checked via httpx
-     before being included in results. Dead links are silently dropped.
+     are keyword-scored and red-flag pages (complaints, login, feedback) are removed.
+     Query terms are placed BEFORE site: operator for better DDG ranking.
+  3. Keyword relevance scoring — results scored by query keyword overlap in title/snippet.
+     Zero-overlap results are discarded; survivors sorted by score descending.
+  4. Parallel liveness check — all candidate URLs HEAD-checked concurrently via httpx.
+     Dead links silently dropped. Golden URLs use a faster 2 s timeout.
 
 Security: Only allowlisted government domains are permitted.
 """
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import re
@@ -171,6 +176,275 @@ GOLDEN_URLS: dict[str, dict[str, dict]] = {
         },
     },
 
+    # ── MALAYSIA — IMMIGRATION (JIM) ─────────────────────────────────────────
+
+    "jim": {
+        "general": {
+            "url": "https://www.imi.gov.my/",
+            "title": "Jabatan Imigresen Malaysia (JIM) — Portal Rasmi",
+            "snippet": "JIM menguruskan kemasukan, pengeluaran permit kerja, penguatkuasaan imigresen, dan perkhidmatan dokumen perjalanan di Malaysia.",
+        },
+        "apply": {
+            "url": "https://www.imi.gov.my/index.php/ms/perkhidmatan-utama/pas/pas-lawatan-kerja-sementara-plks.html",
+            "title": "JIM — Pas Lawatan Kerja Sementara (PLKS)",
+            "snippet": "Permohonan dan pembaharuan PLKS bagi pekerja asing. Majikan perlu mengemukakan permohonan melalui sistem dalam talian JIM.",
+        },
+        "register": {
+            "url": "https://www.imi.gov.my/index.php/ms/perkhidmatan-utama/pekerja-asing.html",
+            "title": "JIM — Pendaftaran Pekerja Asing",
+            "snippet": "Syarat dan prosedur pendaftaran pekerja asing dengan Jabatan Imigresen Malaysia, termasuk dokumen yang diperlukan.",
+        },
+        "check": {
+            "url": "https://www.imi.gov.my/index.php/ms/soalan-lazim/faq-umum.html",
+            "title": "JIM — Soalan Lazim (FAQ)",
+            "snippet": "Soalan lazim mengenai permit kerja, visa, pas masuk, dan prosedur imigresen Malaysia.",
+        },
+        "contact": {
+            "url": "https://www.imi.gov.my/index.php/ms/hubungi-kami.html",
+            "title": "JIM — Hubungi Kami",
+            "snippet": "Talian hotline JIM: 03-8880 1000. Pejabat imigresen di seluruh negara dan waktu operasi.",
+        },
+    },
+
+    "imi": {
+        "general": {
+            "url": "https://www.imi.gov.my/",
+            "title": "Jabatan Imigresen Malaysia (IMI) — Portal Rasmi",
+            "snippet": "IMI bertanggungjawab mengawal kemasukan warganegara asing ke Malaysia dan menguruskan permit kerja serta dokumen perjalanan.",
+        },
+        "apply": {
+            "url": "https://www.imi.gov.my/index.php/ms/perkhidmatan-utama/pas/pas-lawatan-kerja-sementara-plks.html",
+            "title": "IMI — Permohonan Pas Lawatan Kerja (PLKS)",
+            "snippet": "Cara memohon Pas Lawatan Kerja Sementara (PLKS): dokumen diperlukan, yuran, dan tempoh pemprosesan.",
+        },
+        "contact": {
+            "url": "https://www.imi.gov.my/index.php/ms/hubungi-kami.html",
+            "title": "IMI — Hubungi Kami",
+            "snippet": "Hotline Imigresen: 03-8880 1000. Senarai pejabat imigresen negeri dan waktu berurusan.",
+        },
+    },
+
+    "imigresen": {
+        "general": {
+            "url": "https://www.imi.gov.my/",
+            "title": "Imigresen Malaysia — Portal Rasmi",
+            "snippet": "Jabatan Imigresen Malaysia (JIM) menguruskan permit kerja, visa, pas pelajar, pas sosial, dan penguatkuasaan undang-undang imigresen.",
+        },
+        "contact": {
+            "url": "https://www.imi.gov.my/index.php/ms/hubungi-kami.html",
+            "title": "Imigresen Malaysia — Hubungi Kami",
+            "snippet": "Hotline: 03-8880 1000. Waktu pejabat: Isnin–Jumaat 8:00 pagi–5:00 petang.",
+        },
+    },
+
+    "plks": {
+        "general": {
+            "url": "https://www.imi.gov.my/index.php/ms/perkhidmatan-utama/pas/pas-lawatan-kerja-sementara-plks.html",
+            "title": "Pas Lawatan Kerja Sementara (PLKS) — JIM",
+            "snippet": "PLKS ialah permit kerja sah bagi pekerja asing di Malaysia. Majikan perlu mendaftar dan memperbaharui PLKS sebelum tamat tempoh.",
+        },
+        "apply": {
+            "url": "https://www.imi.gov.my/index.php/ms/perkhidmatan-utama/pas/pas-lawatan-kerja-sementara-plks.html",
+            "title": "PLKS — Cara Memohon / Memperbaharui",
+            "snippet": "Proses permohonan PLKS: majikan memohon secara dalam talian melalui sistem JIM, lengkap dengan dokumen pekerja dan syarikat.",
+        },
+        "contact": {
+            "url": "https://www.imi.gov.my/index.php/ms/hubungi-kami.html",
+            "title": "PLKS — Hubungi JIM",
+            "snippet": "Untuk pertanyaan PLKS: Jabatan Imigresen Malaysia, talian 03-8880 1000.",
+        },
+    },
+
+    "work permit malaysia": {
+        "general": {
+            "url": "https://www.imi.gov.my/index.php/ms/perkhidmatan-utama/pas/pas-lawatan-kerja-sementara-plks.html",
+            "title": "Malaysia Work Permit (PLKS) — Immigration Department",
+            "snippet": "The Temporary Work Visit Pass (PLKS) is the main work permit for foreign workers in Malaysia. Employers must apply and renew before expiry.",
+        },
+        "apply": {
+            "url": "https://www.imi.gov.my/index.php/ms/perkhidmatan-utama/pas/pas-lawatan-kerja-sementara-plks.html",
+            "title": "Malaysia Work Permit — How to Apply / Renew",
+            "snippet": "Work permit applications in Malaysia are employer-driven. The employer applies online via the JIM system with the worker's documents.",
+        },
+        "contact": {
+            "url": "https://www.imi.gov.my/index.php/ms/hubungi-kami.html",
+            "title": "Malaysia Immigration — Contact Us",
+            "snippet": "Immigration Department of Malaysia hotline: 03-8880 1000. Operating hours: Mon–Fri 8 AM–5 PM.",
+        },
+    },
+
+    "pembantu rumah asing": {
+        "general": {
+            "url": "https://www.imi.gov.my/index.php/ms/perkhidmatan-utama/pembantu-rumah-asing.html",
+            "title": "JIM — Pembantu Rumah Asing (Foreign Domestic Helper)",
+            "snippet": "Syarat dan prosedur mendapatkan pembantu rumah asing di Malaysia: agensi berlesen, negara punca, dokumen, dan yuran.",
+        },
+        "apply": {
+            "url": "https://www.imi.gov.my/index.php/ms/perkhidmatan-utama/pembantu-rumah-asing.html",
+            "title": "JIM — Permohonan Pembantu Rumah Asing",
+            "snippet": "Majikan perlu menggunakan agensi pekerjaan berlesen untuk mendapatkan pembantu rumah asing. Pas dikeluarkan selama 2 tahun boleh diperbaharui.",
+        },
+    },
+
+    # ── MALAYSIA — LABOUR / WORKER RIGHTS (JTKSM) ────────────────────────────
+
+    "jtksm": {
+        "general": {
+            "url": "https://jtksm.mohr.gov.my/",
+            "title": "Jabatan Tenaga Kerja Semenanjung Malaysia (JTKSM)",
+            "snippet": "JTKSM menguatkuasakan Akta Kerja 1955 dan melindungi hak pekerja di Malaysia, termasuk pekerja asing dan pekerja domestik.",
+        },
+        "claim": {
+            "url": "https://jtksm.mohr.gov.my/index.php/perkhidmatan/aduan",
+            "title": "JTKSM — Aduan Buruh (Labour Complaint)",
+            "snippet": "Cara buat aduan buruh: gaji tak bayar, pecat tanpa sebab, majikan zalim. Hubungi pejabat JTKSM terdekat atau e-Aduan dalam talian.",
+        },
+        "apply": {
+            "url": "https://jtksm.mohr.gov.my/index.php/perkhidmatan/permit-perburuhan",
+            "title": "JTKSM — Permit Perburuhan Pekerja Asing",
+            "snippet": "Permit perburuhan diperlukan bagi pekerja asing di sektor pembuatan, pembinaan, perladangan, pertanian, dan perkhidmatan di Malaysia.",
+        },
+        "benefit": {
+            "url": "https://jtksm.mohr.gov.my/index.php/perkhidmatan/pemberhentian-pekerja",
+            "title": "JTKSM — Pemberhentian & Hak Pekerja",
+            "snippet": "Hak pekerja semasa pemberhentian: notis, faedah terhenti, bayaran ganti rugi, dan prosedur tuntutan di JTKSM.",
+        },
+        "contact": {
+            "url": "https://jtksm.mohr.gov.my/index.php/hubungi-kami",
+            "title": "JTKSM — Hubungi Kami",
+            "snippet": "Hotline Kementerian Sumber Manusia: 03-8886 5000. Pejabat JTKSM di semua negeri Semenanjung Malaysia.",
+        },
+    },
+
+    "tenaga kerja": {
+        "general": {
+            "url": "https://jtksm.mohr.gov.my/",
+            "title": "JTKSM — Jabatan Tenaga Kerja",
+            "snippet": "Jabatan Tenaga Kerja Semenanjung Malaysia melindungi hak pekerja, memproses aduan buruh, dan mengeluarkan permit perburuhan.",
+        },
+        "claim": {
+            "url": "https://jtksm.mohr.gov.my/index.php/perkhidmatan/aduan",
+            "title": "JTKSM — Aduan Buruh",
+            "snippet": "Serahkan aduan buruh di pejabat JTKSM. Aduan boleh meliputi gaji tertunggak, pemecatan, kerja lebih masa, atau penderaan majikan.",
+        },
+        "contact": {
+            "url": "https://jtksm.mohr.gov.my/index.php/hubungi-kami",
+            "title": "JTKSM — Cari Pejabat Berhampiran",
+            "snippet": "Hubungi pejabat Jabatan Tenaga Kerja di negeri anda. Hotline: 03-8886 5000.",
+        },
+    },
+
+    "aduan buruh": {
+        "general": {
+            "url": "https://jtksm.mohr.gov.my/index.php/perkhidmatan/aduan",
+            "title": "JTKSM — Cara Buat Aduan Buruh di Malaysia",
+            "snippet": "Pekerja yang tidak puas hati dengan majikan boleh buat aduan di pejabat Jabatan Tenaga Kerja. Kes: gaji tidak dibayar, PHK tanpa notis, kerja lebih masa tidak dibayar.",
+        },
+        "apply": {
+            "url": "https://jtksm.mohr.gov.my/index.php/perkhidmatan/aduan",
+            "title": "JTKSM — Borang Aduan Buruh",
+            "snippet": "Bawa dokumen kontrak kerja, slip gaji, dan bukti aduan ke pejabat JTKSM. Kes akan diselesaikan dalam tempoh yang ditetapkan.",
+        },
+        "contact": {
+            "url": "https://jtksm.mohr.gov.my/index.php/hubungi-kami",
+            "title": "JTKSM — Hubungi Pejabat Tenaga Kerja",
+            "snippet": "Hubungi pejabat JTKSM di negeri anda untuk membuat atau mengetahui status aduan buruh. Hotline: 03-8886 5000.",
+        },
+    },
+
+    "labour complaint malaysia": {
+        "general": {
+            "url": "https://jtksm.mohr.gov.my/index.php/perkhidmatan/aduan",
+            "title": "JTKSM — File a Labour Complaint in Malaysia",
+            "snippet": "Foreign and local workers in Malaysia can file labour complaints at the nearest JTKSM office: unpaid wages, wrongful dismissal, overtime disputes, employer abuse.",
+        },
+        "contact": {
+            "url": "https://jtksm.mohr.gov.my/index.php/hubungi-kami",
+            "title": "JTKSM — Contact Labour Department",
+            "snippet": "Human Resources Ministry hotline: 03-8886 5000. Find nearest JTKSM office in your state.",
+        },
+    },
+
+    "unpaid salary malaysia": {
+        "general": {
+            "url": "https://jtksm.mohr.gov.my/index.php/perkhidmatan/aduan",
+            "title": "JTKSM — Unpaid Salary Complaint Malaysia",
+            "snippet": "If your employer has not paid your salary, file a complaint at the nearest Jabatan Tenaga Kerja (Labour Department). Bring your employment contract and payslips.",
+        },
+        "contact": {
+            "url": "https://jtksm.mohr.gov.my/index.php/hubungi-kami",
+            "title": "JTKSM — Contact Us",
+            "snippet": "Labour Department Malaysia: 03-8886 5000. Complaints can be filed in person at any state JTKSM office.",
+        },
+    },
+
+    # ── MALAYSIA — JKM (EXPANDED with scraped content) ───────────────────────
+
+    "bantuan bencana": {
+        "general": {
+            "url": "https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=NnRMcWxheTlaVXZYeVJNbFJhV3ptUT09",
+            "title": "JKM — Bantuan Bencana (Flood & Disaster Aid)",
+            "snippet": "JKM menyediakan bantuan bencana termasuk Bantuan Wang Ihsan, pusat pemindahan sementara, dan bantuan keperluan asas bagi mangsa banjir dan bencana.",
+        },
+        "apply": {
+            "url": "https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=NnRMcWxheTlaVXZYeVJNbFJhV3ptUT09",
+            "title": "JKM — Cara Mohon Bantuan Bencana",
+            "snippet": "Mangsa bencana boleh mendaftar di pusat pemindahan atau menghubungi pejabat JKM negeri. Bantuan Wang Ihsan diberikan kepada mereka yang terjejas.",
+        },
+        "contact": {
+            "url": "https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=eE9aenk5aDh3YjFSbndHYVpJSTBsUT09",
+            "title": "JKM — Hubungi Kami",
+            "snippet": "Talian hotline JKM: 03-8000 8000. Pejabat JKM di semua negeri.",
+        },
+    },
+
+    "bantuan wang ihsan": {
+        "general": {
+            "url": "https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=NnRMcWxheTlaVXZYeVJNbFJhV3ptUT09",
+            "title": "JKM — Bantuan Wang Ihsan (Flood/Disaster Cash Aid)",
+            "snippet": "Bantuan Wang Ihsan ialah bantuan kewangan tunai segera bagi mangsa banjir dan bencana alam di Malaysia. Kadar: RM500 seorang atau RM1,000 seisi rumah.",
+        },
+        "apply": {
+            "url": "https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=NnRMcWxheTlaVXZYeVJNbFJhV3ptUT09",
+            "title": "JKM — Permohonan Bantuan Wang Ihsan",
+            "snippet": "Daftar di pusat pemindahan banjir atau pejabat JKM negeri. Bawa kad pengenalan dan bukti kediaman.",
+        },
+    },
+
+    "atip": {
+        "general": {
+            "url": "https://www.jkm.gov.my/",
+            "title": "JKM — Perlindungan Mangsa ATIP (Pemerdagangan Orang)",
+            "snippet": "JKM menyediakan perlindungan dan pemulihan kepada mangsa pemerdagangan orang (ATIP) di Malaysia, termasuk tempat perlindungan dan bantuan perundangan.",
+        },
+        "contact": {
+            "url": "https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=eE9aenk5aDh3YjFSbndHYVpJSTBsUT09",
+            "title": "JKM — Hubungi untuk Bantuan ATIP",
+            "snippet": "Mangsa pemerdagangan orang boleh mendapatkan bantuan melalui JKM. Hubungi: 03-8000 8000 atau polis (999).",
+        },
+    },
+
+    # ── MALAYSIA — SSM (Business Registration) ───────────────────────────────
+
+    "ssm": {
+        "general": {
+            "url": "https://www.ssm.com.my/",
+            "title": "Suruhanjaya Syarikat Malaysia (SSM) — Pendaftaran Perniagaan",
+            "snippet": "SSM menguruskan pendaftaran perniagaan, syarikat, dan perkongsian di Malaysia. Daftar perniagaan secara dalam talian melalui EzBiz.",
+        },
+        "register": {
+            "url": "https://ezbiz.ssm.com.my/",
+            "title": "SSM EzBiz — Daftar Perniagaan Dalam Talian",
+            "snippet": "Daftar perniagaan perseorangan (Enterprise), perkongsian, atau syarikat sendirian berhad (Sdn Bhd) secara dalam talian. Yuran mulai RM60.",
+        },
+        "contact": {
+            "url": "https://www.ssm.com.my/Pages/Contact_us/contact_us.aspx",
+            "title": "SSM — Hubungi Kami",
+            "snippet": "SSM hotline: 03-7721 4000. Kaunter SSM di seluruh negara.",
+        },
+    },
+
+    # ─────────────────────────────────────────────────────────────────────────
     # ── INDONESIA ─────────────────────────────────────────────────────────────
 
     "bpjs": {
@@ -424,19 +698,33 @@ GOLDEN_URLS: dict[str, dict[str, dict]] = {
 
 ALLOWED_DOMAINS: dict[str, list[str]] = {
     "MY": [
-        "www.perkeso.gov.my",
-        "perkeso.gov.my",
+        # Immigration (JIM) — newly scraped
+        "www.imi.gov.my",
+        "imi.gov.my",
+        # Labour / Tenaga Kerja (JTKSM) — newly scraped
+        "jtksm.mohr.gov.my",
         "www.mohr.gov.my",
         "mohr.gov.my",
+        # Social welfare (JKM) — newly scraped
         "www.jkm.gov.my",
         "jkm.gov.my",
+        # Social security (PERKESO/SOCSO) — newly scraped
+        "www.perkeso.gov.my",
+        "perkeso.gov.my",
+        # Health
         "www.moh.gov.my",
         "moh.gov.my",
+        # EPF/KWSP
         "www.kwsp.gov.my",
         "kwsp.gov.my",
         "iakaun.kwsp.gov.my",
+        # Housing
         "www.kkr.gov.my",
         "kkr.gov.my",
+        # Business registration
+        "www.ssm.com.my",
+        "ssm.com.my",
+        "ezbiz.ssm.com.my",
     ],
     "ID": [
         "www.bpjs-kesehatan.go.id",
@@ -494,8 +782,28 @@ COUNTRY_SITE_SCOPES: dict[str, str] = {
 
 MAX_SEARCH_RESULTS = 5
 
-# Liveness check timeout (seconds) — fast fail
-LIVENESS_TIMEOUT = 4.0
+# Liveness check timeouts — golden URLs are curated so we fail faster;
+# DDG results are untrusted so we wait a bit longer.
+LIVENESS_TIMEOUT_GOLDEN = 2.0   # seconds — golden URLs are curated / unlikely dead
+LIVENESS_TIMEOUT_DDG    = 4.0   # seconds — DDG results are less predictable
+
+# Stopwords stripped before keyword scoring (EN + MS + ID + TH + TL)
+_STOPWORDS = {
+    # English
+    "the", "a", "an", "in", "on", "at", "to", "of", "for", "and", "or",
+    "how", "what", "where", "when", "who", "can", "do", "i", "my", "is",
+    "are", "me", "with", "from", "about",
+    # Malay / Indonesian
+    "saya", "nak", "apa", "di", "ke", "yang", "dan", "ada", "boleh",
+    "cara", "untuk", "dengan", "ini", "itu", "oleh", "jika", "akan",
+    "telah", "sudah", "perlu", "tidak", "bagi", "adalah", "dalam",
+    # Filipino / Tagalog
+    "ang", "ng", "sa", "na", "ko", "ako", "kita", "mo", "ito", "po",
+    "mga", "ay", "at", "mga", "din", "naman",
+    # Thai
+    "ที่", "ใน", "ของ", "ได้", "และ", "หรือ", "จาก", "คือ", "เป็น", "มี",
+    "ให้", "ต้อง", "จะ", "ไม่", "กับ",
+}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -504,18 +812,18 @@ LIVENESS_TIMEOUT = 4.0
 
 # Pattern → intent label
 _INTENT_PATTERNS: list[tuple[re.Pattern, str]] = [
-    # claim / tuntutan / klaim / คลาม / i-claim / cara klaim
-    (re.compile(r"\b(claim|claims|tuntut|tuntutan|klaim|cara klaim|คลาม|รับสิทธิ)\b", re.I), "claim"),
-    # apply / mohon / pengajuan / สมัคร
-    (re.compile(r"\b(apply|applying|applied|applic|mohon|permohonan|pengajuan|สมัคร|申請)\b", re.I), "apply"),
-    # register / daftar / ลงทะเบียน
-    (re.compile(r"\b(register|registr|daftar|pendaftaran|ลงทะเบียน|สมัคร)\b", re.I), "register"),
-    # check / semak / ตรวจสอบ / cek
-    (re.compile(r"\b(check|semak|cek|ตรวจสอบ|how much|berapa|balance|baki|saldo)\b", re.I), "check"),
-    # benefit / faedah / สิทธิประโยชน์ / manfaat
-    (re.compile(r"\b(benefit|faedah|manfaat|สิทธิ|ประโยชน์|coverage|perlindungan)\b", re.I), "benefit"),
-    # contact / hubungi / ติดต่อ
-    (re.compile(r"\b(contact|hubung|telefon|phone|hotline|office|ติดต่อ|โทร)\b", re.I), "contact"),
+    # claim / tuntutan / klaim / aduan / คลาม
+    (re.compile(r"\b(claim|claims|tuntut|tuntutan|klaim|cara klaim|คลาม|รับสิทธิ|aduan|complaint|complain)\b", re.I), "claim"),
+    # apply / mohon / pengajuan / สมัคร / permohonan
+    (re.compile(r"\b(apply|applying|applied|applic|mohon|permohonan|pengajuan|สมัคร|申請|buat permohonan)\b", re.I), "apply"),
+    # register / daftar / ลงทะเบียน / renew / baharui
+    (re.compile(r"\b(register|registr|daftar|pendaftaran|ลงทะเบียน|สมัคร|renew|renewal|pembaharuan|baharui|memperbaharui)\b", re.I), "register"),
+    # check / semak / ตรวจสอบ / cek / status
+    (re.compile(r"\b(check|semak|cek|ตรวจสอบ|how much|berapa|balance|baki|saldo|status|tamat|expired)\b", re.I), "check"),
+    # benefit / faedah / สิทธิประโยชน์ / manfaat / hak / rights
+    (re.compile(r"\b(benefit|faedah|manfaat|สิทธิ|ประโยชน์|coverage|perlindungan|hak|rights|kelayakan|eligible)\b", re.I), "benefit"),
+    # contact / hubungi / ติดต่อ / office / pejabat
+    (re.compile(r"\b(contact|hubung|telefon|phone|hotline|office|pejabat|ติดต่อ|โทร|nombor)\b", re.I), "contact"),
 ]
 
 
@@ -533,14 +841,52 @@ def _detect_intent(query: str) -> str:
 
 # Maps query keywords → golden URL entity keys
 _ENTITY_ALIASES: dict[str, str] = {
-    # MY
+    # ── MY — Immigration (JIM) ────────────────────────────────────────────────
+    "jabatan imigresen": "jim",
+    "imigresen malaysia": "imigresen",
+    "imigresen": "imigresen",
+    "jim": "jim",
+    "imi": "imi",
+    "plks": "plks",
+    "pas lawatan kerja": "plks",
+    "work permit malaysia": "work permit malaysia",
+    "work permit": "work permit malaysia",
+    "permit kerja": "plks",
+    "pembantu rumah asing": "pembantu rumah asing",
+    "foreign domestic helper": "pembantu rumah asing",
+    "maid malaysia": "pembantu rumah asing",
+    # ── MY — Labour / Worker Rights (JTKSM) ──────────────────────────────────
+    "jtksm": "jtksm",
+    "jabatan tenaga kerja": "tenaga kerja",
+    "tenaga kerja": "tenaga kerja",
+    "aduan buruh": "aduan buruh",
+    "labour complaint": "labour complaint malaysia",
+    "labor complaint": "labour complaint malaysia",
+    "unpaid salary": "unpaid salary malaysia",
+    "gaji tak bayar": "aduan buruh",
+    "gaji tidak bayar": "aduan buruh",
+    "upah tidak dibayar": "aduan buruh",
+    # ── MY — Social Security (PERKESO/SOCSO) ─────────────────────────────────
     "perkeso": "perkeso",
     "socso": "socso",
     "epf": "epf",
     "kwsp": "kwsp",
+    # ── MY — Social Welfare (JKM) ────────────────────────────────────────────
     "jkm": "jkm",
     "kebajikan": "jkm",
-    # ID
+    "bantuan bencana": "bantuan bencana",
+    "bantuan wang ihsan": "bantuan wang ihsan",
+    "flood aid malaysia": "bantuan bencana",
+    "banjir bantuan": "bantuan bencana",
+    "atip": "atip",
+    "pemerdagangan orang": "atip",
+    "trafficking": "atip",
+    # ── MY — Business ─────────────────────────────────────────────────────────
+    "ssm": "ssm",
+    "suruhanjaya syarikat": "ssm",
+    "daftar perniagaan": "ssm",
+    "business registration malaysia": "ssm",
+    # ── ID ────────────────────────────────────────────────────────────────────
     "bpjs kesehatan": "bpjs kesehatan",
     "bpjs ketenagakerjaan": "bpjs ketenagakerjaan",
     "bpjamsostek": "bpjs ketenagakerjaan",
@@ -548,7 +894,7 @@ _ENTITY_ALIASES: dict[str, str] = {
     "bansos": "bansos",
     "pkh": "pkh",
     "jaminan sosial": "bpjs ketenagakerjaan",
-    # PH
+    # ── PH ────────────────────────────────────────────────────────────────────
     "philhealth": "philhealth",
     "sss": "sss",
     "pag-ibig": "pagibig",
@@ -559,13 +905,33 @@ _ENTITY_ALIASES: dict[str, str] = {
     "4ps": "4ps",
     "pantawid": "4ps",
     "dswd": "4ps",
-    # TH
+    # ── TH ────────────────────────────────────────────────────────────────────
     "ประกันสังคม": "ประกันสังคม",
     "sso": "ประกันสังคม",
     "social security thailand": "ประกันสังคม",
     "บัตรทอง": "บัตรทอง",
     "30 baht": "บัตรทอง",
     "nhso": "บัตรทอง",
+}
+
+# Fix 5: Auto-country inference — entity key → country code
+_ENTITY_COUNTRY: dict[str, str] = {
+    # MY
+    "jim": "MY", "imi": "MY", "imigresen": "MY",
+    "plks": "MY", "work permit malaysia": "MY", "pembantu rumah asing": "MY",
+    "jtksm": "MY", "tenaga kerja": "MY",
+    "aduan buruh": "MY", "labour complaint malaysia": "MY", "unpaid salary malaysia": "MY",
+    "perkeso": "MY", "socso": "MY", "epf": "MY", "kwsp": "MY", "jkm": "MY",
+    "bantuan bencana": "MY", "bantuan wang ihsan": "MY", "atip": "MY",
+    "ssm": "MY",
+    # ID
+    "bpjs": "ID", "bpjs kesehatan": "ID", "bpjs ketenagakerjaan": "ID",
+    "bansos": "ID", "pkh": "ID",
+    # PH
+    "sss": "PH", "philhealth": "PH", "pagibig": "PH",
+    "owwa": "PH", "dti": "PH", "4ps": "PH",
+    # TH
+    "ประกันสังคม": "TH", "บัตรทอง": "TH",
 }
 
 
@@ -579,33 +945,16 @@ def _detect_entity(query: str) -> str | None:
     return None
 
 
+def _infer_country_from_entity(entity: str | None) -> str:
+    """Return country code inferred from entity key, or empty string."""
+    if entity is None:
+        return ""
+    return _ENTITY_COUNTRY.get(entity, "")
+
+
 # ─────────────────────────────────────────────────────────────────────────────
-# 5. GOLDEN URL LOOKUP
+# 5. GOLDEN URL LOOKUP — see _get_golden_results() above (Fix 4)
 # ─────────────────────────────────────────────────────────────────────────────
-
-def _get_golden_result(query: str) -> dict | None:
-    """
-    Return a golden URL result dict if query matches entity + intent.
-    Falls back: specific intent → 'general' → None.
-    """
-    entity = _detect_entity(query)
-    if not entity or entity not in GOLDEN_URLS:
-        return None
-
-    intent = _detect_intent(query)
-    entity_map = GOLDEN_URLS[entity]
-
-    # Try specific intent first, then general
-    entry = entity_map.get(intent) or entity_map.get("general")
-    if not entry:
-        return None
-
-    return {
-        "title": entry["title"],
-        "url": entry["url"],
-        "snippet": entry["snippet"],
-        "_source": "golden",
-    }
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -651,11 +1000,11 @@ def _is_red_flag(result: dict) -> bool:
 # 7. LIVENESS CHECK
 # ─────────────────────────────────────────────────────────────────────────────
 
-async def _is_url_live(url: str) -> bool:
+async def _is_url_live(url: str, timeout: float = LIVENESS_TIMEOUT_DDG) -> bool:
     """HEAD request to verify URL resolves. Returns True if 2xx or 3xx."""
     try:
         async with httpx.AsyncClient(
-            timeout=httpx.Timeout(LIVENESS_TIMEOUT),
+            timeout=httpx.Timeout(timeout),
             follow_redirects=True,
         ) as client:
             resp = await client.head(url, headers={"User-Agent": "AskAra/1.0"})
@@ -665,6 +1014,78 @@ async def _is_url_live(url: str) -> bool:
     except Exception as exc:
         logger.debug("Liveness check failed for %s: %s", url, exc)
         return False
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Fix 3: KEYWORD RELEVANCE SCORING (for DuckDuckGo results)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _extract_keywords(query: str) -> list[str]:
+    """Extract meaningful lowercase tokens from query, stripping stopwords."""
+    tokens = re.findall(r"[^\s\W]+", query.lower())
+    return [t for t in tokens if len(t) > 2 and t not in _STOPWORDS]
+
+
+def _score_relevance(result: dict, keywords: list[str]) -> int:
+    """
+    Score a DDG result by how many query keywords appear in title + snippet.
+    Higher is better. Zero means the result is completely off-topic.
+    """
+    if not keywords:
+        return 1  # No keywords to match — pass everything through
+    haystack = (
+        result.get("title", "").lower()
+        + " "
+        + result.get("body", result.get("snippet", "")).lower()
+    )
+    return sum(1 for kw in keywords if kw in haystack)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Fix 4: MULTI-GOLDEN RESULT BUILDER
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _get_golden_results(query: str) -> list[dict]:
+    """
+    Return up to 3 golden URL result dicts for a query:
+      1. Primary  — specific intent match (e.g. "claim")
+      2. Secondary — "general" page (if different from primary)
+      3. Tertiary  — "contact" page (always useful for migrants)
+
+    Returns empty list if no entity matched.
+    """
+    entity = _detect_entity(query)
+    if not entity or entity not in GOLDEN_URLS:
+        return []
+
+    intent = _detect_intent(query)
+    entity_map = GOLDEN_URLS[entity]
+
+    seen_urls: set[str] = set()
+    collected: list[dict] = []
+
+    def _add(entry: dict | None) -> None:
+        if not entry:
+            return
+        u = entry["url"]
+        if u in seen_urls:
+            return
+        seen_urls.add(u)
+        collected.append({
+            "title": entry["title"],
+            "url": u,
+            "snippet": entry["snippet"],
+            "_source": "golden",
+        })
+
+    # 1. Specific intent
+    _add(entity_map.get(intent))
+    # 2. General page (often different URL)
+    _add(entity_map.get("general"))
+    # 3. Contact page — always useful for confused migrants
+    _add(entity_map.get("contact"))
+
+    return collected
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -710,14 +1131,19 @@ def _detect_country(url: str) -> str:
 
 async def fetch_gov_portal(
     url: str,
-    country: str = "",
+    country: str = "MY",
 ) -> str:
     """Search government portals for fresh information.
 
+    Malaysia-focused: defaults to MY government portals.
     Hardened with:
     - Golden URL map (no DuckDuckGo needed for known entities)
+    - Multi-golden results (up to 3 per hit: intent + general + contact)
+    - Auto-country inference from entity name
+    - DDG query terms placed BEFORE site: operator for better ranking
+    - Keyword relevance scoring (zero-match results discarded)
     - Red-flag filtering (complaints/login pages rejected)
-    - Liveness check (dead URLs dropped before response)
+    - Parallel liveness checks (concurrent HEAD requests, not sequential)
 
     Args:
         url: A search query (e.g. "how to claim PERKESO") OR a specific
@@ -737,33 +1163,54 @@ async def fetch_gov_portal(
     url = url.strip()
     fetched_at = datetime.now(timezone.utc).isoformat()
     is_url = url.startswith("http") or url.startswith("www.") or "gov." in url.lower()
+    original_query = url  # preserve for keyword scoring
+
+    # ── Fix 3: Pre-compute keywords once for the whole function ─────────────
+    keywords = _extract_keywords(original_query) if not is_url else []
 
     # ── Path A: Golden URL (query matches known entity) ─────────────────────
     if not is_url:
-        golden = _get_golden_result(url)
-        if golden:
-            logger.info("fetch_gov_portal: golden URL hit for query '%s'", url[:60])
+        # Fix 4: Multi-golden results
+        golden_entries = _get_golden_results(url)
+        if golden_entries:
+            logger.info(
+                "fetch_gov_portal: golden hit — %d entries for query '%s'",
+                len(golden_entries), url[:60],
+            )
 
-            # Liveness check on the golden URL
-            live = await _is_url_live(golden["url"])
-            if not live:
-                logger.warning("Golden URL dead: %s — falling through to DDG", golden["url"])
+            # Fix 5: Auto-infer country from entity
+            entity = _detect_entity(url)
+            if not country:
+                country = _infer_country_from_entity(entity)
+
+            # Fix 6: Parallel liveness checks with GOLDEN timeout (faster)
+            live_flags = await asyncio.gather(
+                *[_is_url_live(e["url"], timeout=LIVENESS_TIMEOUT_GOLDEN) for e in golden_entries]
+            )
+            live_entries = [e for e, live in zip(golden_entries, live_flags) if live]
+
+            if not live_entries:
+                logger.warning(
+                    "All golden URLs dead for entity '%s' — falling through to DDG", entity
+                )
                 # Fall through to DuckDuckGo below
             else:
-                result = {
-                    "title": golden["title"],
-                    "url": golden["url"],
-                    "snippet": golden["snippet"],
-                }
-                combined_content = f"**{result['title']}**\n{result['snippet']}\nSource: {result['url']}"
-
+                # Drop internal _source key before returning
+                results = [
+                    {"title": e["title"], "url": e["url"], "snippet": e["snippet"]}
+                    for e in live_entries
+                ]
+                combined_content = "\n\n".join(
+                    f"**{r['title']}**\n{r['snippet']}\nSource: {r['url']}"
+                    for r in results
+                )
                 return json.dumps({
-                    "results": [result],
+                    "results": results,
                     "content": combined_content,
                     "query_used": url,
                     "fetched_at": fetched_at,
                     "country": country,
-                    "result_count": 1,
+                    "result_count": len(results),
                     "source_tier": "golden",
                     "status": "success",
                 }, ensure_ascii=False)
@@ -782,11 +1229,17 @@ async def fetch_gov_portal(
             country = _detect_country(clean_url)
         site_scope = _get_site_scope(url=clean_url)
         path = urlparse(clean_url).path.strip("/").replace("-", " ").replace("/", " ")
-        search_query = f"{site_scope} {path}" if path else site_scope
+        # Fix 1: search terms BEFORE site: operator
+        search_query = f"{path} {site_scope}".strip() if path else site_scope
     else:
         country = country.strip().upper() if country else ""
+        # Fix 5: still try to infer country if not set
+        if not country:
+            entity = _detect_entity(url)
+            country = _infer_country_from_entity(entity)
         site_scope = _get_site_scope(country=country)
-        search_query = f"{site_scope} {url}" if site_scope else url
+        # Fix 1: query terms BEFORE site: operator
+        search_query = f"{url} {site_scope}".strip() if site_scope else url
 
     try:
         from ddgs import DDGS
@@ -809,8 +1262,11 @@ async def fetch_gov_portal(
         if not raw_results and not is_url:
             country_name = {"MY": "Malaysia", "ID": "Indonesia",
                             "PH": "Philippines", "TH": "Thailand"}.get(country, "")
-            general_query = f"{url} {country_name} government".strip()
-            logger.info("fetch_gov_portal: DDG gov empty — falling back to web '%s'", general_query)
+            # Fix 1: query terms first even in fallback
+            general_query = f"{url} {country_name} official government".strip()
+            logger.info(
+                "fetch_gov_portal: DDG gov empty — falling back to web '%s'", general_query
+            )
             raw_results = ddgs.text(general_query, max_results=MAX_SEARCH_RESULTS)
             source_tier = "web"
 
@@ -835,21 +1291,48 @@ async def fetch_gov_portal(
                 "note": "All results were filtered as irrelevant pages (complaints, login, etc).",
             })
 
-        # ── Liveness check on top results ──────────────────────────────────
+        # ── Fix 3: Keyword relevance scoring — sort and drop zero-score ───
+        if keywords:
+            scored = [
+                (r, _score_relevance(r, keywords))
+                for r in filtered
+            ]
+            # Keep results with at least 1 keyword hit, sorted by score desc
+            scored = [(r, s) for r, s in scored if s > 0]
+            if scored:
+                scored.sort(key=lambda x: x[1], reverse=True)
+                filtered = [r for r, _ in scored]
+                logger.info(
+                    "fetch_gov_portal: keyword scoring kept %d/%d results",
+                    len(filtered), len(raw_results),
+                )
+            else:
+                # No hits — fall back to unscored (let red-flag filter be enough)
+                logger.info(
+                    "fetch_gov_portal: keyword scoring found 0 hits — using unfiltered results"
+                )
+                filtered = [r for r in raw_results if not _is_red_flag(r)] or raw_results
+
+        candidates = filtered[:MAX_SEARCH_RESULTS]
+
+        # ── Fix 2: Parallel liveness checks (concurrent, not sequential) ──
+        urls_to_check = [r.get("href", "") for r in candidates]
+        live_flags = await asyncio.gather(
+            *[_is_url_live(u, timeout=LIVENESS_TIMEOUT_DDG) for u in urls_to_check]
+        )
+
         results = []
-        for r in filtered[:MAX_SEARCH_RESULTS]:
-            result_url = r.get("href", "")
-            if not result_url:
+        for r, u, live in zip(candidates, urls_to_check, live_flags):
+            if not u:
                 continue
-            live = await _is_url_live(result_url)
             if live:
                 results.append({
                     "title": r.get("title", ""),
-                    "url": result_url,
+                    "url": u,
                     "snippet": r.get("body", ""),
                 })
             else:
-                logger.info("fetch_gov_portal: dropped dead URL %s", result_url)
+                logger.info("fetch_gov_portal: dropped dead URL %s", u)
 
         if not results:
             return json.dumps({

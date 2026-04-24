@@ -1,0 +1,18 @@
+SENARAI PENGELUAR INSTRUMEN PEMBAYARAN GAJI YANG DIIKTIRAF
+
+JADUAL
+Bil | Nama Agensi | Tempoh Sah Laku
+1 | Bayo Pay (M) Sdn. Bhd. | 1 Ogos 2024 - 31 Julai 2027
+2 | BigPay Malaysia Sdn Bhd | 1 Ogos 2024 - 31 Julai 2027
+3 | FINEXUS Cards Sdn Bhd | 1 Ogos 2024 - 31 Julai 2027
+4 | Merchantrade Asia Sdn Bhd | 1 Ogos 2024 - 31 Julai 2027
+5 | MobilityOne Sdn Bhd | 1 Ogos 2024 - 31 Julai 2027
+6 | TNG Digital Sdn Bhd | 1 Ogos 2024 - 31 Julai 2027
+
+Bil	Nama Agensi	Tempoh Sah Laku
+1	Bayo Pay (M) Sdn. Bhd.	1 Ogos 2024 - 31 Julai 2027
+2	BigPay Malaysia Sdn Bhd	1 Ogos 2024 - 31 Julai 2027
+3	FINEXUS Cards Sdn Bhd	1 Ogos 2024 - 31 Julai 2027
+4	Merchantrade Asia Sdn Bhd	1 Ogos 2024 - 31 Julai 2027
+5	MobilityOne Sdn Bhd	1 Ogos 2024 - 31 Julai 2027
+6	TNG Digital Sdn Bhd	1 Ogos 2024 - 31 Julai 2027

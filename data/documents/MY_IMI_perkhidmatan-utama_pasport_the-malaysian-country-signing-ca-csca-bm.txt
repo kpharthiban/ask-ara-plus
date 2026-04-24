@@ -1,0 +1,47 @@
+MALAYSIAN COUNTRY SIGNING CA (CSCA)
+
+Laman web ini menyediakan maklumat mengenai CSCA Malaysia yang dikendalikan oleh Jabatan Imigresen Malaysia.
+
+Nama Unik CSCA (Distinguished Names)
+C=MY
+O=Jabatan Imigresen Malaysia
+OU=Bahagian Keselamatan dan Pasport
+CN=Malaysia Country Signer
+Sijil Kunci Awam CSCA
+
+CSCA menggunakan satu pasangan kunci utama. Pasangan kunci utama ini digunakan untuk mengeluarkan sijil Penandatangan Dokumen (Document Signer). Sekiranya berlaku keadaan di mana pasangan kunci utama tidak dapat digunakan, pasangan kunci utama yang baharu akan diterbitkan di laman web ini. Sijil yang dikodkan dalam format DER untuk kunci awam CSCA boleh didapati di bawah. Maklumat yang diperlukan untuk mengesahkan ketulenan sijil berikut juga tersedia dalam bentuk cetakan sahih atas permintaan.
+
+Sijil Kunci Awam Terkini
+
+Kunci awam terkini tersedia sebagai sijil swa-tandatangan dan mempunyai cap jari (fingerprint) SHA256:
+
+49:0E:45:82:34:64:E8:D9:F8:36:5A:E8:FE:B8:5E:BB:8D:FB:47:9D:24:10:E3:2E:65:37:19:77:14:39:2E:B1
+Sijil Kunci Awam Terdahulu
+Sijil 1
+
+Kunci awam ini tersedia sebagai sijil swa-tandatangan dan mempunyai cap jari (fingerprint) SHA256:
+
+DB:19:1A:E6:17:64:83:F7:87:46:BD:07:E8:D4:F5:50:57:A4:56:D1:A2:6A:BC:A9:10:1D:9C:D5:3E:86:54:FF
+Sijil 2
+
+EF:07:53:54:90:F6:59:71:76:53:E7:C4:AD:40:A2:F9:27:A1:25:01:B4:71:00:2F:3D:CB:52:F8:70:7B:8C:9B
+Sijil 3
+
+4D:2C:F4:EB:0B:FB:48:0B:A2:BA:49:DA:AF:92:C1:1C:52:F8:CF:C0:0A:70:67:2E:73:95:B0:29:1E:C6:0D:69
+Senarai Pembatalan Sijil
+
+Senarai pembatalan sijil. Sekiranya anda menghadapi sebarang masalah semasa memuat turun CRL, sila hubungi CSCA (lihat di bawah).
+
+Komunikasi dengan CSCA
+
+Saluran komunikasi utama dengan CSCA adalah melalui e-mel.
+
+Maklumat Keluar
+
+Maklumat yang dihantar oleh CSCA termasuk, tetapi tidak terhad kepada, sijil DS dan CRL.
+
+Hubungi
+Mohd Russaini bin Idrus
+Jabatan Imigresen Malaysia
+Bahagian Keselamatan dan Pasport
+E-mel : pbh [at] imi.gov [dot] my
