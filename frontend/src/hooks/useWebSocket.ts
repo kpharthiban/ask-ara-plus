@@ -70,6 +70,9 @@ const WS_URL = `${BACKEND_URL.replace(/^https?/, WS_PROTOCOL)}/ws/chat`;
 
 console.log("Connecting to WebSocket at:", WS_URL); // Good for debugging!
 
+const MAX_RECONNECT_ATTEMPTS = 5;
+const BASE_RECONNECT_DELAY_MS = 1000;
+
 /**
  * Delay before the very first connect attempt (ms).
  * Long enough for React StrictMode's phantom unmount (~0 ms in practice) to
