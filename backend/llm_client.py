@@ -26,12 +26,20 @@ import json
 import logging
 from typing import AsyncGenerator
 
+import asyncio
 import httpx
 from dotenv import load_dotenv
 
 load_dotenv()
 
 logger = logging.getLogger("askara.llm")
+
+# ---------------------------------------------------------------------------
+# 429 Rate-limit retry settings
+# ---------------------------------------------------------------------------
+_RETRY_MAX_ATTEMPTS = 3          # max attempts before giving up
+_RETRY_BASE_DELAY   = 2.0        # seconds — doubles each attempt (2, 4, 8)
+_RETRY_ON_STATUS    = {429, 503} # retry on these HTTP status codes
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -186,31 +194,39 @@ async def call_llm(
 
     logger.debug("LLM request → %s  model=%s  tokens=%d", url, model, max_tokens)
 
-    try:
-        resp = await client.post(url, headers=headers, json=payload)
-        resp.raise_for_status()
-        data = resp.json()
-        content = data["choices"][0]["message"]["content"]
-        logger.debug("LLM response: %d chars", len(content))
-        return content.strip()
+    last_exc: Exception | None = None
+    for attempt in range(1, _RETRY_MAX_ATTEMPTS + 1):
+        try:
+            resp = await client.post(url, headers=headers, json=payload)
+            resp.raise_for_status()
+            data = resp.json()
+            text_content = data["choices"][0]["message"]["content"]
+            logger.debug("LLM response: %d chars", len(text_content))
+            return text_content.strip()
 
-    except httpx.HTTPStatusError as exc:
-        logger.error(
-            "LLM API error %d: %s",
-            exc.response.status_code,
-            exc.response.text[:500],
-        )
-        raise LLMError(
-            f"SEA-LION API returned {exc.response.status_code}"
-        ) from exc
+        except httpx.HTTPStatusError as exc:
+            status = exc.response.status_code
+            if status in _RETRY_ON_STATUS and attempt < _RETRY_MAX_ATTEMPTS:
+                delay = _RETRY_BASE_DELAY * (2 ** (attempt - 1))
+                logger.warning(
+                    "LLM API %d on attempt %d/%d — retrying in %.1fs",
+                    status, attempt, _RETRY_MAX_ATTEMPTS, delay,
+                )
+                await asyncio.sleep(delay)
+                last_exc = exc
+                continue
+            logger.error("LLM API error %d: %s", status, exc.response.text[:500])
+            raise LLMError(f"SEA-LION API returned {status}") from exc
 
-    except httpx.TimeoutException as exc:
-        logger.error("LLM request timed out after %.1fs", LLM_TIMEOUT)
-        raise LLMError("LLM request timed out") from exc
+        except httpx.TimeoutException as exc:
+            logger.error("LLM request timed out after %.1fs", LLM_TIMEOUT)
+            raise LLMError("LLM request timed out") from exc
 
-    except Exception as exc:
-        logger.error("Unexpected LLM error: %s", exc)
-        raise LLMError(f"LLM call failed: {exc}") from exc
+        except Exception as exc:
+            logger.error("Unexpected LLM error: %s", exc)
+            raise LLMError(f"LLM call failed: {exc}") from exc
+
+    raise LLMError(f"LLM call failed after {_RETRY_MAX_ATTEMPTS} attempts") from last_exc
 
 
 # ---------------------------------------------------------------------------
@@ -273,8 +289,15 @@ async def call_llm_streaming(
                     continue
 
     except httpx.HTTPStatusError as exc:
-        logger.error("LLM stream error %d: %s", exc.response.status_code, exc.response.text[:500])
-        raise LLMError(f"SEA-LION stream returned {exc.response.status_code}") from exc
+        # exc.response.text raises ResponseNotRead on streaming responses
+        # that were never read — always safe-guard with a try/except.
+        status = exc.response.status_code
+        try:
+            body = exc.response.text[:500]
+        except Exception:
+            body = f"(body not available — streaming response)"
+        logger.error("LLM stream error %d: %s", status, body)
+        raise LLMError(f"SEA-LION stream returned {status}") from exc
 
     except httpx.TimeoutException as exc:
         logger.error("LLM stream timed out")
@@ -435,14 +458,13 @@ async def call_llm_vision_streaming(
                     continue
 
     except httpx.HTTPStatusError as exc:
-        logger.error(
-            "VL stream error %d: %s",
-            exc.response.status_code,
-            exc.response.text[:500],
-        )
-        raise LLMError(
-            f"Vision stream returned {exc.response.status_code}"
-        ) from exc
+        status = exc.response.status_code
+        try:
+            body = exc.response.text[:500]
+        except Exception:
+            body = "(body not available — streaming response)"
+        logger.error("VL stream error %d: %s", status, body)
+        raise LLMError(f"Vision stream returned {status}") from exc
 
     except httpx.TimeoutException as exc:
         logger.error("VL stream timed out after %.1fs", LLM_TIMEOUT)

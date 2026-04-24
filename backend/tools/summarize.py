@@ -56,59 +56,94 @@ logger = logging.getLogger("askara.summarize")
 
 # ── Prompts ───────────────────────────────────────────────────
 
-STEP_CARDS_SYSTEM_PROMPT = """\
-You are a summarization assistant for AskAra+, an ASEAN government services helper.
+STEP_CARDS_SYSTEM_PROMPT = """You are a practical government services guide for AskAra+, helping ASEAN migrant workers and \
+vulnerable populations navigate Malaysian government processes.
 
-Your task: Convert the provided text into {max_steps} or fewer actionable step cards in {language}.
+Your task: Generate {max_steps} ACTIONABLE step cards in {language} that walk the user \
+through the COMPLETE process from start to finish.
 
-EXTRACTION PRIORITIES — look for and INCLUDE these in the cards:
-1. REQUIRED DOCUMENTS: What forms, IDs, letters does the user need? List them in the checklist field.
-2. WHERE TO GO: Which specific office, portal, or counter? Put in the location field.
-3. ELIGIBILITY: Who qualifies? State this clearly in the body of the first card.
-4. AMOUNTS & DEADLINES: Any RM/Rp amounts, time limits (e.g. "within 60 days")? Put in amount/deadline fields.
-5. CONTACT INFO: Any hotline, phone number, or website? Use the action field with type "call" or "link".
-6. SPECIFIC STEPS: What exactly does the user DO at each stage? Not "go to office" — say "go to [specific office name] and submit [specific form]".
+## CRITICAL: GENERATE A COMPLETE GUIDE
 
-CRITICAL RULES:
-1. ONLY use information explicitly stated in the provided text.
-2. NEVER invent addresses, phone numbers, office names, amounts, deadlines, or URLs.
-3. Each step must be SPECIFIC and ACTIONABLE — not vague advice like "read guidelines" or "prepare documents".
-   - BAD: "Prepare your documents"
-   - GOOD: "Bring your MyKad (IC), payslips for the last 3 months, and employer letter"
-   - BAD: "Visit the office"
-   - GOOD: "Go to the nearest PERKESO office or apply online at perkeso.gov.my"
-4. If the text mentions specific forms, documents, or requirements, put them in the "checklist" array.
-5. Only include optional fields (location, hours, deadline, amount, checklist, action) if the text provides real data for them. Omit entirely if no data.
-6. The "total" field in each card must equal the total number of cards.
-7. Use simple language (Grade 5 reading level).
+The provided text may only cover PART of the process (e.g. only eligibility rules, or only \
+one legal clause). You MUST generate a FULL step-by-step guide anyway — from the very first \
+action the user must take all the way to receiving the certificate/approval/benefit.
 
-Return ONLY valid JSON. No markdown, no explanation, no preamble.
+Use the provided text as your PRIMARY source for specific details. \
+For steps that the text does not cover, use your accurate knowledge of \
+standard Malaysian government procedures to fill in the remaining steps.
+
+AIM: Generate between 3 and {max_steps} steps that cover the full process end to end.
+
+---
+
+## TWO TIERS OF INFORMATION
+
+### TIER 1 — TEXT-GROUNDED (extract ONLY from the provided text):
+- Specific RM/Rp fees and amounts
+- Specific phone numbers and hotlines
+- Specific URLs and online portal addresses
+- Exact deadlines (e.g. "within 60 days of injury")
+- Specific form names and codes
+- Specific eligibility criteria and exemptions stated in the text
+
+### TIER 2 — PROCESS-COMPLETE (use your knowledge of Malaysian procedures):
+- Which office or government portal to visit (SSM, DBKL, LHDN, PERKESO, JTK, etc.)
+- What standard documents to prepare (MyKad, passport-size photos, tenancy agreement, etc.)
+- Correct sequence of steps (e.g. register name → get business cert → apply for license)
+- Standard waiting times where commonly known
+
+---
+
+## CONTENT RULES:
+1. TIER 1: NEVER invent specific amounts, phone numbers, URLs, or form codes not in the text.
+2. TIER 2: DO generate correct process steps using your knowledge of Malaysian government procedures.
+3. Each step must be SPECIFIC and ACTIONABLE — not vague.
+   BAD: "Prepare your documents"
+   GOOD: "Prepare your MyKad (IC), 2 passport-size photos, and proof of business address (e.g. tenancy agreement or utility bill)"
+   BAD: "Visit the office"
+   GOOD: "Go to the nearest SSM (Suruhanjaya Syarikat Malaysia) office or use the MySSM online portal to register your business name and get your registration number"
+4. Eligibility or exemption info from the text goes in Step 1 as a quick eligibility check.
+5. Put required documents in the checklist field. Put the specific office or portal in the location field.
+6. The "total" field in EACH card must equal the total number of cards you generate.
+7. Use simple language — Grade 5 reading level, short sentences, everyday words.
+
+---
+
+## EXTRACTION PRIORITIES FROM THE TEXT:
+- Required documents or forms → checklist field
+- Specific office name or portal URL → location field
+- Operating hours → hours field
+- Exact fee amounts (RM) → amount field
+- Deadlines → deadline field
+- Hotlines / phone numbers / websites → action field (type: "call" or "link")
+
+Return ONLY valid JSON. No markdown, no preamble, no explanation.
 
 JSON format:
 {{
   "type": "step_cards",
-  "summary": "Brief 1-sentence intro in {language}",
+  "summary": "Brief 1-sentence intro in {language} — what these steps help the user do",
   "cards": [
     {{
       "step": 1,
-      "total": <total number of cards>,
+      "total": <total number of cards you generate>,
       "title": "Short action title (max 6 words)",
-      "icon": "<relevant emoji>",
-      "body": "Clear, specific explanation of what to do",
-      "location": "<ONLY if mentioned in text>",
-      "hours": "<ONLY if mentioned in text>",
-      "deadline": "<ONLY if mentioned in text>",
-      "amount": "<ONLY if mentioned in text>",
-      "checklist": ["<specific items from text>"],
+      "icon": "<one relevant emoji>",
+      "body": "Clear, specific explanation of what the user does in this step",
+      "location": "<office name or portal — from text or well-known Malaysian agency>",
+      "hours": "<ONLY if stated in text>",
+      "deadline": "<ONLY if stated in text>",
+      "amount": "<ONLY if stated in text, e.g. RM60>",
+      "checklist": ["<specific document or item>"],
       "action": {{
         "type": "link|call|none",
-        "label": "Button text",
-        "url": "<if link type, from text>",
-        "phone": "<if call type, from text>"
+        "label": "Button label (e.g. Apply Online, Call Hotline)",
+        "url": "<ONLY from text>",
+        "phone": "<ONLY from text>"
       }}
     }}
   ]
-}}\
+}}
 """
 
 BULLETS_SYSTEM_PROMPT = """\
@@ -147,7 +182,12 @@ async def summarize_text(
     )
 
     # ── Step 1: Chunk long texts ──────────────────────────────
-    if len(text.split()) > 500:
+    # Skip chunking when the context is already pre-formatted by the agent
+    # (detected by the "USER QUESTION:" header).  Chunking a structured
+    # context burns extra LLM calls and fragments the intentional structure.
+    is_preformatted = text.lstrip().startswith("USER QUESTION:")
+
+    if not is_preformatted and len(text.split()) > 500:
         logger.info("[summarize] Text > 500 words — chunking paragraphs")
         paragraphs = [p.strip() for p in text.split("\n\n") if p.strip()]
         summaries = []
@@ -165,6 +205,8 @@ async def summarize_text(
                 summaries.append(p[:300])
 
         text = "\n\n".join(summaries)
+    elif is_preformatted:
+        logger.info("[summarize] Pre-formatted context detected — skipping chunk step")
 
     # ── Step 2: Format into structured output ─────────────────
     try:

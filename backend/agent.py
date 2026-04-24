@@ -272,12 +272,19 @@ class AraState(TypedDict):
     structured: Optional[dict]
 
     # Content pipeline
-    last_text_content: str  # most recent text output — auto-fed to next tool
-    source_tier: str        # "knowledge_base" | "web"
+    last_text_content: str   # most recent text output — auto-fed to next tool
+    last_search_text: str    # raw (unsimplified) search/portal text — kept for summarize context
+    source_tier: str         # "knowledge_base" | "web"
 
     # Mismatch recovery (set by tool_executor when agency mismatch detected)
     forced_next_action: str   # non-empty → react_agent_node bypasses LLM reasoning
     forced_next_params: dict  # params to pass to the forced action
+
+    # Query intent (set by detect_context_node — drives forced simplify/summarize pipeline)
+    query_intent: str  # "procedural" | "factual"
+
+    # Query intent (set by detect_context_node — drives forced simplify/summarize pipeline)
+    query_intent: str  # "procedural" | "factual"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -321,10 +328,16 @@ def _get_text_from_search(result: dict) -> str:
     return "\n\n".join(r.get("text", "") for r in result.get("results", []) if r.get("text"))
 
 
-def _normalise_url(raw) -> str:
-    """Ensure URL is always a plain string regardless of how it was stored in ChromaDB."""
+def _normalise_url(raw: object) -> str:
+    """Coerce a URL value to a plain string.
+
+    ChromaDB metadata can occasionally deserialise a URL field as a list
+    (e.g. ``["https://…"]``) instead of a bare string.  Always return a
+    single ``str`` so downstream set/hash operations never crash.
+    """
     if isinstance(raw, list):
-        return raw[0] if raw else ""
+        # Take the first non-empty element, or fall back to ""
+        return next((str(u) for u in raw if u), "")
     return str(raw) if raw else ""
 
 
@@ -363,13 +376,14 @@ URL_PATTERN = re.compile(r'https?://[^\s)\]>"\']+')
 
 
 def _collect_allowed_urls(sources: list[dict]) -> set[str]:
-    """Collect all allowed URLs, safely normalising list-typed values."""
+    """Return a set of URL strings — safe even if a url field slipped through
+    as a list (extra guard on top of the _normalise_url call at extraction)."""
     urls: set[str] = set()
     for s in sources:
         raw = s.get("url", "")
-        normalised = _normalise_url(raw)
-        if normalised:
-            urls.add(normalised)
+        url = _normalise_url(raw)
+        if url:
+            urls.add(url)
     return urls
 
 
@@ -666,7 +680,7 @@ async def _run_simplify(params: dict, state: AraState) -> tuple[dict, list[dict]
         return {"status": "error", "message": "No text available to simplify"}, [], ""
 
     raw = await _mcp_invoke("simplify", {
-        "text": text[:3000],
+        "text": text[:6000],           # increased from 3000 — captures all retrieved chunks
         "target_grade_level": 5,
         "country": state["detected_country"],
         "language": state["detected_lang"],
@@ -676,12 +690,28 @@ async def _run_simplify(params: dict, state: AraState) -> tuple[dict, list[dict]
 
 
 async def _run_summarize(params: dict, state: AraState) -> tuple[dict, list[dict], str]:
-    text = params.get("text") or state.get("last_text_content", "")
-    if not text:
+    simplified_text = params.get("text") or state.get("last_text_content", "")
+    raw_search_text = state.get("last_search_text", "")
+    user_question = state.get("user_message", "")
+
+    if not simplified_text and not raw_search_text:
         return {"status": "error", "message": "No text available to summarize"}, [], ""
 
+    # Build rich context: user question + raw search text + simplified text.
+    # Giving the LLM all three lets it generate a COMPLETE procedural guide
+    # even when the knowledge base only returned eligibility/exemption clauses.
+    context_parts = []
+    if user_question:
+        context_parts.append("USER QUESTION: " + user_question)
+    if raw_search_text:
+        context_parts.append("RETRIEVED INFORMATION:\n" + raw_search_text[:4000])
+    if simplified_text and simplified_text != raw_search_text:
+        context_parts.append("SIMPLIFIED SUMMARY:\n" + simplified_text[:2000])
+
+    rich_text = "\n\n---\n\n".join(context_parts)
+
     raw = await _mcp_invoke("summarize", {
-        "text": text,
+        "text": rich_text,
         "format": "step_cards",
         "language": state["detected_lang"],
         "max_steps": 5,
@@ -788,20 +818,22 @@ If STILL AVAILABLE is empty → use FINISH immediately.
 
 ## Decision Rules
 1. Greetings / social / "thank you" → FINISH immediately
-2. Factual questions about a program or right → search_documents (once), then FINISH
-3. "How do I apply / register / claim …" → search_documents → simplify → summarize → FINISH
-4. "What programs can I get / am I eligible for" → profile_match → FINISH
-5. If search_documents returns empty/poor results AND fetch_gov_portal not yet used → fetch_gov_portal
-6. After summarize or profile_match → FINISH immediately, no more tools
-7. Omit "text" in simplify / summarize — it auto-uses the last retrieved content
-8. NEVER invent program names, benefit amounts, or URLs
+2. Any question about a program, right, or procedure → search_documents (if not yet used), then FINISH
+   NOTE: simplify and summarize are triggered AUTOMATICALLY by the pipeline — you do NOT need to call them
+3. "What programs can I get / am I eligible for" → profile_match → FINISH
+4. If search_documents returns empty/poor results AND fetch_gov_portal not yet used → fetch_gov_portal
+5. After summarize or profile_match → FINISH immediately, no more tools
+6. Omit "text" in simplify / summarize — it auto-uses the last retrieved content
+7. NEVER invent program names, benefit amounts, or URLs
+8. NEVER call simplify or summarize yourself — the pipeline calls them automatically after search_documents
 
 ## Session Context
-Language : {state.get("detected_lang", "en")}
-Country  : {state.get("detected_country", "unknown")}
-Dialect  : {state.get("detected_dialect", "standard")}
+Language     : {state.get("detected_lang", "en")}
+Country      : {state.get("detected_country", "unknown")}
+Dialect      : {state.get("detected_dialect", "standard")}
+Query intent : {state.get("query_intent", "factual")} (auto-detected — pipeline enforced)
 Tool calls remaining: {remaining}
-Backend  : {mcp_status}{chain_hint}
+Backend      : {mcp_status}{chain_hint}
 
 ## Conversation History
 {history_text}
@@ -866,9 +898,47 @@ def _parse_react_response(text: str) -> tuple[str, str, dict]:
 # LangGraph Nodes
 # ─────────────────────────────────────────────────────────────────────────────
 
+# Keywords that signal the user wants a step-by-step procedure (TYPE B).
+# When any appear, the pipeline DETERMINISTICALLY runs:
+#   search_documents → simplify → summarize → FINISH
+# For TYPE A (factual) queries: search_documents → simplify → FINISH
+_PROCEDURAL_SIGNALS = [
+    # English
+    "how to ", "how do i ", "how can i ", "how do you ", "how do we ",
+    "what steps", "what do i need to", "what do i need for",
+    "where do i go", "where to go", "where to apply", "where to register",
+    "where can i go", "step by step", "procedure", "process to ",
+    # Action verbs mapping to registration / application workflows
+    "register", "apply ", "applying ", "claim ", "claiming ", "enrol", "enroll",
+    "renew ", "renewing ", "submit ", "open a business", "start a business",
+    "start my business", "set up a business", "get a permit", "obtain a ",
+    # Malay / Indonesian
+    "macam mana", "cara nak", "cara untuk", "cara mendapat", "bagaimana cara",
+    "nak daftar", "nak mohon", "nak apply", "mendaftar", "permohonan",
+    "mohon untuk", "cara memohon", "langkah-langkah", "prosedur",
+    "di mana boleh", "ke mana pergi",
+    # Filipino / Tagalog
+    "paano ", "pano mag", "kung paano", "mag-apply", "mag-register",
+    "magrerehistro", "paano kumuha", "saan pwede",
+    # Thai
+    "วิธี", "ขั้นตอน", "ทำอย่างไร", "ลงทะเบียน", "สมัคร",
+]
+
+
+def _detect_query_intent(message: str) -> str:
+    """
+    Return "procedural" if the message looks like a step-by-step / how-to query,
+    otherwise return "factual".  Keyword-based — deterministic, no LLM needed.
+    """
+    msg_lower = message.lower()
+    if any(signal in msg_lower for signal in _PROCEDURAL_SIGNALS):
+        return "procedural"
+    return "factual"
+
+
 def detect_context_node(state: AraState) -> dict:
     """
-    Node 1 — Detect language / dialect / country (sync, no LLM, no MCP).
+    Node 1 — Detect language / dialect / country / query intent (sync, no LLM, no MCP).
     Runs directly via the Python import — fast and dependency-free.
     """
     message = state["user_message"]
@@ -886,14 +956,17 @@ def detect_context_node(state: AraState) -> dict:
         detected_dialect = "standard"
         detected_country = country_hint
 
+    query_intent = _detect_query_intent(message)
+
     logger.info(
-        "Context → lang=%s  dialect=%s  country=%s  mcp_tools=%d",
-        detected_lang, detected_dialect, detected_country, len(_mcp_tools),
+        "Context → lang=%s  dialect=%s  country=%s  intent=%s  mcp_tools=%d",
+        detected_lang, detected_dialect, detected_country, query_intent, len(_mcp_tools),
     )
     return {
         "detected_lang": detected_lang,
         "detected_dialect": detected_dialect,
         "detected_country": detected_country,
+        "query_intent": query_intent,
     }
 
 
@@ -1035,6 +1108,10 @@ async def tool_executor_node(state: AraState) -> dict:
 
     if text_content:
         update["last_text_content"] = text_content
+        # Preserve the raw (unsimplified) retrieval text so summarize can use it
+        # for richer context even after simplify compresses the content.
+        if tool_name in ("search_documents", "fetch_gov_portal"):
+            update["last_search_text"] = text_content
 
     if tool_name == "fetch_gov_portal":
         update["source_tier"] = "web"
@@ -1056,6 +1133,40 @@ async def tool_executor_node(state: AraState) -> dict:
                 "query": f"{queried} {state['user_message']}",
                 "country": state.get("detected_country", ""),
             }
+
+    # ── Deterministic simplify → summarize pipeline ───────────────────────────
+    # After search_documents or fetch_gov_portal returns useful text content,
+    # ALWAYS force simplify next (so government jargon is never shown raw).
+    # After simplify, if the query is procedural, force summarize to produce
+    # step cards.  This mirrors the TYPE A / TYPE B chains in the system prompt
+    # but makes them deterministic — independent of LLM judgment.
+    already_used_pipeline = set(state.get("tool_calls_made", []) + [tool_name])
+
+    if not mismatch_info and tool_name in ("search_documents", "fetch_gov_portal") and text_content:
+        intent = state.get("query_intent", "factual")
+        if intent == "procedural":
+            # Procedural: skip simplify entirely — summarize handles simplification
+            # internally with its TIER 1/TIER 2 prompt.  Saves 1 LLM call.
+            if "summarize" not in already_used_pipeline:
+                logger.info(
+                    "Pipeline: %s content (%d chars), intent=procedural → skipping simplify, forcing summarize",
+                    tool_name, len(text_content),
+                )
+                update["forced_next_action"] = "summarize"
+                update["forced_next_params"] = {}
+        else:
+            # Factual: simplify first so the final LLM gets clean input.
+            if "simplify" not in already_used_pipeline:
+                logger.info(
+                    "Pipeline: %s returned content (%d chars), intent=factual → forcing simplify",
+                    tool_name, len(text_content),
+                )
+                update["forced_next_action"] = "simplify"
+                update["forced_next_params"] = {}
+
+    elif tool_name == "simplify" and text_content:
+        # Factual path post-simplify: no summarize needed — final LLM writes the answer.
+        logger.info("Pipeline: simplify done (factual path) → finishing to final LLM answer")
 
     structured = _try_parse_structured(result_dict)
     if structured:
@@ -1251,9 +1362,11 @@ async def run_agent_streaming(
         "sources": [],
         "structured": None,
         "last_text_content": "",
+        "last_search_text": "",
         "source_tier": "knowledge_base",
         "forced_next_action": "",
         "forced_next_params": {},
+        "query_intent": "factual",  # overwritten by detect_context_node
     }
 
     final_state: dict = dict(initial_state)
@@ -1291,18 +1404,45 @@ async def run_agent_streaming(
         if all_sources:
             yield {"type": "sources", "content": all_sources}
 
-        # ── Phase 2: stream final answer ─────────────────────────────────────
-        async for token in call_llm_streaming(
-            _build_final_prompt(final_state),
-            system_prompt=SYSTEM_PROMPT,
-            history=history,
-        ):
-            full_response += token
-            yield {"type": "token", "content": token}
+        # ── Phase 2: stream final answer (or use step_cards summary) ──────────
+        # When step_cards are ready, the "summary" field already IS the warm
+        # 1-2 sentence intro the LLM would generate.  Re-using it saves an
+        # entire LLM call (the biggest single win for the rate limit budget).
+        final_structured = final_state.get("structured")
+        if final_structured and final_structured.get("type") == "step_cards":
+            intro = final_structured.get("summary", "").strip()
+            if not intro:
+                lang = final_state.get("detected_lang", "en")
+                intro = f"Here are the steps to help you with your request."
+            logger.info(
+                "Phase 2 skipped — using step_cards summary as intro (%d chars). "
+                "Saved 1 LLM call.",
+                len(intro),
+            )
+            full_response = intro
+            yield {"type": "token", "content": intro}
+        elif final_structured and final_structured.get("type") == "recommendations":
+            # Same optimisation for profile_match recommendation cards
+            lang = final_state.get("detected_lang", "en")
+            total = final_structured.get("total_matches", len(final_structured.get("items", [])))
+            intro = f"I found {total} government programs that may help you."
+            logger.info("Phase 2 skipped — using recommendations intro. Saved 1 LLM call.")
+            full_response = intro
+            yield {"type": "token", "content": intro}
+        else:
+            # Normal path: no structured cards — stream the final LLM answer
+            async for token in call_llm_streaming(
+                _build_final_prompt(final_state),
+                system_prompt=SYSTEM_PROMPT,
+                history=history,
+            ):
+                full_response += token
+                yield {"type": "token", "content": token}
 
-        full_response = _strip_hallucinated_urls(
-            full_response, _collect_allowed_urls(all_sources)
-        )
+            full_response = _strip_hallucinated_urls(
+                full_response, _collect_allowed_urls(all_sources)
+            )
+
         yield {"type": "done", "content": full_response}
 
     except Exception as exc:
